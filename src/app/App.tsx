@@ -44,7 +44,7 @@ export default function App() {
         <SectionDots />
 
         {/* Home banner + Navbar */}
-        <div className="bg-black">
+        <div className="bg-transparent">
           <HomeHeroSection />
           <Navbar />
         </div>

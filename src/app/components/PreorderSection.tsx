@@ -224,7 +224,7 @@ export function PreorderSection() {
 
       <motion.div
         style={{ y }}
-        className="relative z-10 max-w-4xl mx-auto"
+        className="relative z-10 max-w-6xl mx-auto"
       >
         {/* Header */}
         <div className="text-center mb-16">
@@ -257,14 +257,14 @@ export function PreorderSection() {
           </motion.div>
         )}
 
-        {/* Single-column vertical stack of ProductCards */}
-        <div className="space-y-6">
+        {/* Kickstarter-style reward card grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {preorderProducts.map((product, index) => (
             <motion.div
               key={product.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
+              transition={{ duration: 0.5, delay: index * 0.06 }}
               viewport={{ once: true }}
             >
               <ProductCard
@@ -307,7 +307,6 @@ interface ProductCardProps {
 function ProductCard({ product, shopifyAvailable, shopifyImage, onClick }: ProductCardProps) {
   const [imageError, setImageError] = useState(false);
 
-  // Use Shopify image when available, otherwise fallback
   const displayTitle = product.fallbackTitle;
   const displayPrice = product.fallbackPrice;
   const displayImage = shopifyImage || product.fallbackImage;
@@ -316,20 +315,25 @@ function ProductCard({ product, shopifyAvailable, shopifyImage, onClick }: Produ
     <button
       type="button"
       onClick={onClick}
-      className="group w-full flex flex-col sm:flex-row border border-white/10 bg-zinc-900/60 backdrop-blur-sm
+      className="group w-full h-full flex flex-col border border-white/10 bg-zinc-900/70 backdrop-blur-sm
                  rounded-lg overflow-hidden transition-all duration-300
-                 hover:border-white/25 hover:bg-zinc-800/70 hover:shadow-[0_4px_30px_rgba(255,255,255,0.05)]
+                 hover:border-white/25 hover:bg-zinc-800/80 hover:shadow-[0_8px_40px_rgba(255,255,255,0.06)]
                  focus:outline-none focus:ring-2 focus:ring-white/30 focus:ring-offset-2 focus:ring-offset-zinc-900
                  text-left cursor-pointer"
       aria-label={`View details for ${displayTitle}`}
     >
-      {/* Image — left side on sm+, top on mobile */}
-      <div className="relative w-full sm:w-56 md:w-64 lg:w-72 aspect-square sm:aspect-square flex-shrink-0 bg-zinc-800/50">
+      {/* Price badge — prominent at top */}
+      <div className="px-5 pt-5 pb-3">
+        <span className="text-2xl font-semibold text-white">{displayPrice}</span>
+      </div>
+
+      {/* Product image */}
+      <div className="relative w-full aspect-square bg-zinc-800/50 overflow-hidden">
         {!imageError ? (
           <img
             src={displayImage}
             alt={displayTitle}
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
             onError={() => setImageError(true)}
           />
         ) : (
@@ -340,26 +344,34 @@ function ProductCard({ product, shopifyAvailable, shopifyImage, onClick }: Produ
         )}
       </div>
 
-      {/* Details — right side */}
-      <div className="flex-1 p-5 sm:p-6 flex flex-col justify-center min-h-[120px]">
-        <div className="flex items-start justify-between gap-4">
-          <div className="flex-1">
-            <h3 className="text-lg md:text-xl font-medium text-white/90 mb-1 group-hover:text-white transition-colors">
-              {displayTitle}
-            </h3>
-            <p className="text-white/50 text-sm leading-relaxed">
-              {product.cardDescription}
-            </p>
-          </div>
-          <div className="flex-shrink-0 text-right">
-            <span className="text-white/70 text-lg font-medium">{displayPrice}</span>
-          </div>
-        </div>
+      {/* Card content */}
+      <div className="flex-1 flex flex-col p-5">
+        {/* Tier name */}
+        <h3 className="text-lg font-medium text-white/90 mb-2 group-hover:text-white transition-colors">
+          {displayTitle}
+        </h3>
 
-        {/* Subtle interaction hint */}
-        <div className="mt-3 flex items-center gap-2 text-white/30 group-hover:text-white/50 transition-colors">
+        {/* Includes list */}
+        {product.tierIncludes && product.tierIncludes.length > 0 && (
+          <ul className="space-y-1.5 text-white/60 text-xs leading-relaxed mb-4 flex-1">
+            {product.tierIncludes.slice(0, 4).map((item, i) => (
+              <li key={i} className="flex items-start gap-1.5">
+                <span className="text-white/40 mt-0.5">•</span>
+                <span>{item}</span>
+              </li>
+            ))}
+            {product.tierIncludes.length > 4 && (
+              <li className="text-white/40 italic">+ {product.tierIncludes.length - 4} more...</li>
+            )}
+          </ul>
+        )}
+
+        {/* CTA hint */}
+        <div className="mt-auto pt-3 flex items-center justify-center gap-2 py-2.5 rounded-md
+                        border border-white/10 text-white/60 text-sm
+                        group-hover:border-white/25 group-hover:text-white/80 transition-all">
           <Package className="w-4 h-4" strokeWidth={1.5} />
-          <span className="text-xs tracking-wide uppercase">View Details</span>
+          <span className="tracking-wide">View Details</span>
         </div>
       </div>
     </button>

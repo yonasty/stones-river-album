@@ -29,15 +29,15 @@ export function Navbar() {
   }, []);
 
   return (
-    <nav className="w-full flex-shrink-0 bg-black border-b border-white/10">
+    <nav className="w-full flex-shrink-0">
       {/* Desktop nav items */}
-      <div className="hidden md:flex items-center justify-center gap-10 py-4">
+      <div className="hidden md:flex items-center justify-center gap-10 py-5">
         {navItems.map((item) => (
           <a
             key={item.href}
             href={item.href}
             onClick={(e) => handleNavClick(e, item.href)}
-            className="text-white/80 hover:text-white text-base tracking-wider uppercase transition-colors duration-200"
+            className="font-['Playfair_Display'] text-amber-200 hover:text-amber-100 text-[15px] tracking-wide transition-colors duration-200 drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]"
           >
             {item.label}
           </a>
@@ -48,7 +48,7 @@ export function Navbar() {
       <div className="md:hidden flex justify-center py-3">
         <button
           type="button"
-          className="p-2 text-white/80 hover:text-white transition-colors"
+          className="p-2 text-amber-200 hover:text-amber-100 transition-colors"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
         >
@@ -58,14 +58,14 @@ export function Navbar() {
 
       {/* Mobile dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-black border-t border-white/10">
+        <div className="md:hidden bg-black/40 backdrop-blur-sm">
           <div className="px-4 py-4 space-y-2">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href)}
-                className="block py-3 text-white/80 hover:text-white text-base tracking-wider uppercase transition-colors duration-200 text-center"
+                className="block py-3 font-['Playfair_Display'] text-amber-200 hover:text-amber-100 text-[15px] tracking-wide transition-colors duration-200 text-center"
               >
                 {item.label}
               </a>
