@@ -1,3 +1,5 @@
+import vinylImage from '../../../assets/Vinyl_Front_And_Back.jpg';
+
 export interface ProductConfig {
   id: string;
   /** Shopify product ID — replace with actual ID from Shopify admin */
@@ -29,7 +31,7 @@ export const preorderProducts: ProductConfig[] = [
     ],
     fallbackTitle: 'Tier 1 — Prelude Patron',
     fallbackPrice: '$40.00',
-    fallbackImage: '/assets/Vinyl_Front_And_Back.jpg',
+    fallbackImage: vinylImage,
   },
   {
     id: 'tier-2',
@@ -45,7 +47,7 @@ export const preorderProducts: ProductConfig[] = [
     ],
     fallbackTitle: 'Tier 2 — Stones River Essentials',
     fallbackPrice: '$60.00',
-    fallbackImage: '/assets/Vinyl_Front_And_Back.jpg',
+    fallbackImage: vinylImage,
   },
   {
     id: 'tier-3',
@@ -64,7 +66,7 @@ export const preorderProducts: ProductConfig[] = [
     ],
     fallbackTitle: 'Tier 3 — Stones River Collector',
     fallbackPrice: '$75.00',
-    fallbackImage: '/assets/Vinyl_Front_And_Back.jpg',
+    fallbackImage: vinylImage,
   },
   {
     id: 'tier-4',
@@ -83,7 +85,7 @@ export const preorderProducts: ProductConfig[] = [
     ],
     fallbackTitle: 'Tier 4 — Gallery Patron',
     fallbackPrice: '$200.00',
-    fallbackImage: '/assets/Vinyl_Front_And_Back.jpg',
+    fallbackImage: vinylImage,
   },
   {
     id: 'tier-5',
@@ -103,7 +105,7 @@ export const preorderProducts: ProductConfig[] = [
     ],
     fallbackTitle: 'Tier 5 — Harmony & Ink',
     fallbackPrice: '$250.00',
-    fallbackImage: '/assets/Vinyl_Front_And_Back.jpg',
+    fallbackImage: vinylImage,
   },
   {
     id: 'tier-6',
@@ -124,7 +126,7 @@ export const preorderProducts: ProductConfig[] = [
     ],
     fallbackTitle: "Tier 6 — Composer's Circle",
     fallbackPrice: '$500.00',
-    fallbackImage: '/assets/Vinyl_Front_And_Back.jpg',
+    fallbackImage: vinylImage,
   },
   {
     id: 'tier-7',
@@ -147,7 +149,7 @@ export const preorderProducts: ProductConfig[] = [
     ],
     fallbackTitle: 'Tier 7 — Stones River Experience',
     fallbackPrice: '$1,500.00',
-    fallbackImage: '/assets/Vinyl_Front_And_Back.jpg',
+    fallbackImage: vinylImage,
   },
 ];
 
