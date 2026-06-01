@@ -35,7 +35,7 @@ export function SectionDots() {
             }
           });
         },
-        { threshold: 0.3 }
+        { threshold: 0.1, rootMargin: '-40% 0px -40% 0px' }
       );
 
       observer.observe(element);

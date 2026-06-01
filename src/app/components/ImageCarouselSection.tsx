@@ -181,7 +181,7 @@ export function ImageCarouselSection() {
               {carouselImages.map((image, index) => (
                 <CarouselItem key={index}>
                   {imageErrors[index] ? (
-                    <div className="w-full h-[70vh] flex flex-col items-center justify-center bg-zinc-900">
+                    <div className="w-full h-[80vh] flex flex-col items-center justify-center bg-black">
                       <ImageIcon className="w-12 h-12 text-white/50 mb-3" />
                       <span className="text-white/60 text-sm">{image.filename}</span>
                     </div>
@@ -189,7 +189,7 @@ export function ImageCarouselSection() {
                     <img
                       src={image.src}
                       alt={`Stones River project image ${index + 1}`}
-                      className="w-full h-[70vh] object-cover cursor-pointer"
+                      className="w-full h-[80vh] object-contain cursor-pointer bg-black"
                       onError={() => handleImageError(index)}
                       onClick={() => handleImageClick(index)}
                     />

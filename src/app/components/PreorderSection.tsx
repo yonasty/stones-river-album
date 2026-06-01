@@ -224,7 +224,7 @@ export function PreorderSection() {
 
       <motion.div
         style={{ y }}
-        className="relative z-10 max-w-6xl mx-auto"
+        className="relative z-10 max-w-7xl mx-auto"
       >
         {/* Header */}
         <div className="text-center mb-16">
@@ -257,8 +257,8 @@ export function PreorderSection() {
           </motion.div>
         )}
 
-        {/* Kickstarter-style reward card grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Kickstarter-style tier rows — single column vertical stack */}
+        <div className="space-y-8">
           {preorderProducts.map((product, index) => (
             <motion.div
               key={product.id}
@@ -271,7 +271,6 @@ export function PreorderSection() {
                 product={product}
                 shopifyAvailable={shopifyAvailable}
                 shopifyImage={productImages[product.id]?.[0]}
-                onClick={() => handleCardClick(product)}
               />
             </motion.div>
           ))}
@@ -295,86 +294,126 @@ export function PreorderSection() {
   );
 }
 
-// --- ProductCard Component ---
+// --- ProductCard Component (Kickstarter-style horizontal row) ---
 
 interface ProductCardProps {
   product: ProductConfig;
   shopifyAvailable: boolean;
   shopifyImage?: string;
-  onClick: () => void;
 }
 
-function ProductCard({ product, shopifyAvailable, shopifyImage, onClick }: ProductCardProps) {
+function ProductCard({ product, shopifyAvailable, shopifyImage }: ProductCardProps) {
   const [imageError, setImageError] = useState(false);
+  const [addedFeedback, setAddedFeedback] = useState(false);
+  const { addItem } = useCart();
 
   const displayTitle = product.fallbackTitle;
   const displayPrice = product.fallbackPrice;
   const displayImage = shopifyImage || product.fallbackImage;
 
+  const handleAddToCart = () => {
+    if (!product.shopifyVariantId) return;
+
+    addItem({
+      variantId: product.shopifyVariantId,
+      productId: product.shopifyProductId,
+      title: product.fallbackTitle,
+      price: product.fallbackPrice,
+      image: shopifyImage || product.fallbackImage,
+    });
+
+    setAddedFeedback(true);
+    setTimeout(() => {
+      setAddedFeedback(false);
+    }, 1500);
+  };
+
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      className="group w-full h-full flex flex-col border border-white/10 bg-zinc-900/70 backdrop-blur-sm
-                 rounded-lg overflow-hidden transition-all duration-300
-                 hover:border-white/25 hover:bg-zinc-800/80 hover:shadow-[0_8px_40px_rgba(255,255,255,0.06)]
-                 focus:outline-none focus:ring-2 focus:ring-white/30 focus:ring-offset-2 focus:ring-offset-zinc-900
-                 text-left cursor-pointer"
-      aria-label={`View details for ${displayTitle}`}
+    <div
+      className="border border-white/10 bg-zinc-900/60 backdrop-blur-sm rounded-lg overflow-hidden
+                 transition-all duration-300 hover:border-white/20 hover:bg-zinc-900/80"
     >
-      {/* Price badge — prominent at top */}
-      <div className="px-5 pt-5 pb-3">
-        <span className="text-2xl font-semibold text-white">{displayPrice}</span>
-      </div>
+      {/* Desktop: horizontal row layout */}
+      <div className="flex flex-col md:flex-row">
+        {/* Left column — Product image (~35%) */}
+        <div className="w-full md:w-[35%] relative bg-zinc-800/50 flex items-center justify-center p-4 md:p-6">
+          {!imageError ? (
+            <img
+              src={displayImage}
+              alt={displayTitle}
+              className="w-full h-56 md:h-full object-contain"
+              onError={() => setImageError(true)}
+            />
+          ) : (
+            <div className="w-full h-48 md:h-full flex flex-col items-center justify-center">
+              <ImageIcon className="w-8 h-8 text-white/30 mb-2" strokeWidth={1.5} />
+              <span className="text-white/40 text-xs text-center">{product.fallbackImage.split('/').pop()}</span>
+            </div>
+          )}
+        </div>
 
-      {/* Product image */}
-      <div className="relative w-full aspect-square bg-zinc-800/50 overflow-hidden">
-        {!imageError ? (
-          <img
-            src={displayImage}
-            alt={displayTitle}
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-            onError={() => setImageError(true)}
-          />
-        ) : (
-          <div className="w-full h-full flex flex-col items-center justify-center border border-white/10 bg-zinc-800 p-4">
-            <ImageIcon className="w-8 h-8 text-white/30 mb-2" strokeWidth={1.5} />
-            <span className="text-white/40 text-xs text-center">{product.fallbackImage.split('/').pop()}</span>
-          </div>
-        )}
-      </div>
-
-      {/* Card content */}
-      <div className="flex-1 flex flex-col p-5">
-        {/* Tier name */}
-        <h3 className="text-lg font-medium text-white/90 mb-2 group-hover:text-white transition-colors">
-          {displayTitle}
-        </h3>
-
-        {/* Includes list */}
-        {product.tierIncludes && product.tierIncludes.length > 0 && (
-          <ul className="space-y-1.5 text-white/60 text-xs leading-relaxed mb-4 flex-1">
-            {product.tierIncludes.slice(0, 4).map((item, i) => (
-              <li key={i} className="flex items-start gap-1.5">
-                <span className="text-white/40 mt-0.5">•</span>
-                <span>{item}</span>
-              </li>
-            ))}
-            {product.tierIncludes.length > 4 && (
-              <li className="text-white/40 italic">+ {product.tierIncludes.length - 4} more...</li>
+        {/* Middle column — Tier name, price, View Details (~25%) */}
+        <div className="w-full md:w-[25%] p-5 md:p-6 flex flex-col justify-center border-t md:border-t-0 md:border-l border-white/5">
+          <h3 className="text-xl font-medium text-white/90 mb-2">
+            {displayTitle}
+          </h3>
+          <span className="text-2xl font-semibold text-white mb-4">
+            {displayPrice}
+          </span>
+          <button
+            type="button"
+            onClick={handleAddToCart}
+            disabled={!product.shopifyVariantId}
+            className="inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-md
+                       border border-white/10 text-white/70 text-sm
+                       hover:border-white/25 hover:text-white/90 hover:bg-white/5
+                       transition-all duration-200
+                       disabled:opacity-40 disabled:cursor-not-allowed
+                       focus:outline-none focus:ring-2 focus:ring-white/30 focus:ring-offset-2 focus:ring-offset-zinc-900"
+            aria-label={product.shopifyVariantId ? `Add ${displayTitle} to cart` : `${displayTitle} coming soon`}
+          >
+            {addedFeedback ? (
+              <>
+                <Check className="w-4 h-4" strokeWidth={1.5} />
+                <span className="tracking-wide">Added ✓</span>
+              </>
+            ) : (
+              <>
+                <ShoppingCart className="w-4 h-4" strokeWidth={1.5} />
+                <span className="tracking-wide">{product.shopifyVariantId ? 'Add to Cart' : 'Coming Soon'}</span>
+              </>
             )}
-          </ul>
-        )}
+          </button>
+        </div>
 
-        {/* CTA hint */}
-        <div className="mt-auto pt-3 flex items-center justify-center gap-2 py-2.5 rounded-md
-                        border border-white/10 text-white/60 text-sm
-                        group-hover:border-white/25 group-hover:text-white/80 transition-all">
-          <Package className="w-4 h-4" strokeWidth={1.5} />
-          <span className="tracking-wide">View Details</span>
+        {/* Right column — Included items list (~45%) */}
+        <div className="w-full md:w-[45%] p-5 md:p-6 border-t md:border-t-0 md:border-l border-white/5">
+          <p className="text-white/50 text-sm mb-3">
+            {product.includedItems.length} item{product.includedItems.length !== 1 ? 's' : ''} included
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            {product.includedItems.map((item, i) => (
+              <div
+                key={i}
+                className="flex items-center gap-3 border border-white/5 bg-zinc-800/30 rounded-md p-3"
+              >
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="w-10 h-10 rounded object-contain bg-zinc-800 flex-shrink-0"
+                />
+                <div className="min-w-0">
+                  <p className="text-white/80 text-sm leading-snug line-clamp-2">
+                    {item.name}
+                  </p>
+                  <p className="text-white/40 text-xs mt-0.5">Qty: {item.quantity}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-    </button>
+    </div>
   );
 }
 
