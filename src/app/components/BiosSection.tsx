@@ -30,7 +30,7 @@ function BioCard({
     >
       <div className="overflow-hidden rounded-lg transition-all duration-300 ease-out group-hover:scale-[1.02] group-hover:shadow-[0_8px_40px_rgba(0,0,0,0.4)]">
         {imgError ? (
-          <div className="aspect-[4/3] w-full flex flex-col items-center justify-center bg-zinc-800/60 border border-white/10 rounded-lg">
+          <div className="aspect-square w-full flex flex-col items-center justify-center bg-zinc-800/60 border border-white/10 rounded-lg">
             <ImageIcon className="size-10 text-white/40 mb-2" />
             <span className="text-sm text-white/50">Image unavailable</span>
           </div>
@@ -39,7 +39,7 @@ function BioCard({
             src={bio.image}
             alt={bio.imageAlt}
             loading="lazy"
-            className="aspect-[4/3] w-full object-cover object-top rounded-lg"
+            className="aspect-square w-full object-cover object-top rounded-lg"
             onError={() => setImgError(true)}
           />
         )}

@@ -17,12 +17,12 @@ export function InterviewSection() {
     <section
       ref={ref}
       id="media"
-      className="relative w-full flex items-center justify-center py-32 px-6 overflow-hidden"
+      className="relative w-full flex items-center justify-center py-16 px-6 overflow-hidden"
     >
       {/* Semi-transparent overlay for text readability against blue background */}
       <div className="absolute inset-0 bg-zinc-900/50 pointer-events-none" />
 
-      <div className="relative z-10 w-full max-w-3xl mx-auto">
+      <div className="relative z-10 w-full max-w-5xl mx-auto">
         <motion.div
           style={{ y: videoY }}
           className="w-full"

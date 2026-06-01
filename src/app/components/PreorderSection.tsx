@@ -117,6 +117,7 @@ export function PreorderSection() {
     const initializeClient = () => {
       try {
         if (window.ShopifyBuy) {
+          console.log('[Shopify] Initializing client', { domain: shopifyConfig.domain, tokenPresent: !!shopifyConfig.storefrontAccessToken });
           const client = window.ShopifyBuy.buildClient({
             domain: shopifyConfig.domain,
             storefrontAccessToken: shopifyConfig.storefrontAccessToken,
@@ -125,9 +126,11 @@ export function PreorderSection() {
             setShopifyClient(client);
             setShopifyAvailable(true);
             setSdkLoading(false);
+            console.log('[Shopify] Client initialized successfully');
           }
         }
-      } catch {
+      } catch (err) {
+        console.warn('[Shopify] Client initialization failed:', err);
         if (!cancelled) {
           setSdkLoading(false);
           setShopifyAvailable(false);
@@ -157,8 +160,12 @@ export function PreorderSection() {
         preorderProducts.map(async (product) => {
           if (!product.shopifyProductId) return;
           try {
-            const shopifyProduct = await shopifyClient.product.fetch(product.shopifyProductId);
-            if (!cancelled) {
+            // The Buy Button JS SDK accepts numeric product IDs or base64-encoded GIDs
+            // Extract numeric ID from GID format (gid://shopify/Product/1234567890)
+            const numericId = product.shopifyProductId.split('/').pop() || product.shopifyProductId;
+            console.log(`[Shopify] Fetching product: ${numericId}`);
+            const shopifyProduct = await shopifyClient.product.fetch(numericId);
+            if (!cancelled && shopifyProduct) {
               if (shopifyProduct.images && shopifyProduct.images.length > 0) {
                 images[product.id] = shopifyProduct.images.map((img) => img.src);
               }
@@ -166,7 +173,8 @@ export function PreorderSection() {
                 descriptions[product.id] = shopifyProduct.description;
               }
             }
-          } catch {
+          } catch (err) {
+            console.warn(`[Shopify] Failed to fetch product ${product.id}:`, err);
             // Silently fall back to local data
           }
         })
