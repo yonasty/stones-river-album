@@ -2,7 +2,13 @@ options:
   logging: CLOUD_LOGGING_ONLY
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/stones-river-album', '.']
+    args:
+      - 'build'
+      - '--build-arg=VITE_SHOPIFY_DOMAIN=jeremykittel.myshopify.com'
+      - '--build-arg=VITE_SHOPIFY_STOREFRONT_TOKEN=d0659824f3c1aaa0ab185367f32e58be'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/stones-river-album'
+      - '.'
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/$PROJECT_ID/stones-river-album']
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
