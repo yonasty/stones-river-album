@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from 'motion/react';
 import { useRef } from 'react';
 import { useIsMobile } from '../hooks/useIsMobile';
-import aboutImage from '../../../assets/New Image Carousel Images/Image Carousel 2.jpg';
+import aboutImage from '../../../assets/JeremyEric.jpeg';
 
 export function AboutSection() {
   const ref = useRef(null);
