@@ -146,9 +146,9 @@ export function PreorderSection() {
     };
   }, []);
 
-  // Fetch product data (images + descriptions) from Shopify once the client is available
+  // Fetch product data (images + descriptions) directly from Shopify Storefront API
   useEffect(() => {
-    if (!shopifyClient || !shopifyAvailable) return;
+    if (!shopifyConfig.domain || !shopifyConfig.storefrontAccessToken) return;
 
     let cancelled = false;
 
@@ -160,42 +160,60 @@ export function PreorderSection() {
         preorderProducts.map(async (product) => {
           if (!product.shopifyProductId) return;
           try {
-            // The Buy Button JS SDK's fetch() accepts:
-            // - A base64-encoded GID string
-            // - OR the raw GID string (newer SDK versions)
-            // Try the raw GID first, then base64-encoded
             const gid = product.shopifyProductId;
-            const encodedGid = btoa(gid);
-            console.log(`[Shopify] Fetching product: ${gid} (encoded: ${encodedGid})`);
-            
-            let shopifyProduct: ShopifyProduct | null = null;
-            try {
-              shopifyProduct = await shopifyClient.product.fetch(encodedGid);
-            } catch {
-              // If base64 GID fails, try raw GID
-              try {
-                shopifyProduct = await shopifyClient.product.fetch(gid);
-              } catch {
-                // If raw GID fails, try numeric ID
-                const numericId = gid.split('/').pop() || gid;
-                shopifyProduct = await shopifyClient.product.fetch(numericId);
+            console.log(`[Shopify] Fetching product via Storefront API: ${gid}`);
+
+            const query = `
+              query getProduct($id: ID!) {
+                node(id: $id) {
+                  ... on Product {
+                    title
+                    description
+                    images(first: 10) {
+                      edges {
+                        node {
+                          url
+                          altText
+                        }
+                      }
+                    }
+                  }
+                }
               }
+            `;
+
+            const response = await fetch(
+              `https://${shopifyConfig.domain}/api/2024-01/graphql.json`,
+              {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'X-Shopify-Storefront-Access-Token': shopifyConfig.storefrontAccessToken,
+                },
+                body: JSON.stringify({ query, variables: { id: gid } }),
+              }
+            );
+
+            if (!response.ok) {
+              console.warn(`[Shopify] HTTP ${response.status} for product ${product.id}`);
+              return;
             }
-            
-            if (!cancelled && shopifyProduct) {
-              // The SDK may return images as an array of objects or a special collection
-              const imgs = shopifyProduct.images;
-              if (imgs && imgs.length > 0) {
-                images[product.id] = Array.from(imgs).map((img: any) => img.src || img.attrs?.src || '').filter(Boolean);
+
+            const data = await response.json();
+            const node = data?.data?.node;
+
+            if (!cancelled && node) {
+              const productImages = node.images?.edges?.map((edge: any) => edge.node.url).filter(Boolean) || [];
+              if (productImages.length > 0) {
+                images[product.id] = productImages;
               }
-              if (shopifyProduct.description) {
-                descriptions[product.id] = shopifyProduct.description;
+              if (node.description) {
+                descriptions[product.id] = node.description;
               }
-              console.log(`[Shopify] Product ${product.id} fetched:`, { imageCount: images[product.id]?.length || 0, hasDescription: !!shopifyProduct.description });
+              console.log(`[Shopify] Product ${product.id} fetched:`, { imageCount: productImages.length, hasDescription: !!node.description });
             }
           } catch (err) {
             console.warn(`[Shopify] Failed to fetch product ${product.id}:`, err);
-            // Silently fall back to local data
           }
         })
       );
@@ -211,7 +229,7 @@ export function PreorderSection() {
     return () => {
       cancelled = true;
     };
-  }, [shopifyClient, shopifyAvailable]);
+  }, []);
 
   const handleCardClick = useCallback((product: ProductConfig) => {
     setSelectedProduct(product);
