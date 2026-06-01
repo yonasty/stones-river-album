@@ -160,18 +160,38 @@ export function PreorderSection() {
         preorderProducts.map(async (product) => {
           if (!product.shopifyProductId) return;
           try {
-            // The Buy Button JS SDK accepts numeric product IDs or base64-encoded GIDs
-            // Extract numeric ID from GID format (gid://shopify/Product/1234567890)
-            const numericId = product.shopifyProductId.split('/').pop() || product.shopifyProductId;
-            console.log(`[Shopify] Fetching product: ${numericId}`);
-            const shopifyProduct = await shopifyClient.product.fetch(numericId);
+            // The Buy Button JS SDK's fetch() accepts:
+            // - A base64-encoded GID string
+            // - OR the raw GID string (newer SDK versions)
+            // Try the raw GID first, then base64-encoded
+            const gid = product.shopifyProductId;
+            const encodedGid = btoa(gid);
+            console.log(`[Shopify] Fetching product: ${gid} (encoded: ${encodedGid})`);
+            
+            let shopifyProduct: ShopifyProduct | null = null;
+            try {
+              shopifyProduct = await shopifyClient.product.fetch(encodedGid);
+            } catch {
+              // If base64 GID fails, try raw GID
+              try {
+                shopifyProduct = await shopifyClient.product.fetch(gid);
+              } catch {
+                // If raw GID fails, try numeric ID
+                const numericId = gid.split('/').pop() || gid;
+                shopifyProduct = await shopifyClient.product.fetch(numericId);
+              }
+            }
+            
             if (!cancelled && shopifyProduct) {
-              if (shopifyProduct.images && shopifyProduct.images.length > 0) {
-                images[product.id] = shopifyProduct.images.map((img) => img.src);
+              // The SDK may return images as an array of objects or a special collection
+              const imgs = shopifyProduct.images;
+              if (imgs && imgs.length > 0) {
+                images[product.id] = Array.from(imgs).map((img: any) => img.src || img.attrs?.src || '').filter(Boolean);
               }
               if (shopifyProduct.description) {
                 descriptions[product.id] = shopifyProduct.description;
               }
+              console.log(`[Shopify] Product ${product.id} fetched:`, { imageCount: images[product.id]?.length || 0, hasDescription: !!shopifyProduct.description });
             }
           } catch (err) {
             console.warn(`[Shopify] Failed to fetch product ${product.id}:`, err);

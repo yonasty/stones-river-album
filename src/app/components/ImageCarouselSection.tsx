@@ -5,8 +5,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselPrevious,
-  CarouselNext,
   type CarouselApi,
 } from './ui/carousel';
 
@@ -171,15 +169,6 @@ export function ImageCarouselSection() {
               </CarouselItem>
             ))}
           </CarouselContent>
-
-          <CarouselPrevious
-            className="left-4 bg-black/50 border-white/20 text-white hover:bg-black/70 hover:text-white"
-            onMouseDown={handleUserInteraction}
-          />
-          <CarouselNext
-            className="right-4 bg-black/50 border-white/20 text-white hover:bg-black/70 hover:text-white"
-            onMouseDown={handleUserInteraction}
-          />
         </Carousel>
 
         {/* Dot indicators — overlaid on the image */}
