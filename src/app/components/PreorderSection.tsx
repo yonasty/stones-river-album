@@ -441,7 +441,8 @@ function ProductCard({ product, shopifyAvailable, shopifyImage }: ProductCardPro
             {product.includedItems.map((item, i) => (
               <div
                 key={i}
-                className="flex items-center gap-3 border border-white/5 bg-zinc-800/30 rounded-md p-3"
+                className="flex items-center gap-3 border border-white/5 bg-zinc-800/30 rounded-md p-3
+                           transition-all duration-200 hover:border-white/25 hover:bg-white/5"
               >
                 <img
                   src={item.image}

@@ -43,11 +43,11 @@ export function AboutSection() {
           </p>
 
           <p className="mb-6">
-            The project was born when Kittel was invited by Jacobsen and the OPO to compose a piece drawing from early American music — from the Revolutionary War through the Civil War. The result is a sweeping musical landscape that weaves together folk traditions, Celtic and bluegrass influences, and contemporary classical sensibilities, led throughout by Kittel's signature solo fiddle voice.
+            The project was born when Kittel was invited by Jacobsen and the OPO to compose a piece drawing from early American music — from the Revolutionary War through the Civil War. The result is a sweeping musical landscape that weaves together folk traditions, Celtic and old-time influences, and contemporary classical sensibilities, led throughout by Kittel's signature solo fiddle voice.
           </p>
 
           <p className="mb-6">
-            The album's title is a nod to the 1862 Battle of Stones River, where, on the eve of the conflict, military bands from opposing sides camped close enough to engage in a spontaneous musical duel — an image that feels central to the album's spirit. As Kittel drew from these melodies, he found himself asking deeper questions: what is the meaning of this country? What are its ideals — and do we actively live up to them?
+            The album's title is a nod to the 1862 Battle of Stones River, where, on the eve of the conflict, military bands from opposing sides camped close enough to engage in a spontaneous musical duel. Remarkably, the two groups eventually united across battle lines to perform the nostalgic and widely cherished song, "Home Sweet Home." As Kittel drew from these melodies, he found himself asking deeper questions: what is the meaning of this country? What are its ideals — and do we actively live up to them?
           </p>
 
           <p className="mb-6 italic">
