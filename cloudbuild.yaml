@@ -5,7 +5,7 @@ steps:
     args:
       - 'build'
       - '--build-arg=VITE_SHOPIFY_DOMAIN=jeremykittel.myshopify.com'
-      - '--build-arg=VITE_SHOPIFY_STOREFRONT_TOKEN=d0659824f3c1aaa0ab185367f32e58be'
+      - '--build-arg=VITE_SHOPIFY_STOREFRONT_TOKEN=4cf98fc7be521e5c50ed2bc7f22f2719'
       - '-t'
       - 'gcr.io/$PROJECT_ID/stones-river-album'
       - '.'
