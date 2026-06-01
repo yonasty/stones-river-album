@@ -1,8 +1,10 @@
 export interface IncludedItem {
   name: string;
   quantity: number;
-  /** Path to item thumbnail — use placeholder for now */
+  /** Path to item thumbnail — used in the tier card */
   image: string;
+  /** Optional larger image for the item detail modal */
+  modalImage?: string;
 }
 
 export interface ProductConfig {
@@ -17,6 +19,8 @@ export interface ProductConfig {
   tierIncludes: string[];
   /** Structured included items for the Kickstarter-style card layout */
   includedItems: IncludedItem[];
+  /** Custom tier description shown in the middle column (not from Shopify) */
+  tierDescription: string;
   fallbackTitle: string;
   fallbackPrice: string;
   /** Path to fallback image asset when Shopify data is unavailable */
@@ -39,6 +43,7 @@ export const preorderProducts: ProductConfig[] = [
       { name: 'Instant access to 2 unreleased tracks from the album', quantity: 1, image: '/assets/Individual Item Images/Access to 2 unreleased tracks.png' },
       { name: 'Early access to exclusive live performance video', quantity: 1, image: '/assets/Individual Item Images/Exclusive live performance.jpeg' },
     ],
+    tierDescription: 'By pre-ordering this CD, you help fund the collaborative efforts behind the creation of Stones River.',
     fallbackTitle: 'Tier 1 — Prelude Patron',
     fallbackPrice: '$40.00',
     fallbackImage: '/assets/Vinyl_Front_And_Back.jpg',
@@ -58,6 +63,7 @@ export const preorderProducts: ProductConfig[] = [
       { name: 'Instant access to 2 unreleased tracks from the album', quantity: 1, image: '/assets/Individual Item Images/Access to 2 unreleased tracks.png' },
       { name: 'Early access to exclusive live performance video', quantity: 1, image: '/assets/Individual Item Images/Exclusive live performance.jpeg' },
     ],
+    tierDescription: 'Step up your support and experience the rich soundscape of the album on black vinyl with the Stones River Essentials tier.',
     fallbackTitle: 'Tier 2 — Stones River Essentials',
     fallbackPrice: '$60.00',
     fallbackImage: '/assets/Vinyl_Front_And_Back.jpg',
@@ -76,13 +82,14 @@ export const preorderProducts: ProductConfig[] = [
       'Early access to interview footage with Jody Elff, Eric Jacobsen, & Jeremy Kittel',
     ],
     includedItems: [
-      { name: 'Exclusive group listening session and Q&A with Jeremy discussing the piece\u2019s story, composition, and recording process', quantity: 1, image: '/assets/Vinyl_Front_And_Back.jpg' },
+      { name: 'Exclusive group listening session and Q&A with Jeremy discussing the piece\u2019s story, composition, and recording process', quantity: 1, image: '/assets/Individual Item Images/Jeremy_Kittel.jpg' },
       { name: 'Signed black vinyl of Stones River in deluxe packaging', quantity: 1, image: '/assets/Individual Item Images/Black Vinyl Cover.png' },
       { name: 'Signed CD of Stones River with deluxe artwork', quantity: 1, image: '/assets/Individual Item Images/Signed CD.png' },
       { name: 'Instant access to 2 unreleased tracks from the album', quantity: 1, image: '/assets/Individual Item Images/Access to 2 unreleased tracks.png' },
       { name: 'Early access to exclusive live performance video', quantity: 1, image: '/assets/Individual Item Images/Exclusive live performance.jpeg' },
-      { name: 'Early access to interview footage with Jody Elff, Eric Jacobsen, & Jeremy Kittel', quantity: 1, image: '/assets/Vinyl_Front_And_Back.jpg' },
+      { name: 'Early access to interview footage with Jody Elff, Eric Jacobsen, & Jeremy Kittel', quantity: 1, image: '/assets/Individual Item Images/Interview Footage Early Access (cropped).png', modalImage: '/assets/Individual Item Images/Interview Footage Early Access (Modal).png' },
     ],
+    tierDescription: 'Why choose one format when you can have both? The Stones River Collector bundle is designed for the engaged fan who wants the most comprehensive media collection and a personal connection to the creators.',
     fallbackTitle: 'Tier 3 — Stones River Collector',
     fallbackPrice: '$75.00',
     fallbackImage: '/assets/Vinyl_Front_And_Back.jpg',
@@ -93,7 +100,7 @@ export const preorderProducts: ProductConfig[] = [
     shopifyVariantId: 'gid://shopify/ProductVariant/48034995601646',
     cardDescription: 'Museum-quality signed art print, signed CD, exclusive listening session & Q&A, and early access content.',
     tierIncludes: [
-      'Museum-quality archival art print, hand-numbered and signed by Rush Baker',
+      'Museum-quality archival art print, hand-numbered and signed by Rush Baker IV',
       'Signed CD of Stones River with deluxe artwork',
       'Exclusive group listening session and Q&A with Jeremy discussing the piece\u2019s story, composition, and recording process',
       'Instant access to 2 unreleased tracks from the album',
@@ -101,13 +108,14 @@ export const preorderProducts: ProductConfig[] = [
       'Early access to interview footage with Jody Elff, Eric Jacobsen, & Jeremy Kittel',
     ],
     includedItems: [
-      { name: 'Museum-quality archival art print, hand-numbered and signed by Rush Baker', quantity: 1, image: '/assets/Individual Item Images/Archival Print.png' },
+      { name: 'Museum-quality archival art print, hand-numbered and signed by Rush Baker IV', quantity: 1, image: '/assets/Individual Item Images/Archival Print.png' },
       { name: 'Signed CD of Stones River with deluxe artwork', quantity: 1, image: '/assets/Individual Item Images/Signed CD.png' },
-      { name: 'Exclusive group listening session and Q&A with Jeremy discussing the piece\u2019s story, composition, and recording process', quantity: 1, image: '/assets/Vinyl_Front_And_Back.jpg' },
+      { name: 'Exclusive group listening session and Q&A with Jeremy discussing the piece\u2019s story, composition, and recording process', quantity: 1, image: '/assets/Individual Item Images/Jeremy_Kittel.jpg' },
       { name: 'Instant access to 2 unreleased tracks from the album', quantity: 1, image: '/assets/Individual Item Images/Access to 2 unreleased tracks.png' },
       { name: 'Early access to exclusive live performance video', quantity: 1, image: '/assets/Individual Item Images/Exclusive live performance.jpeg' },
-      { name: 'Early access to interview footage with Jody Elff, Eric Jacobsen, & Jeremy Kittel', quantity: 1, image: '/assets/Vinyl_Front_And_Back.jpg' },
+      { name: 'Early access to interview footage with Jody Elff, Eric Jacobsen, & Jeremy Kittel', quantity: 1, image: '/assets/Individual Item Images/Interview Footage Early Access (cropped).png', modalImage: '/assets/Individual Item Images/Interview Footage Early Access (Modal).png' },
     ],
+    tierDescription: 'Ideal for fans valuing visual art and music equally. In addition to the signed CD and digital assets, this tier includes a museum-quality archival art print signed by Rush Baker IV and exclusive access to the composer.',
     fallbackTitle: 'Tier 4 — Gallery Patron',
     fallbackPrice: '$200.00',
     fallbackImage: '/assets/Vinyl_Front_And_Back.jpg',
@@ -118,7 +126,7 @@ export const preorderProducts: ProductConfig[] = [
     shopifyVariantId: 'gid://shopify/ProductVariant/48035003531502',
     cardDescription: 'Signed art print, limited-edition blue vinyl (only 200 pressed), signed CD, listening session, and early access content.',
     tierIncludes: [
-      'Museum-quality archival art print, hand-numbered and signed by Rush Baker',
+      'Museum-quality archival art print, hand-numbered and signed by Rush Baker IV',
       'Limited-edition signed blue vinyl of Stones River in deluxe packaging (only 200 pressed)',
       'Signed CD of Stones River with deluxe artwork',
       'Exclusive group listening session and Q&A with Jeremy discussing the piece\u2019s story, composition, and recording process',
@@ -127,14 +135,15 @@ export const preorderProducts: ProductConfig[] = [
       'Early access to interview footage with Jody Elff, Eric Jacobsen, & Jeremy Kittel',
     ],
     includedItems: [
-      { name: 'Museum-quality archival art print, hand-numbered and signed by Rush Baker', quantity: 1, image: '/assets/Individual Item Images/Archival Print.png' },
+      { name: 'Museum-quality archival art print, hand-numbered and signed by Rush Baker IV', quantity: 1, image: '/assets/Individual Item Images/Archival Print.png' },
       { name: 'Limited-edition signed blue vinyl of Stones River in deluxe packaging (only 200 pressed)', quantity: 1, image: '/assets/Individual Item Images/Blue Vinyl.png' },
       { name: 'Signed CD of Stones River with deluxe artwork', quantity: 1, image: '/assets/Individual Item Images/Signed CD.png' },
-      { name: 'Exclusive group listening session and Q&A with Jeremy discussing the piece\u2019s story, composition, and recording process', quantity: 1, image: '/assets/Vinyl_Front_And_Back.jpg' },
+      { name: 'Exclusive group listening session and Q&A with Jeremy discussing the piece\u2019s story, composition, and recording process', quantity: 1, image: '/assets/Individual Item Images/Jeremy_Kittel.jpg' },
       { name: 'Instant access to 2 unreleased tracks from the album', quantity: 1, image: '/assets/Individual Item Images/Access to 2 unreleased tracks.png' },
       { name: 'Early access to exclusive live performance video', quantity: 1, image: '/assets/Individual Item Images/Exclusive live performance.jpeg' },
-      { name: 'Early access to interview footage with Jody Elff, Eric Jacobsen, & Jeremy Kittel', quantity: 1, image: '/assets/Vinyl_Front_And_Back.jpg' },
+      { name: 'Early access to interview footage with Jody Elff, Eric Jacobsen, & Jeremy Kittel', quantity: 1, image: '/assets/Individual Item Images/Interview Footage Early Access (cropped).png', modalImage: '/assets/Individual Item Images/Interview Footage Early Access (Modal).png' },
     ],
+    tierDescription: 'This is the ultimate bundle for the die-hard collector who seeks rarity and exclusivity. You will own the extremely limited-edition signed blue vinyl (only 200 pressed) and the stunning archival art print signed by Rush Baker IV.',
     fallbackTitle: 'Tier 5 — Harmony & Ink',
     fallbackPrice: '$250.00',
     fallbackImage: '/assets/Vinyl_Front_And_Back.jpg',
@@ -146,7 +155,7 @@ export const preorderProducts: ProductConfig[] = [
     cardDescription: 'Digital orchestral score, signed art print, limited-edition blue vinyl, signed CD, listening session, and early access content.',
     tierIncludes: [
       'Digital orchestral score of Stones River',
-      'Museum-quality archival art print, hand-numbered and signed by Rush Baker',
+      'Museum-quality archival art print, hand-numbered and signed by Rush Baker IV',
       'Limited-edition signed blue vinyl of Stones River in deluxe packaging (only 200 pressed)',
       'Signed CD of Stones River with deluxe artwork',
       'Exclusive group listening session and Q&A with Jeremy discussing the piece\u2019s story, composition, and recording process',
@@ -155,15 +164,16 @@ export const preorderProducts: ProductConfig[] = [
       'Early access to interview footage with Jody Elff, Eric Jacobsen, & Jeremy Kittel',
     ],
     includedItems: [
-      { name: 'Digital orchestral score of Stones River', quantity: 1, image: '/assets/Vinyl_Front_And_Back.jpg' },
-      { name: 'Museum-quality archival art print, hand-numbered and signed by Rush Baker', quantity: 1, image: '/assets/Individual Item Images/Archival Print.png' },
+      { name: 'Digital orchestral score of Stones River', quantity: 1, image: '/assets/Individual Item Images/Jeremy_Kittel.jpg' },
+      { name: 'Museum-quality archival art print, hand-numbered and signed by Rush Baker IV', quantity: 1, image: '/assets/Individual Item Images/Archival Print.png' },
       { name: 'Limited-edition signed blue vinyl of Stones River in deluxe packaging (only 200 pressed)', quantity: 1, image: '/assets/Individual Item Images/Blue Vinyl.png' },
       { name: 'Signed CD of Stones River with deluxe artwork', quantity: 1, image: '/assets/Individual Item Images/Signed CD.png' },
-      { name: 'Exclusive group listening session and Q&A with Jeremy discussing the piece\u2019s story, composition, and recording process', quantity: 1, image: '/assets/Vinyl_Front_And_Back.jpg' },
+      { name: 'Exclusive group listening session and Q&A with Jeremy discussing the piece\u2019s story, composition, and recording process', quantity: 1, image: '/assets/Individual Item Images/Jeremy_Kittel.jpg' },
       { name: 'Instant access to 2 unreleased tracks from the album', quantity: 1, image: '/assets/Individual Item Images/Access to 2 unreleased tracks.png' },
       { name: 'Early access to exclusive live performance video', quantity: 1, image: '/assets/Individual Item Images/Exclusive live performance.jpeg' },
-      { name: 'Early access to interview footage with Jody Elff, Eric Jacobsen, & Jeremy Kittel', quantity: 1, image: '/assets/Vinyl_Front_And_Back.jpg' },
+      { name: 'Early access to interview footage with Jody Elff, Eric Jacobsen, & Jeremy Kittel', quantity: 1, image: '/assets/Individual Item Images/Interview Footage Early Access (cropped).png', modalImage: '/assets/Individual Item Images/Interview Footage Early Access (Modal).png' },
     ],
+    tierDescription: "Join the Composer's Circle—the perfect tier for the musician, composer, or serious music student who wants to delve into the technical brilliance of Stones River. This bundle includes the full digital orchestral score, the limited-edition blue vinyl, and the archival art print.",
     fallbackTitle: "Tier 6 — Composer's Circle",
     fallbackPrice: '$500.00',
     fallbackImage: '/assets/Vinyl_Front_And_Back.jpg',
@@ -177,7 +187,7 @@ export const preorderProducts: ProductConfig[] = [
       'Handwritten personal letter from Jeremy on the creative journey behind Stones River',
       'Exclusive signed test pressing of Stones River (only 10 made!)',
       'Digital orchestral score of Stones River',
-      'Museum-quality archival art print, hand-numbered and signed by Rush Baker',
+      'Museum-quality archival art print, hand-numbered and signed by Rush Baker IV',
       'Limited-edition signed blue vinyl of Stones River in deluxe packaging (only 200 pressed)',
       'Signed CD of Stones River with deluxe artwork',
       'Exclusive group listening session and Q&A with Jeremy discussing the piece\u2019s story, composition, and recording process',
@@ -186,17 +196,18 @@ export const preorderProducts: ProductConfig[] = [
       'Early access to interview footage with Jody Elff, Eric Jacobsen, & Jeremy Kittel',
     ],
     includedItems: [
-      { name: 'Handwritten personal letter from Jeremy on the creative journey behind Stones River', quantity: 1, image: '/assets/Vinyl_Front_And_Back.jpg' },
-      { name: 'Exclusive signed test pressing of Stones River (only 10 made!)', quantity: 1, image: '/assets/Vinyl_Front_And_Back.jpg' },
-      { name: 'Digital orchestral score of Stones River', quantity: 1, image: '/assets/Vinyl_Front_And_Back.jpg' },
-      { name: 'Museum-quality archival art print, hand-numbered and signed by Rush Baker', quantity: 1, image: '/assets/Individual Item Images/Archival Print.png' },
+      { name: 'Handwritten personal letter from Jeremy on the creative journey behind Stones River', quantity: 1, image: '/assets/Individual Item Images/Jeremy_Kittel.jpg' },
+      { name: 'Exclusive signed test pressing of Stones River (only 10 made!)', quantity: 1, image: '/assets/Individual Item Images/Jeremy_Kittel.jpg' },
+      { name: 'Digital orchestral score of Stones River', quantity: 1, image: '/assets/Individual Item Images/Jeremy_Kittel.jpg' },
+      { name: 'Museum-quality archival art print, hand-numbered and signed by Rush Baker IV', quantity: 1, image: '/assets/Individual Item Images/Archival Print.png' },
       { name: 'Limited-edition signed blue vinyl of Stones River in deluxe packaging (only 200 pressed)', quantity: 1, image: '/assets/Individual Item Images/Blue Vinyl.png' },
       { name: 'Signed CD of Stones River with deluxe artwork', quantity: 1, image: '/assets/Individual Item Images/Signed CD.png' },
-      { name: 'Exclusive group listening session and Q&A with Jeremy discussing the piece\u2019s story, composition, and recording process', quantity: 1, image: '/assets/Vinyl_Front_And_Back.jpg' },
+      { name: 'Exclusive group listening session and Q&A with Jeremy discussing the piece\u2019s story, composition, and recording process', quantity: 1, image: '/assets/Individual Item Images/Jeremy_Kittel.jpg' },
       { name: 'Instant access to 2 unreleased tracks from the album', quantity: 1, image: '/assets/Individual Item Images/Access to 2 unreleased tracks.png' },
       { name: 'Early access to exclusive live performance video', quantity: 1, image: '/assets/Individual Item Images/Exclusive live performance.jpeg' },
-      { name: 'Early access to interview footage with Jody Elff, Eric Jacobsen, & Jeremy Kittel', quantity: 1, image: '/assets/Vinyl_Front_And_Back.jpg' },
+      { name: 'Early access to interview footage with Jody Elff, Eric Jacobsen, & Jeremy Kittel', quantity: 1, image: '/assets/Individual Item Images/Interview Footage Early Access (cropped).png', modalImage: '/assets/Individual Item Images/Interview Footage Early Access (Modal).png' },
     ],
+    tierDescription: 'This is the pinnacle of support, designed for the maximum benefactor who deserves the rarest and most personal items. The Stones River Experience is limited to just 10 patrons. You receive an exclusive, signed test pressing (only 10 made), a personal handwritten letter from Jeremy, and your name listed on the album website.',
     fallbackTitle: 'Tier 7 — Stones River Experience',
     fallbackPrice: '$1,500.00',
     fallbackImage: '/assets/Vinyl_Front_And_Back.jpg',

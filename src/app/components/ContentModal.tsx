@@ -13,8 +13,7 @@ interface ContentModalProps {
 /**
  * Shared modal component used for bio expansions and product detail views.
  * Wraps Radix Dialog primitives with dark overlay, fade+scale animation,
- * and vertical scroll support. Radix handles scroll lock, focus return,
- * escape key close, and click-outside close automatically.
+ * and vertical scroll support. Click outside the modal content to close.
  */
 export function ContentModal({
   open,
@@ -22,6 +21,13 @@ export function ContentModal({
   children,
   className,
 }: ContentModalProps) {
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    // Close when clicking the backdrop (outside the modal content)
+    if (e.target === e.currentTarget) {
+      onOpenChange(false);
+    }
+  };
+
   return (
     <DialogPrimitive.Root open={open} onOpenChange={onOpenChange}>
       <DialogPrimitive.Portal>
@@ -41,6 +47,7 @@ export function ContentModal({
             "data-[state=open]:zoom-in-95 data-[state=closed]:zoom-out-95",
             "duration-200"
           )}
+          onClick={handleBackdropClick}
         >
           <div
             className={cn(

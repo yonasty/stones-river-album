@@ -317,6 +317,7 @@ export function PreorderSection() {
                 product={product}
                 shopifyAvailable={shopifyAvailable}
                 shopifyImage={productImages[product.id]?.[0]}
+                onClick={() => handleCardClick(product)}
               />
             </motion.div>
           ))}
@@ -324,7 +325,7 @@ export function PreorderSection() {
       </motion.div>
 
       {/* Product Detail Modal */}
-      <ContentModal open={modalOpen} onOpenChange={setModalOpen} className="max-w-2xl">
+      <ContentModal open={modalOpen} onOpenChange={setModalOpen} className="max-w-4xl">
         {selectedProduct && (
           <ProductModalContent
             product={selectedProduct}
@@ -346,12 +347,13 @@ interface ProductCardProps {
   product: ProductConfig;
   shopifyAvailable: boolean;
   shopifyImage?: string;
+  onClick: () => void;
 }
 
-function ProductCard({ product, shopifyAvailable, shopifyImage }: ProductCardProps) {
+function ProductCard({ product, shopifyAvailable, shopifyImage, onClick }: ProductCardProps) {
   const [imageError, setImageError] = useState(false);
   const [addedFeedback, setAddedFeedback] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<{ name: string; image: string } | null>(null);
+  const [selectedItem, setSelectedItem] = useState<{ name: string; image: string; modalImage?: string } | null>(null);
   const { addItem } = useCart();
 
   const displayTitle = product.fallbackTitle;
@@ -382,59 +384,75 @@ function ProductCard({ product, shopifyAvailable, shopifyImage }: ProductCardPro
     >
       {/* Desktop: horizontal row layout */}
       <div className="flex flex-col md:flex-row">
-        {/* Left column — Product image (~35%) */}
-        <div className="w-full md:w-[35%] relative bg-zinc-800/50 flex items-center justify-center p-4 md:p-6">
+        {/* Left column — Product image, tier number, tier name, price */}
+        <div className="w-full md:w-[30%] bg-zinc-800/50 flex flex-col items-center justify-center p-4 md:p-6">
           {!imageError ? (
             <img
               src={displayImage}
               alt={displayTitle}
-              className="w-full h-56 md:h-full object-contain"
+              className="w-full h-48 md:h-52 object-contain mb-4"
               onError={() => setImageError(true)}
             />
           ) : (
-            <div className="w-full h-48 md:h-full flex flex-col items-center justify-center">
+            <div className="w-full h-48 md:h-52 flex flex-col items-center justify-center mb-4">
               <ImageIcon className="w-8 h-8 text-white/30 mb-2" strokeWidth={1.5} />
               <span className="text-white/40 text-xs text-center">{product.fallbackImage.split('/').pop()}</span>
             </div>
           )}
+          <p className="text-white/40 text-xs uppercase tracking-wider mb-1">{product.id.replace('-', ' ')}</p>
+          <h3 className="text-lg font-medium text-white/90 text-center mb-2">
+            {displayTitle.replace(/^Tier \d+ — /, '')}
+          </h3>
+          <span className="text-2xl font-semibold text-white">{displayPrice}</span>
         </div>
 
-        {/* Middle column — Tier name, price, View Details (~25%) */}
-        <div className="w-full md:w-[25%] p-5 md:p-6 flex flex-col justify-center border-t md:border-t-0 md:border-l border-white/5">
-          <h3 className="text-xl font-medium text-white/90 mb-2">
-            {displayTitle}
-          </h3>
-          <span className="text-2xl font-semibold text-white mb-4">
-            {displayPrice}
-          </span>
-          <button
-            type="button"
-            onClick={handleAddToCart}
-            disabled={!product.shopifyVariantId}
-            className="inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-md
-                       border border-white/10 text-white/70 text-sm
-                       hover:border-white/25 hover:text-white/90 hover:bg-white/5
-                       transition-all duration-200
-                       disabled:opacity-40 disabled:cursor-not-allowed
-                       focus:outline-none focus:ring-2 focus:ring-white/30 focus:ring-offset-2 focus:ring-offset-zinc-900"
-            aria-label={product.shopifyVariantId ? `Add ${displayTitle} to cart` : `${displayTitle} coming soon`}
-          >
-            {addedFeedback ? (
-              <>
-                <Check className="w-4 h-4" strokeWidth={1.5} />
-                <span className="tracking-wide">Added ✓</span>
-              </>
-            ) : (
-              <>
-                <ShoppingCart className="w-4 h-4" strokeWidth={1.5} />
-                <span className="tracking-wide">{product.shopifyVariantId ? 'Add to Cart' : 'Coming Soon'}</span>
-              </>
-            )}
-          </button>
+        {/* Middle column — Description, View Details, Add to Cart */}
+        <div className="w-full md:w-[25%] p-5 md:p-6 flex flex-col justify-center gap-4 border-t md:border-t-0 md:border-l border-white/5">
+          <p className="text-white/60 text-sm leading-relaxed">
+            {product.tierDescription}
+          </p>
+          <div className="space-y-2">
+            <button
+              type="button"
+              onClick={onClick}
+              className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-md
+                         border border-white/10 text-white/70 text-sm
+                         hover:border-white/25 hover:text-white/90 hover:bg-white/5
+                         transition-all duration-200
+                         focus:outline-none focus:ring-2 focus:ring-white/30 focus:ring-offset-2 focus:ring-offset-zinc-900"
+            >
+              <Package className="w-4 h-4" strokeWidth={1.5} />
+              <span className="tracking-wide">View Details</span>
+            </button>
+            <button
+              type="button"
+              onClick={handleAddToCart}
+              disabled={!product.shopifyVariantId}
+              className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-md
+                         border border-white/10 text-white/70 text-sm
+                         hover:border-white/25 hover:text-white/90 hover:bg-white/5
+                         transition-all duration-200
+                         disabled:opacity-40 disabled:cursor-not-allowed
+                         focus:outline-none focus:ring-2 focus:ring-white/30 focus:ring-offset-2 focus:ring-offset-zinc-900"
+              aria-label={product.shopifyVariantId ? `Add ${displayTitle} to cart` : `${displayTitle} coming soon`}
+            >
+              {addedFeedback ? (
+                <>
+                  <Check className="w-4 h-4" strokeWidth={1.5} />
+                  <span className="tracking-wide">Added ✓</span>
+                </>
+              ) : (
+                <>
+                  <ShoppingCart className="w-4 h-4" strokeWidth={1.5} />
+                  <span className="tracking-wide">{product.shopifyVariantId ? 'Add to Cart' : 'Coming Soon'}</span>
+                </>
+              )}
+            </button>
+          </div>
         </div>
 
         {/* Right column — Included items list (~45%) */}
-        <div className="w-full md:w-[45%] p-5 md:p-6 border-t md:border-t-0 md:border-l border-white/5">
+        <div className="w-full md:w-[45%] p-5 md:p-6 border-t md:border-t-0 md:border-l border-white/5 flex flex-col justify-center">
           <p className="text-white/50 text-sm mb-3">
             {product.includedItems.length} item{product.includedItems.length !== 1 ? 's' : ''} included
           </p>
@@ -443,7 +461,7 @@ function ProductCard({ product, shopifyAvailable, shopifyImage }: ProductCardPro
               <button
                 key={i}
                 type="button"
-                onClick={() => setSelectedItem({ name: item.name, image: item.image })}
+                onClick={() => setSelectedItem({ name: item.name, image: item.image, modalImage: item.modalImage })}
                 className="flex items-center gap-3 border border-white/5 bg-zinc-800/30 rounded-md p-3
                            transition-all duration-200 hover:border-white/25 hover:bg-white/5
                            cursor-pointer text-left focus:outline-none focus:ring-1 focus:ring-white/30"
@@ -470,7 +488,7 @@ function ProductCard({ product, shopifyAvailable, shopifyImage }: ProductCardPro
         {selectedItem && (
           <div className="flex flex-col items-center gap-5 pt-4">
             <img
-              src={selectedItem.image}
+              src={selectedItem.modalImage || selectedItem.image}
               alt={selectedItem.name}
               className="w-full max-h-[400px] object-contain rounded-lg"
             />
@@ -511,125 +529,91 @@ function ProductModalContent({
   const currentImage = gallery[selectedImageIndex] || gallery[0];
 
   return (
-    <div className="space-y-6 pt-8">
-      {/* Main Product Image — preserves aspect ratio, no cropping */}
-      <div className="relative w-full rounded-md overflow-hidden bg-zinc-800 flex items-center justify-center"
-           style={{ minHeight: '200px', maxHeight: '400px' }}>
-        {!imageError ? (
-          <img
-            src={currentImage}
-            alt={product.fallbackTitle}
-            className="max-w-full max-h-[400px] object-contain"
-            onError={() => setImageError(true)}
-          />
-        ) : (
-          <div className="w-full h-48 flex flex-col items-center justify-center border border-white/10">
-            <ImageIcon className="w-10 h-10 text-white/30 mb-2" strokeWidth={1.5} />
-            <span className="text-white/40 text-xs">{product.fallbackImage.split('/').pop()}</span>
+    <div className="flex flex-col md:flex-row gap-6 pt-6">
+      {/* Left — Product image + thumbnails */}
+      <div className="w-full md:w-2/5 flex flex-col items-center gap-3 min-h-0">
+        <div className="relative w-full rounded-md overflow-hidden bg-zinc-800 flex items-center justify-center"
+             style={{ maxHeight: '240px' }}>
+          {!imageError ? (
+            <img
+              src={currentImage}
+              alt={product.fallbackTitle}
+              className="max-w-full max-h-[240px] object-contain"
+              onError={() => setImageError(true)}
+            />
+          ) : (
+            <div className="w-full h-40 flex flex-col items-center justify-center border border-white/10">
+              <ImageIcon className="w-8 h-8 text-white/30 mb-2" strokeWidth={1.5} />
+            </div>
+          )}
+        </div>
+
+        {/* Thumbnail navigation — grid layout, no scroll */}
+        {gallery.length > 1 && (
+          <div className="grid grid-cols-5 gap-1.5 w-full">
+            {gallery.map((img, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => { setSelectedImageIndex(i); setImageError(false); }}
+                className={`flex-shrink-0 w-10 h-10 rounded overflow-hidden border-2 transition-all duration-200 ${
+                  i === selectedImageIndex
+                    ? 'border-white/80'
+                    : 'border-white/10 hover:border-white/30 opacity-60 hover:opacity-100'
+                }`}
+                aria-label={`View image ${i + 1}`}
+              >
+                <img src={img} alt="" className="w-full h-full object-cover" />
+              </button>
+            ))}
           </div>
         )}
       </div>
 
-      {/* Thumbnail navigation — only show if multiple images */}
-      {gallery.length > 1 && (
-        <div className="flex items-center justify-center gap-2 overflow-x-auto py-1">
-          {gallery.map((img, i) => (
-            <button
-              key={i}
-              type="button"
-              onClick={() => { setSelectedImageIndex(i); setImageError(false); }}
-              className={`flex-shrink-0 w-14 h-14 rounded-md overflow-hidden border-2 transition-all duration-200 ${
-                i === selectedImageIndex
-                  ? 'border-white/80 ring-1 ring-white/30'
-                  : 'border-white/10 hover:border-white/30 opacity-60 hover:opacity-100'
-              }`}
-              aria-label={`View image ${i + 1}`}
-            >
-              <img
-                src={img}
-                alt={`${product.fallbackTitle} image ${i + 1}`}
-                className="w-full h-full object-cover"
-              />
-            </button>
-          ))}
+      {/* Right — Title, price, description, button */}
+      <div className="w-full md:w-3/5 flex flex-col gap-4">
+        <div>
+          <h3 className="text-xl font-medium text-white mb-1">{product.fallbackTitle}</h3>
+          <p className="text-white/60 text-lg">{product.fallbackPrice}</p>
         </div>
-      )}
 
-      {/* Product Info */}
-      <div>
-        <h3 className="text-2xl font-medium text-white mb-1">
-          {product.fallbackTitle}
-        </h3>
-        <p className="text-white/60 text-xl">
-          {product.fallbackPrice}
-        </p>
-      </div>
-
-      {/* Description — uses Shopify description when available, falls back to local tier data */}
-      <div className="text-white/70 text-sm leading-relaxed">
-        {shopifyDescription ? (
-          <div
-            className="prose prose-sm prose-invert max-w-none [&_p]:mb-3 [&_ul]:space-y-1 [&_li]:text-white/70"
-            dangerouslySetInnerHTML={{ __html: shopifyDescription }}
-          />
-        ) : (
-          <>
-            <p className="mb-3 text-white/80">{product.cardDescription}</p>
-            {product.tierIncludes && product.tierIncludes.length > 0 && (
-              <>
-                <p className="text-white/50 text-xs uppercase tracking-wider mb-2">Includes:</p>
-                <ul className="space-y-1.5">
-                  {product.tierIncludes.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <span className="text-white/40 mt-1 text-xs">•</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </>
-            )}
-          </>
-        )}
-      </div>
-
-      {/* Shopify fallback notice */}
-      {!shopifyAvailable && (
-        <div className="p-3 border border-amber-500/30 bg-amber-900/10 rounded text-amber-200/70 text-xs">
-          <AlertCircle className="inline-block w-3.5 h-3.5 mr-1.5 -mt-0.5" />
-          Full product description from Shopify will appear here once credentials are configured.
+        {/* Description — Shopify API when available */}
+        <div className="text-white/70 text-sm leading-relaxed flex-1">
+          {shopifyDescription ? (
+            <div
+              className="prose prose-sm prose-invert max-w-none [&_p]:mb-2 [&_ul]:space-y-1 [&_li]:text-white/70"
+              dangerouslySetInnerHTML={{ __html: shopifyDescription }}
+            />
+          ) : (
+            <p className="text-white/60">{product.tierDescription}</p>
+          )}
         </div>
-      )}
 
-      {/* Add to Cart Button */}
-      <button
-        type="button"
-        onClick={onAddToCart}
-        disabled={!product.shopifyVariantId}
-        className="w-full py-3.5 px-6 flex items-center justify-center gap-2
-                   bg-white text-zinc-900 font-medium rounded-md
-                   transition-all duration-200
-                   hover:bg-white/90 hover:shadow-lg
-                   disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:shadow-none
-                   focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-zinc-900"
-      >
-        {addedFeedback ? (
-          <>
-            <Check className="w-4 h-4" />
-            <span>Added ✓</span>
-          </>
-        ) : (
-          <>
-            <ShoppingCart className="w-4 h-4" />
-            <span>{product.shopifyVariantId ? 'Add to Cart' : 'Coming Soon'}</span>
-          </>
-        )}
-      </button>
-
-      {!product.shopifyVariantId && (
-        <p className="text-center text-white/40 text-xs">
-          This tier is not yet available for purchase.
-        </p>
-      )}
+        {/* Add to Cart Button */}
+        <button
+          type="button"
+          onClick={onAddToCart}
+          disabled={!product.shopifyVariantId}
+          className="w-full py-3 px-6 flex items-center justify-center gap-2
+                     bg-white text-zinc-900 font-medium rounded-md
+                     transition-all duration-200
+                     hover:bg-white/90 hover:shadow-lg
+                     disabled:opacity-40 disabled:cursor-not-allowed
+                     focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-zinc-900"
+        >
+          {addedFeedback ? (
+            <>
+              <Check className="w-4 h-4" />
+              <span>Added ✓</span>
+            </>
+          ) : (
+            <>
+              <ShoppingCart className="w-4 h-4" />
+              <span>{product.shopifyVariantId ? 'Add to Cart' : 'Coming Soon'}</span>
+            </>
+          )}
+        </button>
+      </div>
     </div>
   );
 }

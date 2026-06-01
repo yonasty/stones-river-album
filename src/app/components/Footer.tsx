@@ -1,10 +1,8 @@
 import { useState } from 'react';
-import opoLogo from '../../../assets/OPO Logo Transparent.png';
-import opoTextLogo from '../../../assets/Orlando_Philharmonic_Orchestra_logo.png';
+import opoLogo from '../../../assets/OPO White Logo.png';
 
 export function Footer() {
   const [logoError, setLogoError] = useState(false);
-  const [textLogoError, setTextLogoError] = useState(false);
 
   return (
     <footer className="w-full py-10">
@@ -32,19 +30,8 @@ export function Footer() {
 
         {/* Copyright text */}
         <p className="text-white/90 text-sm text-center">
-          Nethermead Records © & ® 2025 The Orlando Philharmonic Orchestra. All Rights Reserved.
+          © 2026 Orlando Philharmonic Orchestra & © 2025 Nethermead Records. All Rights Reserved.
         </p>
-
-        {/* OPO Text Logo */}
-        {!textLogoError && (
-          <img
-            src={opoTextLogo}
-            alt="Orlando Philharmonic Orchestra"
-            loading="lazy"
-            className="max-h-[48px] w-auto object-contain"
-            onError={() => setTextLogoError(true)}
-          />
-        )}
       </div>
     </footer>
   );
