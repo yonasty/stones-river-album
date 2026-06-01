@@ -16,7 +16,7 @@ export function InterviewSection() {
   return (
     <section
       ref={ref}
-      id="media"
+      id="video"
       className="relative w-full flex items-center justify-center py-16 px-6 overflow-hidden"
     >
       {/* Semi-transparent overlay for text readability against blue background */}

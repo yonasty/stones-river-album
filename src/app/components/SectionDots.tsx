@@ -10,8 +10,8 @@ const sections: SectionInfo[] = [
   { id: 'about-stones-river', label: 'About Stones River' },
   { id: 'view-the-gallery', label: 'View the Gallery' },
   { id: 'meet-the-makers', label: 'Meet the Makers' },
+  { id: 'video', label: 'Video' },
   { id: 'preorder-stones-river', label: 'Preorder Stones River' },
-  { id: 'media', label: 'Media' },
 ];
 
 export function SectionDots() {

@@ -11,8 +11,8 @@ const navItems: NavItem[] = [
   { label: 'About Stones River', href: '#about-stones-river' },
   { label: 'View the Gallery', href: '#view-the-gallery' },
   { label: 'Meet the Makers', href: '#meet-the-makers' },
+  { label: 'Video', href: '#video' },
   { label: 'Preorder Stones River', href: '#preorder-stones-river' },
-  { label: 'Media', href: '#media' },
 ];
 
 export function Navbar() {

@@ -351,6 +351,7 @@ interface ProductCardProps {
 function ProductCard({ product, shopifyAvailable, shopifyImage }: ProductCardProps) {
   const [imageError, setImageError] = useState(false);
   const [addedFeedback, setAddedFeedback] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<{ name: string; image: string } | null>(null);
   const { addItem } = useCart();
 
   const displayTitle = product.fallbackTitle;
@@ -439,10 +440,13 @@ function ProductCard({ product, shopifyAvailable, shopifyImage }: ProductCardPro
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             {product.includedItems.map((item, i) => (
-              <div
+              <button
                 key={i}
+                type="button"
+                onClick={() => setSelectedItem({ name: item.name, image: item.image })}
                 className="flex items-center gap-3 border border-white/5 bg-zinc-800/30 rounded-md p-3
-                           transition-all duration-200 hover:border-white/25 hover:bg-white/5"
+                           transition-all duration-200 hover:border-white/25 hover:bg-white/5
+                           cursor-pointer text-left focus:outline-none focus:ring-1 focus:ring-white/30"
               >
                 <img
                   src={item.image}
@@ -455,11 +459,27 @@ function ProductCard({ product, shopifyAvailable, shopifyImage }: ProductCardPro
                   </p>
                   <p className="text-white/40 text-xs mt-0.5">Qty: {item.quantity}</p>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
         </div>
       </div>
+
+      {/* Individual item detail modal */}
+      <ContentModal open={selectedItem !== null} onOpenChange={(open) => { if (!open) setSelectedItem(null); }} className="max-w-lg">
+        {selectedItem && (
+          <div className="flex flex-col items-center gap-5 pt-4">
+            <img
+              src={selectedItem.image}
+              alt={selectedItem.name}
+              className="w-full max-h-[400px] object-contain rounded-lg"
+            />
+            <p className="text-white text-center text-base leading-relaxed">
+              {selectedItem.name}
+            </p>
+          </div>
+        )}
+      </ContentModal>
     </div>
   );
 }

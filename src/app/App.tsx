@@ -52,8 +52,8 @@ export default function App() {
         <ImageCarouselSection />
         {siteConfig.SHOW_LISTEN_NOW && <ListenNowSection />}
         <BiosSection />
-        <PreorderSection />
         <InterviewSection />
+        <PreorderSection />
         <Footer />
       </div>
     </CartProvider>
