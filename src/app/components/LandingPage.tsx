@@ -90,8 +90,8 @@ export function LandingPage({ onEnter }: LandingPageProps) {
 
 
 
-          {/* Enter button — centered on mobile, near bottom on desktop */}
-          <div className="relative z-10 w-full h-full flex flex-col items-center justify-center md:justify-end px-6"
+          {/* Enter button — below video on mobile, near bottom on desktop */}
+          <div className="relative z-10 w-full h-full flex flex-col items-center px-6 pt-[70vh] md:pt-0 md:justify-end"
                style={{ paddingBottom: 'max(2rem, env(safe-area-inset-bottom, 0px))' }}>
             <motion.button
               onClick={handleEnterClick}
