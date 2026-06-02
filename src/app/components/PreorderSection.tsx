@@ -169,6 +169,7 @@ export function PreorderSection() {
                   ... on Product {
                     title
                     description
+                    descriptionHtml
                     images(first: 10) {
                       edges {
                         node {
@@ -207,10 +208,10 @@ export function PreorderSection() {
               if (productImages.length > 0) {
                 images[product.id] = productImages;
               }
-              if (node.description) {
-                descriptions[product.id] = node.description;
+              if (node.descriptionHtml || node.description) {
+                descriptions[product.id] = node.descriptionHtml || node.description;
               }
-              console.log(`[Shopify] Product ${product.id} fetched:`, { imageCount: productImages.length, hasDescription: !!node.description });
+              console.log(`[Shopify] Product ${product.id} fetched:`, { imageCount: productImages.length, hasDescription: !!(node.descriptionHtml || node.description) });
             }
           } catch (err) {
             console.warn(`[Shopify] Failed to fetch product ${product.id}:`, err);
