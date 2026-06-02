@@ -8,25 +8,21 @@ import {
   type CarouselApi,
 } from './ui/carousel';
 
-// Static image imports from assets/New Image Carousel Images/
-import carouselImage1 from '../../../assets/New Image Carousel Images/Image Carousel 1.jpg';
-import carouselImage2 from '../../../assets/New Image Carousel Images/Image Carousel 2.jpg';
-import carouselImage3 from '../../../assets/New Image Carousel Images/Image Carousel 3.jpg';
-import carouselImage4 from '../../../assets/New Image Carousel Images/Image Carousel 4.jpg';
-import carouselImage5 from '../../../assets/New Image Carousel Images/Image Carousel 5.jpg';
-import carouselImage6 from '../../../assets/New Image Carousel Images/Image Carousel 6.jpg';
-import carouselImage7 from '../../../assets/New Image Carousel Images/Image Carousel 7.jpg';
-import carouselImage8 from '../../../assets/New Image Carousel Images/Image Carousel 8.jpg';
+// Static image imports from assets/Final Carousel Images/
+import carouselImage1 from '../../../assets/Final Carousel Images/Carousel 1-4.jpg';
+import carouselImage2 from '../../../assets/Final Carousel Images/Carousel 2.jpg';
+import carouselImage3 from '../../../assets/Final Carousel Images/2.png';
+import carouselImage4 from '../../../assets/Final Carousel Images/3.jpg';
+import carouselImage5 from '../../../assets/Final Carousel Images/4.jpg';
+import carouselImage6 from '../../../assets/Final Carousel Images/5.jpeg';
 
 const carouselImages = [
-  { src: carouselImage1, filename: 'Image Carousel 1.jpg' },
-  { src: carouselImage2, filename: 'Image Carousel 2.jpg' },
-  { src: carouselImage3, filename: 'Image Carousel 3.jpg' },
-  { src: carouselImage4, filename: 'Image Carousel 4.jpg' },
-  { src: carouselImage5, filename: 'Image Carousel 5.jpg' },
-  { src: carouselImage6, filename: 'Image Carousel 6.jpg' },
-  { src: carouselImage7, filename: 'Image Carousel 7.jpg' },
-  { src: carouselImage8, filename: 'Image Carousel 8.jpg' },
+  { src: carouselImage1, filename: 'Carousel 1-4.jpg' },
+  { src: carouselImage2, filename: 'Carousel 2.jpg' },
+  { src: carouselImage3, filename: '2.png' },
+  { src: carouselImage4, filename: '3.jpg' },
+  { src: carouselImage5, filename: '4.jpg' },
+  { src: carouselImage6, filename: '5.jpeg' },
 ];
 
 const AUTOPLAY_INTERVAL = 5000; // 5 seconds
