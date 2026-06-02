@@ -70,9 +70,8 @@ export function LandingPage({ onEnter }: LandingPageProps) {
               onCanPlay={handleCanPlay}
               onError={handleVideoError}
               onStalled={handleVideoError}
-              className="absolute inset-0 w-full h-full"
+              className="absolute inset-0 w-full h-full object-contain md:object-cover"
               style={{
-                objectFit: 'cover',
                 opacity: videoReady ? 1 : 0,
                 transition: 'opacity 0.3s ease-in-out',
               }}
