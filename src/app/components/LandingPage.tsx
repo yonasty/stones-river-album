@@ -90,9 +90,9 @@ export function LandingPage({ onEnter }: LandingPageProps) {
 
 
 
-          {/* Bottom-positioned Enter button — sits near the bottom of the viewport */}
-          <div className="relative z-10 w-full h-full flex flex-col items-center justify-end px-6"
-               style={{ paddingBottom: 'max(4rem, calc(2rem + env(safe-area-inset-bottom, 0px)))' }}>
+          {/* Enter button — centered on mobile, near bottom on desktop */}
+          <div className="relative z-10 w-full h-full flex flex-col items-center justify-center md:justify-end px-6"
+               style={{ paddingBottom: 'max(2rem, env(safe-area-inset-bottom, 0px))' }}>
             <motion.button
               onClick={handleEnterClick}
               className="group relative px-12 py-5 border-2 border-parchment/80 bg-warm-black/20 backdrop-blur-sm
