@@ -9,8 +9,7 @@ import { ContentModal } from './ContentModal';
 import { useIsMobile } from '../hooks/useIsMobile';
 
 /**
- * BioCard — displays a collaborator's image and name.
- * Clicking opens the bio modal. Hover provides scale/shadow feedback.
+ * BioCard — displays a collaborator's image, name, bio preview, website icon, and "More" button.
  */
 function BioCard({
   bio,
@@ -21,16 +20,17 @@ function BioCard({
 }) {
   const [imgError, setImgError] = useState(false);
 
+  // Get first ~150 chars of bio for preview
+  const bioPreview = bio.bioText.length > 150
+    ? bio.bioText.substring(0, 150).trim() + '...'
+    : bio.bioText;
+
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      className="group w-full text-left cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-transparent rounded-lg"
-      aria-label={`View bio for ${bio.name}`}
-    >
-      <div className="overflow-hidden rounded-lg transition-all duration-300 ease-out group-hover:scale-[1.02] group-hover:shadow-[0_8px_40px_rgba(0,0,0,0.4)]">
+    <div className="flex flex-col border border-white/10 bg-zinc-900/60 backdrop-blur-sm rounded-lg overflow-hidden transition-all duration-300 hover:border-white/20">
+      {/* Image */}
+      <div className="overflow-hidden">
         {imgError ? (
-          <div className="aspect-square w-full flex flex-col items-center justify-center bg-zinc-800/60 border border-white/10 rounded-lg">
+          <div className="aspect-square w-full flex flex-col items-center justify-center bg-zinc-800/60 border-b border-white/10">
             <ImageIcon className="size-10 text-white/40 mb-2" />
             <span className="text-sm text-white/50">Image unavailable</span>
           </div>
@@ -39,15 +39,50 @@ function BioCard({
             src={bio.image}
             alt={bio.imageAlt}
             loading="lazy"
-            className="aspect-square w-full object-cover object-top rounded-lg"
+            className="aspect-square w-full object-cover object-top"
             onError={() => setImgError(true)}
           />
         )}
       </div>
-      <p className="mt-4 text-center text-lg font-light tracking-wide text-white/90 group-hover:text-white transition-colors duration-200">
-        {bio.name}
-      </p>
-    </button>
+
+      {/* Content */}
+      <div className="p-5 flex flex-col flex-1">
+        {/* Name */}
+        <h3 className="text-lg font-light tracking-wide text-white/90 mb-3 text-center">
+          {bio.name}
+        </h3>
+
+        {/* Bio preview */}
+        <p className="text-white/60 text-sm leading-relaxed mb-4 flex-1">
+          {bioPreview}
+        </p>
+
+        {/* Expand button + website icon */}
+        <div className="flex items-center justify-center gap-3">
+          <button
+            type="button"
+            onClick={onClick}
+            className="inline-flex items-center justify-center gap-2 py-2.5 px-6 rounded-md
+                       border border-white/10 text-white/70 text-base
+                       hover:border-white/25 hover:text-white/90 hover:bg-white/5
+                       transition-all duration-200
+                       focus:outline-none focus:ring-2 focus:ring-white/30"
+          >
+            <span className="tracking-wide">Expand</span>
+          </button>
+          <a
+            href={bio.websiteUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2.5 rounded-md border border-white/10 text-white/50 hover:text-white hover:border-white/25 hover:bg-white/5 transition-all duration-200"
+            aria-label={`Visit ${bio.name}'s website`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Globe className="size-5" />
+          </a>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -91,7 +126,7 @@ export function BiosSection() {
 
       <motion.div
         style={{ y: contentY }}
-        className="relative z-10 max-w-[1200px] mx-auto"
+        className="relative z-10 max-w-[1400px] mx-auto"
       >
         <h2 className="text-4xl md:text-5xl lg:text-6xl text-white font-light tracking-tight text-center mb-16 md:mb-20">
           Meet The Makers
