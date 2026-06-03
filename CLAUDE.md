@@ -52,7 +52,7 @@ You are the dedicated Claude Code session for the **Stones River album website**
 - `VERSION` file in repo root, currently **`1.0.3`**.
 - Bump after every meaningful deploy: patch (1.0.X) for fixes/tweaks, minor (1.X.0) for features, major (X.0.0) for overhauls.
 - Tell Ben the new version number after deploy.
-- **TODO:** the version isn't displayed in the UI yet. Per Ben's global rule, every app must show its version in a footer/corner. Worth adding to `Footer.tsx`.
+- **No UI version display.** This is a public-facing marketing site, so it's exempt from the global "show version in a footer/corner" rule (Ben, 2026-06-03). Keep the `VERSION` file and keep bumping it after deploys, but do not surface it in the UI.
 
 ## Current State (as of 2026-06-03, v1.0.3)
 - **Cart icon lives inside the frosted-glass nav** (top-right of the nav bar, always visible at all breakpoints). Fixed-position floater removed.
