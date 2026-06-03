@@ -115,6 +115,23 @@
   backdrop-filter: blur(var(--sr-glass-blur)) saturate(var(--sr-glass-saturate));
   border-bottom: 1px solid var(--sr-glass-border);
   box-shadow: var(--sr-glass-lift-shadow);
+
+  transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---- Stuck state: solid dark bg, slides down from above ---- */
+@keyframes sr-slide-down {
+  from { transform: translateY(-100%); }
+  to   { transform: translateY(0); }
+}
+
+.sr-nav--stuck {
+  background: rgba(13, 27, 42, 0.92);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+  animation: sr-slide-down 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* The bright hairline along the top = the "raised lip" of the glass */

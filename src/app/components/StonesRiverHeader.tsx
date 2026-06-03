@@ -1,7 +1,9 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 
 export function StonesRiverHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isStuck, setIsStuck] = useState(false);
+  const bannerRef = useRef<HTMLDivElement>(null);
 
   const handleToggle = useCallback(() => {
     setMenuOpen((prev) => !prev);
@@ -17,10 +19,26 @@ export function StonesRiverHeader() {
     setMenuOpen(false);
   }, []);
 
+  useEffect(() => {
+    const banner = bannerRef.current;
+    if (!banner) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // When banner is out of view, nav is stuck
+        setIsStuck(!entry.isIntersecting);
+      },
+      { threshold: 0, rootMargin: '0px' }
+    );
+
+    observer.observe(banner);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div id="home">
       {/* Banner image with nav overlaid at top */}
-      <div className="relative">
+      <div className="relative" ref={bannerRef}>
         <picture>
           <source
             type="image/webp"
@@ -38,7 +56,7 @@ export function StonesRiverHeader() {
       </div>
 
       {/* Sticky navigation — sits at top, sticks on scroll */}
-      <nav className="sr-nav" aria-label="Primary" data-open={String(menuOpen)}>
+      <nav className={`sr-nav ${isStuck ? 'sr-nav--stuck' : ''}`} aria-label="Primary" data-open={String(menuOpen)}>
         <button
           className="sr-nav__toggle"
           type="button"
