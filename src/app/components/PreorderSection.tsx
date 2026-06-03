@@ -266,8 +266,6 @@ export function PreorderSection() {
       id="preorder-stones-river"
       className="relative w-full py-20 px-6 md:px-12"
     >
-      {/* Semi-transparent overlay for text readability against blue background */}
-      <div className="absolute inset-0 bg-black/40 pointer-events-none" />
 
       <motion.div
         style={{ y }}
@@ -385,8 +383,8 @@ function ProductCard({ product, shopifyAvailable, shopifyImage, onClick }: Produ
 
   return (
     <div
-      className="border border-white/10 bg-zinc-900/60 backdrop-blur-sm rounded-lg overflow-hidden
-                 transition-all duration-300 hover:border-white/20 hover:bg-zinc-900/80"
+      className="border border-white/10 bg-preorder-card-bg backdrop-blur-sm rounded-lg overflow-hidden
+                 transition-all duration-300 hover:border-white/20"
     >
       {/* Desktop: horizontal row layout */}
       <div className="flex flex-col md:flex-row">

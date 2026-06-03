@@ -11,7 +11,7 @@ export function Footer() {
   const [logoError, setLogoError] = useState(false);
 
   return (
-    <footer className="w-full py-14 md:py-16 px-6 md:px-12 lg:px-16">
+    <footer className="w-full py-14 md:py-16 px-6 md:px-12 lg:px-16 bg-footer-bg">
       <div className="grid grid-cols-1 md:grid-cols-3 items-center gap-10 md:gap-6">
         {/* Left — OPO logo, pushed to the corner */}
         <div className="flex justify-center md:justify-start">

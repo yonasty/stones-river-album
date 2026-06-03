@@ -12,6 +12,8 @@
   --brass: #b8860b;
   --gold-accent: #d4af37;
   --site-bg: #23272F;
+  --preorder-card-bg: #1F1F1F;
+  --footer-bg: #5D6B89;
   --soft-shadow: rgba(26, 20, 16, 0.15);
 
   --background: var(--parchment);
@@ -93,6 +95,9 @@
 @theme inline {
   /* Album-specific colors as Tailwind utilities */
   --color-warm-black: var(--warm-black);
+  --color-site-bg: var(--site-bg);
+  --color-preorder-card-bg: var(--preorder-card-bg);
+  --color-footer-bg: var(--footer-bg);
   --color-parchment: var(--parchment);
   --color-sepia: var(--sepia);
   --color-dark-brown: var(--dark-brown);
