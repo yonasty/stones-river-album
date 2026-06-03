@@ -104,7 +104,7 @@ export function LandingPage({ onEnter }: LandingPageProps) {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
             >
-              <span className="font-['Playfair_Display'] text-lg tracking-wider">
+              <span className="font-['Fira_Sans'] text-lg tracking-wider">
                 Enter
               </span>
 
