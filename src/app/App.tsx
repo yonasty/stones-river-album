@@ -12,7 +12,6 @@ import { Footer } from './components/Footer';
 import { CartDrawer } from './components/CartDrawer';
 import { CartProvider } from './context/CartContext';
 import { siteConfig } from './config/siteConfig';
-import blueBg from '../../assets/BROWN TEXTURE.jpg';
 
 export default function App() {
   const [hasEntered, setHasEntered] = useState(false);
@@ -30,11 +29,7 @@ export default function App() {
       <div
         className="w-full"
         style={{
-          backgroundImage: `url(${blueBg})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'scroll',
-          backgroundColor: '#0d1b2a',
+          backgroundColor: 'var(--site-bg)',
         }}
       >
         <CartDrawer />
