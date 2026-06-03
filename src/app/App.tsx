@@ -9,7 +9,6 @@ import { BiosSection } from './components/BiosSection';
 import { PreorderSection } from './components/PreorderSection';
 import { InterviewSection } from './components/InterviewSection';
 import { Footer } from './components/Footer';
-import { CartIcon } from './components/CartIcon';
 import { CartDrawer } from './components/CartDrawer';
 import { CartProvider } from './context/CartContext';
 import { siteConfig } from './config/siteConfig';
@@ -38,7 +37,6 @@ export default function App() {
           backgroundColor: '#0d1b2a',
         }}
       >
-        <CartIcon />
         <CartDrawer />
         <SectionDots />
 

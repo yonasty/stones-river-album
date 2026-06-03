@@ -1,9 +1,12 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
+import { ShoppingCart } from 'lucide-react';
+import { useCart } from '../context/CartContext';
 
 export function StonesRiverHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isStuck, setIsStuck] = useState(false);
   const bannerRef = useRef<HTMLDivElement>(null);
+  const { itemCount, openDrawer } = useCart();
 
   const handleToggle = useCallback(() => {
     setMenuOpen((prev) => !prev);
@@ -73,6 +76,20 @@ export function StonesRiverHeader() {
           <li><a className="sr-nav__link" href="#view-the-gallery" onClick={(e) => handleNavClick(e, '#view-the-gallery')}>Gallery</a></li>
           <li><a className="sr-nav__link" href="#preorder-stones-river" onClick={(e) => handleNavClick(e, '#preorder-stones-river')}>Preorder</a></li>
         </ul>
+
+        <button
+          type="button"
+          className="sr-nav__cart"
+          onClick={openDrawer}
+          aria-label={`Shopping cart${itemCount > 0 ? `, ${itemCount} item${itemCount > 1 ? 's' : ''}` : ''}`}
+        >
+          <ShoppingCart strokeWidth={1.6} aria-hidden="true" />
+          {itemCount > 0 && (
+            <span className="sr-nav__cart-badge" aria-hidden="true">
+              {itemCount > 99 ? '99+' : itemCount}
+            </span>
+          )}
+        </button>
       </nav>
     </>
   );
