@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import opoLogo from '../../../assets/OPO White Logo.png';
+import opoLogo from '../../../assets/OPO Footer Logo Transparent.png';
 
 export function Footer() {
   const [logoError, setLogoError] = useState(false);
