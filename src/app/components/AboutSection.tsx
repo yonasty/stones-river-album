@@ -23,11 +23,11 @@ export function AboutSection() {
 
         {/* Text on right half — scrolls independently if needed */}
         <div className="w-1/2 flex flex-col justify-center px-[4%] lg:px-[5%] py-8">
-          <h2 className="text-[clamp(1.1rem,1.8vw,1.75rem)] text-parchment mb-4 text-center font-light">
+          <h2 className="text-[clamp(1.5rem,2.5vw,2.5rem)] text-parchment mb-6 text-left font-light">
             About Stones River
           </h2>
 
-          <div className="text-parchment/85 leading-[1.5] text-[clamp(0.75rem,0.85vw,0.95rem)] space-y-[clamp(0.4rem,0.5vw,0.6rem)]">
+          <div className="text-parchment/85 leading-[1.6] text-[clamp(0.75rem,0.85vw,0.95rem)] space-y-4">
             <p>
               Stones River is a collaborative album between composer and fiddler Jeremy Kittel, Grammy-nominated conductor Eric Jacobsen (The Knights, Brooklyn Rider), and the Orlando Philharmonic Orchestra.
             </p>
