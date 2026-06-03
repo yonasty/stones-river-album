@@ -12,22 +12,22 @@ export function AboutSection() {
       id="about-stones-river"
       className="relative w-full overflow-hidden"
     >
-      {/* Desktop: 50/50 layout — image determines height, text absolutely positioned */}
-      <div className="hidden md:block relative">
-        {/* Image takes left half, determines section height */}
+      {/* Desktop: side-by-side flex layout */}
+      <div className="hidden md:flex">
+        {/* Image takes left half */}
         <img
           src={aboutImage}
           alt="Jeremy Kittel and Eric Jacobsen"
-          className="w-1/2 h-auto block"
+          className="w-1/2 object-cover"
         />
 
-        {/* Text overlay on right half — all content must fit within image height */}
-        <div className="absolute top-0 right-0 w-1/2 h-full flex flex-col justify-center px-[3%] lg:px-[4%] overflow-y-auto py-[2%]">
-          <h2 className="text-[clamp(0.9rem,1.6vw,1.75rem)] text-parchment mb-[0.4vw] text-center font-light shrink-0">
+        {/* Text on right half — scrolls independently if needed */}
+        <div className="w-1/2 flex flex-col justify-center px-[4%] lg:px-[5%] py-8">
+          <h2 className="text-[clamp(1.1rem,1.8vw,1.75rem)] text-parchment mb-4 text-center font-light">
             About Stones River
           </h2>
 
-          <div className="text-parchment/85 leading-[1.35] text-[clamp(0.55rem,0.72vw,0.9rem)] space-y-[clamp(0.15rem,0.3vw,0.4rem)]">
+          <div className="text-parchment/85 leading-[1.5] text-[clamp(0.75rem,0.85vw,0.95rem)] space-y-[clamp(0.4rem,0.5vw,0.6rem)]">
             <p>
               Stones River is a collaborative album between composer and fiddler Jeremy Kittel, Grammy-nominated conductor Eric Jacobsen (The Knights, Brooklyn Rider), and the Orlando Philharmonic Orchestra.
             </p>

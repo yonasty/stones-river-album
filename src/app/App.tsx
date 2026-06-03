@@ -29,7 +29,7 @@ export default function App() {
   return (
     <CartProvider>
       <div
-        className="w-full overflow-x-hidden"
+        className="w-full"
         style={{
           backgroundImage: `url(${blueBg})`,
           backgroundSize: 'cover',

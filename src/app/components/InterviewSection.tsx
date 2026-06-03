@@ -30,11 +30,11 @@ export function InterviewSection() {
           aria-hidden="true"
         />
 
-        {/* YouTube embed overlay — positioned to the right */}
-        <div className="absolute inset-0 flex items-center justify-end pr-6 md:pr-12 lg:pr-20">
+        {/* YouTube embed overlay — positioned to the right, away from album cover */}
+        <div className="absolute inset-0 flex items-center justify-end pr-6 md:pr-12 lg:pr-20 pl-[35%] md:pl-[30%]">
           <motion.div
             style={{ y: videoY }}
-            className="w-full max-w-md md:max-w-xl lg:max-w-3xl"
+            className="w-full max-w-3xl"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}

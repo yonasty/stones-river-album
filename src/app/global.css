@@ -44,10 +44,12 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   font-family: 'Fira Sans', sans-serif;
+  overflow-x: hidden;
 }
 
 /* Custom scrollbar for horizontal preorder section */

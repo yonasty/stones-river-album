@@ -33,9 +33,9 @@ export function StonesRiverHeader() {
   }, []);
 
   return (
-    <div id="home">
-      {/* Banner image with nav overlaid at top */}
-      <div className="relative" ref={bannerRef}>
+    <>
+      {/* Banner image */}
+      <div id="home" ref={bannerRef}>
         <picture>
           <source
             type="image/webp"
@@ -52,7 +52,7 @@ export function StonesRiverHeader() {
         </picture>
       </div>
 
-      {/* Sticky navigation — sits at top, sticks on scroll */}
+      {/* Sticky navigation — lives outside #home so sticky works against the main scroll container */}
       <nav className={`sr-nav ${isStuck ? 'sr-nav--stuck' : ''}`} aria-label="Primary" data-open={String(menuOpen)}>
         <button
           className="sr-nav__toggle"
@@ -74,6 +74,6 @@ export function StonesRiverHeader() {
           <li><a className="sr-nav__link" href="#preorder-stones-river" onClick={(e) => handleNavClick(e, '#preorder-stones-river')}>Preorder</a></li>
         </ul>
       </nav>
-    </div>
+    </>
   );
 }
