@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stones River — Header Preview</title>
+  <link rel="stylesheet" href="stones-river-header.css" />
+  <style>
+    /* Demo-page chrome only (not part of the header component) */
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Fira Sans", system-ui, sans-serif; background: #f6f4ef; color: #2c3140; }
+    .demo-note { text-align: center; padding: 2.5rem 1.5rem; color: #aab; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== STONES RIVER HEADER ===================== -->
+  <header class="sr-header">
+    <picture>
+      <source type="image/webp"
+              srcset="assets/stones-river-banner-1920.webp 1920w,
+                      assets/stones-river-banner.webp 3840w"
+              sizes="100vw" />
+      <img class="sr-header__banner"
+           src="assets/stones-river-banner.jpg"
+           width="3840" height="1093"
+           alt="Stones River — a new album from Jeremy Kittel, Eric Jacobsen, and the Orlando Philharmonic Orchestra" />
+    </picture>
+
+    <nav class="sr-nav" aria-label="Primary" data-open="false">
+      <button class="sr-nav__toggle" type="button"
+              aria-expanded="false" aria-controls="sr-menu" aria-label="Toggle navigation menu">
+        <span></span>
+      </button>
+
+      <ul class="sr-nav__links" id="sr-menu">
+        <li><a class="sr-nav__link" href="#home">Home</a></li>
+        <li><a class="sr-nav__link" href="#about">About</a></li>
+        <li><a class="sr-nav__link" href="#experience">Experience</a></li>
+        <li><a class="sr-nav__link" href="#makers">The Makers</a></li>
+        <li><a class="sr-nav__link" href="#gallery">Gallery</a></li>
+        <li><a class="sr-nav__cta" href="#preorder">Preorder</a></li>
+      </ul>
+    </nav>
+  </header>
+  <!-- =============================================================== -->
+
+  <p class="demo-note">— your page content begins here —</p>
+
+  <script>
+    // Minimal, accessible mobile-menu toggle
+    (function () {
+      var nav = document.querySelector('.sr-nav');
+      var btn = nav.querySelector('.sr-nav__toggle');
+      btn.addEventListener('click', function () {
+        var open = nav.getAttribute('data-open') === 'true';
+        nav.setAttribute('data-open', String(!open));
+        btn.setAttribute('aria-expanded', String(!open));
+      });
+    })();
+  </script>
+</body>
+</html>

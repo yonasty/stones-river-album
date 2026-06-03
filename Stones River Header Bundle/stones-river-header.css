@@ -1,0 +1,282 @@
+/* ============================================================
+   Stones River — Banner Header with Frosted-Glass Navigation
+   ------------------------------------------------------------
+   The album banner pixels are never altered. The top strip is
+   "lifted" into a translucent frosted-glass bar via backdrop-filter,
+   and the buttons inside it are real, clickable, responsive links.
+   All colors are CSS custom properties (no hardcoded hex in rules).
+   ============================================================ */
+
+/* ---- Web fonts (self-hosted Fira Sans) ---- */
+@font-face {
+  font-family: "Fira Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/FiraSans-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Fira Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/fonts/FiraSans-Medium.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Fira Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/fonts/FiraSans-SemiBold.woff2") format("woff2");
+}
+
+/* ---- Design tokens ---- */
+:root {
+  --sr-font: "Fira Sans", system-ui, -apple-system, Segoe UI, sans-serif;
+
+  /* Banner aspect ratio — MUST match the supplied asset's pixel dimensions.
+     Current asset: 3840 x 1093 (~3.5:1, wide & short). */
+  --sr-banner-ratio: 3840 / 1093;
+
+  /* Full-bleed by default. Set to a px value to cap/center the banner. */
+  --sr-header-max-width: none;
+
+  /* Nav typography */
+  --sr-link-color: rgba(255, 255, 255, 0.95);
+  --sr-link-color-hover: rgb(255, 255, 255);
+  --sr-link-tracking: 0.14em;
+  --sr-text-shadow: 0 1px 6px rgba(40, 55, 80, 0.45);
+
+  /* Frosted-glass bar ("raised" top pixels) */
+  --sr-glass-bg: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.22),
+    rgba(255, 255, 255, 0.06)
+  );
+  --sr-glass-blur: 10px;
+  --sr-glass-saturate: 125%;
+  --sr-glass-top-highlight: rgba(255, 255, 255, 0.55); /* the "lifted edge" */
+  --sr-glass-border: rgba(255, 255, 255, 0.18);
+  --sr-glass-lift-shadow: 0 8px 22px rgba(30, 45, 70, 0.22);
+
+  /* Hover pill behind a link */
+  --sr-link-hover-bg: rgba(255, 255, 255, 0.16);
+
+  /* Pre-Order call-to-action button */
+  --sr-cta-color: rgb(255, 255, 255);
+  --sr-cta-bg: rgba(255, 255, 255, 0.16);
+  --sr-cta-border: rgba(255, 255, 255, 0.7);
+  --sr-cta-bg-hover: rgba(255, 255, 255, 0.92);
+  --sr-cta-color-hover: rgb(58, 78, 110); /* dusk blue from the banner */
+
+  /* Mobile menu panel */
+  --sr-menu-bg: rgba(38, 52, 78, 0.82);
+  --sr-menu-blur: 14px;
+}
+
+/* ---- Header shell: banner + overlaid nav ---- */
+.sr-header {
+  position: relative;
+  width: 100%;
+  max-width: var(--sr-header-max-width);
+  margin-inline: auto;
+  aspect-ratio: var(--sr-banner-ratio);
+  font-family: var(--sr-font);
+  /* No overflow:hidden here — the mobile dropdown menu must be free to
+     extend below the (short) banner. The banner image is constrained by
+     aspect-ratio + object-fit, so it never spills. */
+}
+
+/* <picture> is just a wrapper; let the <img> be the layout box */
+.sr-header picture { display: contents; }
+
+.sr-header__banner {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* ---- The frosted-glass navigation bar ---- */
+.sr-nav {
+  position: absolute;
+  inset: 0 0 auto 0; /* pinned to the very top, full width */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.15rem, 1.1vw, 1.1rem);
+  padding: clamp(0.12rem, 0.4vw, 0.3rem) clamp(1rem, 3vw, 2.5rem);
+
+  background: var(--sr-glass-bg);
+  -webkit-backdrop-filter: blur(var(--sr-glass-blur)) saturate(var(--sr-glass-saturate));
+  backdrop-filter: blur(var(--sr-glass-blur)) saturate(var(--sr-glass-saturate));
+  border-bottom: 1px solid var(--sr-glass-border);
+  box-shadow: var(--sr-glass-lift-shadow);
+}
+
+/* The bright hairline along the top = the "raised lip" of the glass */
+.sr-nav::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: var(--sr-glass-top-highlight);
+}
+
+.sr-nav__links {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.15rem, 1.1vw, 1.1rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sr-nav__link {
+  display: inline-block;
+  padding: 0.5em 0.85em;
+  border-radius: 999px;
+  color: var(--sr-link-color);
+  font-size: clamp(0.72rem, 0.95vw, 0.95rem);
+  font-weight: 400;
+  letter-spacing: var(--sr-link-tracking);
+  text-transform: uppercase;
+  text-decoration: none;
+  text-shadow: var(--sr-text-shadow);
+  white-space: nowrap;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.sr-nav__link:hover,
+.sr-nav__link:focus-visible {
+  color: var(--sr-link-color-hover);
+  background: var(--sr-link-hover-bg);
+  outline: none;
+}
+
+/* ---- Pre-Order call-to-action ---- */
+.sr-nav__cta {
+  display: inline-block;
+  margin-left: clamp(0.15rem, 0.6vw, 0.6rem);
+  padding: 0.55em 1.2em;
+  border: 1px solid var(--sr-cta-border);
+  border-radius: 999px;
+  color: var(--sr-cta-color);
+  background: var(--sr-cta-bg);
+  font-size: clamp(0.72rem, 0.95vw, 0.95rem);
+  font-weight: 600;
+  letter-spacing: var(--sr-link-tracking);
+  text-transform: uppercase;
+  text-decoration: none;
+  text-shadow: var(--sr-text-shadow);
+  white-space: nowrap;
+  transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.sr-nav__cta:hover,
+.sr-nav__cta:focus-visible {
+  background: var(--sr-cta-bg-hover);
+  color: var(--sr-cta-color-hover);
+  text-shadow: none;
+  transform: translateY(-1px);
+  outline: none;
+}
+
+/* ---- Mobile hamburger toggle (hidden on desktop) ---- */
+.sr-nav__toggle {
+  display: none;
+  position: absolute;
+  top: 50%;
+  right: clamp(1rem, 4vw, 2rem);
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+.sr-nav__toggle span,
+.sr-nav__toggle span::before,
+.sr-nav__toggle span::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  width: 24px;
+  height: 2px;
+  background: var(--sr-link-color);
+  border-radius: 2px;
+  box-shadow: var(--sr-text-shadow);
+  transition: transform 160ms ease, opacity 160ms ease;
+}
+.sr-nav__toggle span { top: 21px; }
+.sr-nav__toggle span::before { top: -7px; }
+.sr-nav__toggle span::after { top: 7px; }
+
+/* ---- Responsive: collapse to a frosted dropdown panel ---- */
+@media (max-width: 720px) {
+  .sr-nav {
+    justify-content: flex-start;
+    padding: 0.7rem 1rem;
+  }
+  .sr-nav__toggle { display: block; }
+
+  .sr-nav__links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 0.4rem 0;
+    background: var(--sr-menu-bg);
+    -webkit-backdrop-filter: blur(var(--sr-menu-blur));
+    backdrop-filter: blur(var(--sr-menu-blur));
+    box-shadow: var(--sr-glass-lift-shadow);
+
+    /* hidden until toggled */
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: max-height 220ms ease, opacity 220ms ease;
+  }
+  .sr-nav[data-open="true"] .sr-nav__links {
+    max-height: 80vh;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .sr-nav__link,
+  .sr-nav__cta {
+    width: 100%;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    text-align: left;
+    font-size: 1rem;
+    padding: 0.9em 1.4em;
+  }
+  .sr-nav__cta {
+    margin-top: 0.2rem;
+    border-top: 1px solid var(--sr-glass-border);
+  }
+
+  /* hamburger -> X when open */
+  .sr-nav[data-open="true"] .sr-nav__toggle span { background: transparent; }
+  .sr-nav[data-open="true"] .sr-nav__toggle span::before { transform: translateY(7px) rotate(45deg); }
+  .sr-nav[data-open="true"] .sr-nav__toggle span::after { transform: translateY(-7px) rotate(-45deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sr-nav__link,
+  .sr-nav__cta,
+  .sr-nav__links,
+  .sr-nav__toggle span,
+  .sr-nav__toggle span::before,
+  .sr-nav__toggle span::after { transition: none; }
+}

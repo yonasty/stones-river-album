@@ -3,6 +3,7 @@ import { useRef } from 'react';
 import { Youtube } from 'lucide-react';
 import { useIsMobile } from '../hooks/useIsMobile';
 import experienceBg from '../../../assets/Experience Section Visual Reference.png';
+import teaserThumb from '../../../assets/Teaser Thumbnail.png';
 
 export function InterviewSection() {
   const ref = useRef(null);
@@ -53,18 +54,19 @@ function VideoPlaceholder() {
                     shadow-[0_15px_50px_rgba(0,0,0,0.4)] overflow-hidden group cursor-pointer rounded-lg
                     hover:border-white/40 hover:shadow-[0_15px_50px_rgba(0,0,0,0.6)]
                     transition-all duration-300 backdrop-blur-sm">
-      {/* YouTube embed placeholder */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="flex flex-col items-center space-y-4 transition-transform duration-300 group-hover:scale-110">
-          <Youtube className="w-12 h-12 text-white/90" strokeWidth={1.5} />
-          <span className="text-white/80 text-sm tracking-wide">
-            Stones River Teaser
-          </span>
+      {/* Thumbnail image */}
+      <img
+        src={teaserThumb}
+        alt="Stones River Teaser"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+
+      {/* Play button overlay */}
+      <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/10 transition-colors duration-300">
+        <div className="transition-transform duration-300 group-hover:scale-110">
+          <Youtube className="w-14 h-14 text-white/90 drop-shadow-lg" strokeWidth={1.5} />
         </div>
       </div>
-
-      {/* Hover effect */}
-      <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors duration-300" />
     </div>
   );
 }

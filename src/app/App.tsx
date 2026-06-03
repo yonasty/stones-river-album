@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { LandingPage } from './components/LandingPage';
-import { Navbar } from './components/Navbar';
+import { StonesRiverHeader } from './components/StonesRiverHeader';
 import { SectionDots } from './components/SectionDots';
-import { HomeHeroSection } from './components/HomeHeroSection';
 import { ImageCarouselSection } from './components/ImageCarouselSection';
 import { ListenNowSection } from './components/ListenNowSection';
 import { AboutSection } from './components/AboutSection';
@@ -43,11 +42,9 @@ export default function App() {
         <CartDrawer />
         <SectionDots />
 
-        {/* Home banner + Navbar */}
-        <div className="bg-transparent">
-          <HomeHeroSection />
-          <Navbar />
-        </div>
+        {/* New banner header with frosted-glass navigation */}
+        <StonesRiverHeader />
+
         <AboutSection />
         <InterviewSection />
         <BiosSection />
