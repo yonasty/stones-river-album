@@ -354,8 +354,13 @@ interface ProductCardProps {
 function ProductCard({ product, shopifyAvailable, shopifyImage, onClick }: ProductCardProps) {
   const [imageError, setImageError] = useState(false);
   const [addedFeedback, setAddedFeedback] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<{ name: string; image: string; modalImage?: string } | null>(null);
+  const [selectedItem, setSelectedItem] = useState<{ name: string; image: string; modalImage?: string; modalImages?: string[] } | null>(null);
+  const [itemImageIndex, setItemImageIndex] = useState(0);
   const { addItem } = useCart();
+
+  useEffect(() => {
+    setItemImageIndex(0);
+  }, [selectedItem]);
 
   const displayTitle = product.fallbackTitle;
   const displayPrice = product.fallbackPrice;
@@ -462,7 +467,7 @@ function ProductCard({ product, shopifyAvailable, shopifyImage, onClick }: Produ
               <button
                 key={i}
                 type="button"
-                onClick={() => setSelectedItem({ name: item.name, image: item.image, modalImage: item.modalImage })}
+                onClick={() => setSelectedItem({ name: item.name, image: item.image, modalImage: item.modalImage, modalImages: item.modalImages })}
                 className="flex items-center gap-3 border border-white/5 bg-zinc-800/30 rounded-md p-3
                            transition-all duration-200 hover:border-white/25 hover:bg-white/5
                            cursor-pointer text-left focus:outline-none focus:ring-1 focus:ring-white/30"
@@ -486,18 +491,43 @@ function ProductCard({ product, shopifyAvailable, shopifyImage, onClick }: Produ
 
       {/* Individual item detail modal */}
       <ContentModal open={selectedItem !== null} onOpenChange={(open) => { if (!open) setSelectedItem(null); }} className="max-w-lg">
-        {selectedItem && (
-          <div className="flex flex-col items-center gap-5 pt-4">
-            <img
-              src={selectedItem.modalImage || selectedItem.image}
-              alt={selectedItem.name}
-              className="w-full max-h-[400px] object-contain rounded-lg"
-            />
-            <p className="text-white text-center text-base leading-relaxed">
-              {selectedItem.name}
-            </p>
-          </div>
-        )}
+        {selectedItem && (() => {
+          const itemGallery = selectedItem.modalImages && selectedItem.modalImages.length > 0
+            ? selectedItem.modalImages
+            : [selectedItem.modalImage || selectedItem.image];
+          const currentItemImage = itemGallery[itemImageIndex] || itemGallery[0];
+          return (
+            <div className="flex flex-col items-center gap-4 pt-4">
+              <img
+                src={currentItemImage}
+                alt={selectedItem.name}
+                className="w-full max-h-[400px] object-contain rounded-lg"
+              />
+              {itemGallery.length > 1 && (
+                <div className="grid grid-cols-5 gap-1.5 w-full">
+                  {itemGallery.map((img, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setItemImageIndex(idx)}
+                      className={`w-full aspect-square rounded overflow-hidden border-2 transition-all duration-200 ${
+                        idx === itemImageIndex
+                          ? 'border-white/80'
+                          : 'border-white/10 hover:border-white/30 opacity-60 hover:opacity-100'
+                      }`}
+                      aria-label={`View image ${idx + 1} of ${itemGallery.length}`}
+                    >
+                      <img src={img} alt="" className="w-full h-full object-cover" />
+                    </button>
+                  ))}
+                </div>
+              )}
+              <p className="text-white text-center text-base leading-relaxed">
+                {selectedItem.name}
+              </p>
+            </div>
+          );
+        })()}
       </ContentModal>
     </div>
   );
