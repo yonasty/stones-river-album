@@ -23,16 +23,13 @@ export function StonesRiverHeader() {
     const banner = bannerRef.current;
     if (!banner) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        // When banner is out of view, nav is stuck
-        setIsStuck(!entry.isIntersecting);
-      },
-      { threshold: 0, rootMargin: '0px' }
-    );
+    const handleScroll = () => {
+      const bannerBottom = banner.getBoundingClientRect().bottom;
+      setIsStuck(bannerBottom <= 0);
+    };
 
-    observer.observe(banner);
-    return () => observer.disconnect();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
