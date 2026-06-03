@@ -1,4 +1,3 @@
-import { motion, useScroll, useTransform } from 'motion/react';
 import { useRef } from 'react';
 import { useIsMobile } from '../hooks/useIsMobile';
 import aboutImage from '../../../assets/JeremyEric.jpeg';
@@ -6,63 +5,77 @@ import aboutImage from '../../../assets/JeremyEric.jpeg';
 export function AboutSection() {
   const ref = useRef(null);
   const isMobile = useIsMobile();
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"]
-  });
-
-  const textY = useTransform(scrollYProgress, [0, 1], isMobile ? [20, -20] : [40, -40]);
 
   return (
     <section
       ref={ref}
       id="about-stones-river"
-      className="relative w-full flex items-center py-12 md:py-16 lg:py-20 px-6 md:px-12 lg:px-20"
+      className="relative w-full overflow-hidden"
     >
-      {/* Semi-transparent overlay for text readability against blue background */}
-      <div className="absolute inset-0 bg-black/40 pointer-events-none" />
+      {/* Desktop: 50/50 layout — image determines height, text absolutely positioned */}
+      <div className="hidden md:block relative">
+        {/* Image takes left half, determines section height */}
+        <img
+          src={aboutImage}
+          alt="Jeremy Kittel and Eric Jacobsen"
+          className="w-1/2 h-auto block"
+        />
 
-      <motion.div
-        style={{ y: textY }}
-        className="relative z-10 max-w-5xl mx-auto w-full"
-      >
-        <h2 className="text-4xl md:text-5xl text-parchment mb-8">
-          About Stones River
-        </h2>
+        {/* Text overlay on right half — all content must fit within image height */}
+        <div className="absolute top-0 right-0 w-1/2 h-full flex flex-col justify-center px-8 lg:px-12">
+          <h2 className="text-xl lg:text-2xl text-parchment mb-2 text-center font-light">
+            About Stones River
+          </h2>
 
-        <div className="text-parchment/90 leading-[1.8] text-base md:text-lg">
-          {/* Image floated right so text wraps around it */}
-          <img
-            src={aboutImage}
-            alt="Stones River recording session"
-            className="hidden md:block float-right ml-8 mb-6 w-[50%] max-w-[480px] h-auto object-contain rounded-lg"
-          />
+          <div className="text-parchment/85 leading-[1.35] text-[8.5px] lg:text-[10px] xl:text-[11px] space-y-1">
+            <p>
+              Stones River is a collaborative album between composer and fiddler Jeremy Kittel, Grammy-nominated conductor Eric Jacobsen (The Knights, Brooklyn Rider), and the Orlando Philharmonic Orchestra.
+            </p>
 
-          <p className="mb-6">
-            Stones River is a collaborative album from acclaimed violinist and composer Jeremy Kittel, Grammy-nominated conductor Eric Jacobsen, and the Orlando Philharmonic Orchestra, releasing July 3, 2026.
-          </p>
+            <p>
+              The project began when Eric and the OPO invited Jeremy to compose a new work drawing from early American music — spanning the Revolutionary War through the Civil War. The result was Stones River, a piece that weaves together melodies from across that era into a contemporary, almost dream-like whole, led throughout by a solo fiddle.
+            </p>
 
-          <p className="mb-6">
-            The project was born when Kittel was invited by Jacobsen and the OPO to compose a piece drawing from early American music — from the Revolutionary War through the Civil War. The result is a sweeping musical landscape that weaves together folk traditions, Celtic and old-time influences, and contemporary classical sensibilities, led throughout by Kittel's signature solo fiddle voice.
-          </p>
+            <p>
+              The album's title refers to the Battle of Stones River in 1862. On the night before the conflict, military bands from opposing sides were camped close enough to engage in a kind of musical duel — and remarkably, the two groups eventually united across battle lines to play the beloved song "Home Sweet Home" together.
+            </p>
 
-          <p className="mb-6">
-            The album's title is a nod to the 1862 Battle of Stones River, where, on the eve of the conflict, military bands from opposing sides camped close enough to engage in a spontaneous musical duel. Remarkably, the two groups eventually united across battle lines to perform the nostalgic and widely cherished song, "Home Sweet Home." As Kittel drew from these melodies, he found himself asking deeper questions: what is the meaning of this country? What are its ideals — and do we actively live up to them?
-          </p>
+            <p>
+              After a successful premiere, plans to record eventually followed. The album brings together Jacobsen's conducting and the Philharmonic's playing with Kittel's composing and fiddling across a program that spans the centuries. Also featured: mandolinist Josh Pinkham stepping in for the harpsichord role in a movement of Vivaldi, flutist Colleen Blagov on an orchestral version of Kittel's composition "Pando," and Gottschalk's underrecognized Symphony No. 2 — written just after the Civil War and similarly steeped in early American themes.
+            </p>
 
-          <p className="mb-6 italic">
-            "There's something extraordinary about hearing these melodies bloom inside a full orchestra," says Kittel. "Eric and the musicians of the Orlando Philharmonic brought such warmth and imagination to the music. It felt like the pieces were finally arriving at the home they'd been searching for."
-          </p>
+            <p>
+              The album's visual identity comes from painter Rush Baker IV, whose recent series reframes Civil War scenes through abstraction of the massive Cyclorama paintings of the 1880s. His work, brought to the project by designer Ben Tousley, mirrors what the music does: blurring past and present, memory and imagination, American history and its ongoing meaning.
+            </p>
 
-          <p className="mb-6">
-            Together, Kittel, Jacobsen, and the Orlando Philharmonic have created something at once cinematic, soulful, and quietly profound — music that reaches across generations, and invites listeners into a vivid world alive with possibility.
-          </p>
-
-          <p>
-            Stones River is available on all digital platforms and in physical formats on July 3, 2026.
-          </p>
+            <p>
+              Because Stones River draws so deeply on melodies from early America, the music carries an ineffable sense of voices from the past reaching toward the present — and the questions those voices tend to raise.
+            </p>
+          </div>
         </div>
-      </motion.div>
+      </div>
+
+      {/* Mobile: stacked layout */}
+      <div className="md:hidden">
+        <img
+          src={aboutImage}
+          alt="Jeremy Kittel and Eric Jacobsen"
+          className="w-full h-auto block"
+        />
+        <div className="px-6 py-6">
+          <h2 className="text-2xl text-parchment mb-4 text-center font-light">
+            About Stones River
+          </h2>
+          <div className="text-parchment/90 leading-[1.6] text-sm space-y-3">
+            <p>Stones River is a collaborative album between composer and fiddler Jeremy Kittel, Grammy-nominated conductor Eric Jacobsen (The Knights, Brooklyn Rider), and the Orlando Philharmonic Orchestra.</p>
+            <p>The project began when Eric and the OPO invited Jeremy to compose a new work drawing from early American music — spanning the Revolutionary War through the Civil War. The result was Stones River, a piece that weaves together melodies from across that era into a contemporary, almost dream-like whole, led throughout by a solo fiddle.</p>
+            <p>The album's title refers to the Battle of Stones River in 1862. On the night before the conflict, military bands from opposing sides were camped close enough to engage in a kind of musical duel — and remarkably, the two groups eventually united across battle lines to play the beloved song "Home Sweet Home" together.</p>
+            <p>After a successful premiere, plans to record eventually followed. The album brings together Jacobsen's conducting and the Philharmonic's playing with Kittel's composing and fiddling across a program that spans the centuries.</p>
+            <p>The album's visual identity comes from painter Rush Baker IV, whose recent series reframes Civil War scenes through abstraction of the massive Cyclorama paintings of the 1880s.</p>
+            <p>Because Stones River draws so deeply on melodies from early America, the music carries an ineffable sense of voices from the past reaching toward the present — and the questions those voices tend to raise.</p>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

@@ -8,11 +8,11 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { label: 'Home', href: '#home' },
-  { label: 'About Stones River', href: '#about-stones-river' },
-  { label: 'View the Gallery', href: '#view-the-gallery' },
-  { label: 'Meet the Makers', href: '#meet-the-makers' },
-  { label: 'Video', href: '#video' },
-  { label: 'Preorder Stones River', href: '#preorder-stones-river' },
+  { label: 'About', href: '#about-stones-river' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'The Makers', href: '#meet-the-makers' },
+  { label: 'Gallery', href: '#view-the-gallery' },
+  { label: 'Preorder', href: '#preorder-stones-river' },
 ];
 
 export function Navbar() {

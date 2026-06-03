@@ -9,20 +9,18 @@ import {
 } from './ui/carousel';
 
 // Static image imports from assets/Final Carousel Images/
-import carouselImage1 from '../../../assets/Final Carousel Images/Carousel 1-4.jpg';
-import carouselImage2 from '../../../assets/Final Carousel Images/Carousel 2.jpg';
-import carouselImage3 from '../../../assets/Final Carousel Images/2.png';
-import carouselImage4 from '../../../assets/Final Carousel Images/3.jpg';
-import carouselImage5 from '../../../assets/Final Carousel Images/4.jpg';
-import carouselImage6 from '../../../assets/Final Carousel Images/5.jpeg';
+import carouselImage1 from '../../../assets/Final Carousel Images/1.jpg';
+import carouselImage2 from '../../../assets/Final Carousel Images/2.png';
+import carouselImage3 from '../../../assets/Final Carousel Images/3.jpg';
+import carouselImage4 from '../../../assets/Final Carousel Images/4.jpg';
+import carouselImage5 from '../../../assets/Final Carousel Images/5.jpeg';
 
 const carouselImages = [
-  { src: carouselImage1, filename: 'Carousel 1-4.jpg' },
-  { src: carouselImage2, filename: 'Carousel 2.jpg' },
-  { src: carouselImage3, filename: '2.png' },
-  { src: carouselImage4, filename: '3.jpg' },
-  { src: carouselImage5, filename: '4.jpg' },
-  { src: carouselImage6, filename: '5.jpeg' },
+  { src: carouselImage1, filename: '1.jpg' },
+  { src: carouselImage2, filename: '2.png' },
+  { src: carouselImage3, filename: '3.jpg' },
+  { src: carouselImage4, filename: '4.jpg' },
+  { src: carouselImage5, filename: '5.jpeg' },
 ];
 
 const AUTOPLAY_INTERVAL = 5000; // 5 seconds
@@ -144,7 +142,7 @@ export function ImageCarouselSection() {
             {carouselImages.map((image, index) => (
               <CarouselItem key={index}>
                 {imageErrors[index] ? (
-                  <div className="w-full h-[80vh] flex flex-col items-center justify-center bg-black">
+                  <div className="w-full h-[100vh] flex flex-col items-center justify-center bg-zinc-900">
                     <ImageIcon className="w-12 h-12 text-white/50 mb-3" />
                     <span className="text-white/60 text-sm">{image.filename}</span>
                   </div>
@@ -152,7 +150,7 @@ export function ImageCarouselSection() {
                   <img
                     src={image.src}
                     alt={`Stones River project image ${index + 1}`}
-                    className="w-full h-[80vh] object-contain bg-black"
+                    className="w-full h-[100vh] object-cover"
                     onError={() => handleImageError(index)}
                   />
                 )}

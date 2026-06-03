@@ -7,11 +7,11 @@ interface SectionInfo {
 
 const sections: SectionInfo[] = [
   { id: 'home', label: 'Home' },
-  { id: 'about-stones-river', label: 'About Stones River' },
-  { id: 'view-the-gallery', label: 'View the Gallery' },
-  { id: 'meet-the-makers', label: 'Meet the Makers' },
-  { id: 'video', label: 'Video' },
-  { id: 'preorder-stones-river', label: 'Preorder Stones River' },
+  { id: 'about-stones-river', label: 'About' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'meet-the-makers', label: 'The Makers' },
+  { id: 'view-the-gallery', label: 'Gallery' },
+  { id: 'preorder-stones-river', label: 'Preorder' },
 ];
 
 export function SectionDots() {

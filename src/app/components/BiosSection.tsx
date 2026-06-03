@@ -119,7 +119,7 @@ export function BiosSection() {
     <section
       ref={ref}
       id="meet-the-makers"
-      className="relative w-full py-16 md:py-24 lg:py-32 px-6 md:px-12 lg:px-20"
+      className="relative w-full pt-8 pb-16 md:pt-12 md:pb-24 lg:pt-16 lg:pb-32 px-6 md:px-12 lg:px-20"
     >
       {/* Semi-transparent overlay for text readability */}
       <div className="absolute inset-0 bg-black/30 pointer-events-none" />
@@ -128,8 +128,8 @@ export function BiosSection() {
         style={{ y: contentY }}
         className="relative z-10 max-w-[1400px] mx-auto"
       >
-        <h2 className="text-4xl md:text-5xl lg:text-6xl text-white font-light tracking-tight text-center mb-16 md:mb-20">
-          Meet The Makers
+        <h2 className="text-4xl md:text-5xl lg:text-6xl text-white font-light tracking-tight text-center mb-10 md:mb-14">
+          The Makers
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12">

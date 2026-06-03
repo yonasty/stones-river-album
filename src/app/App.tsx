@@ -49,10 +49,10 @@ export default function App() {
           <Navbar />
         </div>
         <AboutSection />
+        <InterviewSection />
+        <BiosSection />
         <ImageCarouselSection />
         {siteConfig.SHOW_LISTEN_NOW && <ListenNowSection />}
-        <BiosSection />
-        <InterviewSection />
         <PreorderSection />
         <Footer />
       </div>
