@@ -8,7 +8,7 @@ interface SectionInfo {
 const sections: SectionInfo[] = [
   { id: 'home', label: 'Home' },
   { id: 'about-stones-river', label: 'About' },
-  { id: 'experience', label: 'Experience' },
+  { id: 'video', label: 'Video' },
   { id: 'meet-the-makers', label: 'The Makers' },
   { id: 'view-the-gallery', label: 'Gallery' },
   { id: 'preorder-stones-river', label: 'Preorder' },

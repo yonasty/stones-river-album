@@ -7,7 +7,7 @@ import { ListenNowSection } from './components/ListenNowSection';
 import { AboutSection } from './components/AboutSection';
 import { BiosSection } from './components/BiosSection';
 import { PreorderSection } from './components/PreorderSection';
-import { InterviewSection } from './components/InterviewSection';
+import { VideoSection } from './components/VideoSection';
 import { Footer } from './components/Footer';
 import { CartDrawer } from './components/CartDrawer';
 import { CartProvider } from './context/CartContext';
@@ -44,7 +44,7 @@ export default function App() {
         <StonesRiverHeader />
 
         <AboutSection />
-        <InterviewSection />
+        <VideoSection />
         <BiosSection />
         <ImageCarouselSection />
         {siteConfig.SHOW_LISTEN_NOW && <ListenNowSection />}
