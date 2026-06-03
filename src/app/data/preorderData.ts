@@ -110,7 +110,7 @@ export const preorderProducts: ProductConfig[] = [
       'Early access to interview footage with Jody Elff, Eric Jacobsen, & Jeremy Kittel',
     ],
     includedItems: [
-      { name: 'Museum-quality archival art print, hand-numbered and signed by Rush Baker IV', quantity: 1, image: '/assets/Individual Item Images/Archival Print.png', modalImages: ['/assets/Individual Item Images/Museum Print - Stones River Print.png', '/assets/Individual Item Images/Museum Print - Rush Baker Signing 1.jpg', '/assets/Individual Item Images/Museum Print - Rush Baker Signing 2.jpg'] },
+      { name: 'Museum-quality archival art print, hand-numbered and signed by Rush Baker IV', quantity: 1, image: '/assets/Individual Item Images/Museum Print - Stones River Print.png', modalImages: ['/assets/Individual Item Images/Museum Print - Stones River Print.png', '/assets/Individual Item Images/Museum Print - Rush Baker Signing 1.jpg', '/assets/Individual Item Images/Museum Print - Rush Baker Signing 2.jpg'] },
       { name: 'Signed CD of Stones River with deluxe artwork', quantity: 1, image: '/assets/Individual Item Images/Signed CD.png' },
       { name: 'Exclusive group listening session and Q&A with Jeremy discussing the piece\u2019s story, composition, and recording process', quantity: 1, image: '/assets/Individual Item Images/Jeremy_Kittel.jpg' },
       { name: 'Instant access to 2 unreleased tracks from the album', quantity: 1, image: '/assets/Individual Item Images/Access to 2 unreleased tracks.png' },
@@ -137,7 +137,7 @@ export const preorderProducts: ProductConfig[] = [
       'Early access to interview footage with Jody Elff, Eric Jacobsen, & Jeremy Kittel',
     ],
     includedItems: [
-      { name: 'Museum-quality archival art print, hand-numbered and signed by Rush Baker IV', quantity: 1, image: '/assets/Individual Item Images/Archival Print.png', modalImages: ['/assets/Individual Item Images/Museum Print - Stones River Print.png', '/assets/Individual Item Images/Museum Print - Rush Baker Signing 1.jpg', '/assets/Individual Item Images/Museum Print - Rush Baker Signing 2.jpg'] },
+      { name: 'Museum-quality archival art print, hand-numbered and signed by Rush Baker IV', quantity: 1, image: '/assets/Individual Item Images/Museum Print - Stones River Print.png', modalImages: ['/assets/Individual Item Images/Museum Print - Stones River Print.png', '/assets/Individual Item Images/Museum Print - Rush Baker Signing 1.jpg', '/assets/Individual Item Images/Museum Print - Rush Baker Signing 2.jpg'] },
       { name: 'Limited-edition signed blue vinyl of Stones River in deluxe packaging (only 200 pressed)', quantity: 1, image: '/assets/Individual Item Images/Blue Vinyl.png', modalImages: ['/assets/Individual Item Images/Blue Vinyl.png', '/assets/Individual Item Images/Blue Vinyl - Cover and Disc.jpg'] },
       { name: 'Signed CD of Stones River with deluxe artwork', quantity: 1, image: '/assets/Individual Item Images/Signed CD.png' },
       { name: 'Exclusive group listening session and Q&A with Jeremy discussing the piece\u2019s story, composition, and recording process', quantity: 1, image: '/assets/Individual Item Images/Jeremy_Kittel.jpg' },
@@ -167,7 +167,7 @@ export const preorderProducts: ProductConfig[] = [
     ],
     includedItems: [
       { name: 'Digital orchestral score of Stones River', quantity: 1, image: '/assets/Individual Item Images/Jeremy_Kittel.jpg' },
-      { name: 'Museum-quality archival art print, hand-numbered and signed by Rush Baker IV', quantity: 1, image: '/assets/Individual Item Images/Archival Print.png', modalImages: ['/assets/Individual Item Images/Museum Print - Stones River Print.png', '/assets/Individual Item Images/Museum Print - Rush Baker Signing 1.jpg', '/assets/Individual Item Images/Museum Print - Rush Baker Signing 2.jpg'] },
+      { name: 'Museum-quality archival art print, hand-numbered and signed by Rush Baker IV', quantity: 1, image: '/assets/Individual Item Images/Museum Print - Stones River Print.png', modalImages: ['/assets/Individual Item Images/Museum Print - Stones River Print.png', '/assets/Individual Item Images/Museum Print - Rush Baker Signing 1.jpg', '/assets/Individual Item Images/Museum Print - Rush Baker Signing 2.jpg'] },
       { name: 'Limited-edition signed blue vinyl of Stones River in deluxe packaging (only 200 pressed)', quantity: 1, image: '/assets/Individual Item Images/Blue Vinyl.png', modalImages: ['/assets/Individual Item Images/Blue Vinyl.png', '/assets/Individual Item Images/Blue Vinyl - Cover and Disc.jpg'] },
       { name: 'Signed CD of Stones River with deluxe artwork', quantity: 1, image: '/assets/Individual Item Images/Signed CD.png' },
       { name: 'Exclusive group listening session and Q&A with Jeremy discussing the piece\u2019s story, composition, and recording process', quantity: 1, image: '/assets/Individual Item Images/Jeremy_Kittel.jpg' },
@@ -201,7 +201,7 @@ export const preorderProducts: ProductConfig[] = [
       { name: 'Handwritten personal letter from Jeremy on the creative journey behind Stones River', quantity: 1, image: '/assets/Individual Item Images/Jeremy_Kittel.jpg' },
       { name: 'Exclusive signed test pressing of Stones River (only 10 made!)', quantity: 1, image: '/assets/Individual Item Images/Jeremy_Kittel.jpg' },
       { name: 'Digital orchestral score of Stones River', quantity: 1, image: '/assets/Individual Item Images/Jeremy_Kittel.jpg' },
-      { name: 'Museum-quality archival art print, hand-numbered and signed by Rush Baker IV', quantity: 1, image: '/assets/Individual Item Images/Archival Print.png', modalImages: ['/assets/Individual Item Images/Museum Print - Stones River Print.png', '/assets/Individual Item Images/Museum Print - Rush Baker Signing 1.jpg', '/assets/Individual Item Images/Museum Print - Rush Baker Signing 2.jpg'] },
+      { name: 'Museum-quality archival art print, hand-numbered and signed by Rush Baker IV', quantity: 1, image: '/assets/Individual Item Images/Museum Print - Stones River Print.png', modalImages: ['/assets/Individual Item Images/Museum Print - Stones River Print.png', '/assets/Individual Item Images/Museum Print - Rush Baker Signing 1.jpg', '/assets/Individual Item Images/Museum Print - Rush Baker Signing 2.jpg'] },
       { name: 'Limited-edition signed blue vinyl of Stones River in deluxe packaging (only 200 pressed)', quantity: 1, image: '/assets/Individual Item Images/Blue Vinyl.png', modalImages: ['/assets/Individual Item Images/Blue Vinyl.png', '/assets/Individual Item Images/Blue Vinyl - Cover and Disc.jpg'] },
       { name: 'Signed CD of Stones River with deluxe artwork', quantity: 1, image: '/assets/Individual Item Images/Signed CD.png' },
       { name: 'Exclusive group listening session and Q&A with Jeremy discussing the piece\u2019s story, composition, and recording process', quantity: 1, image: '/assets/Individual Item Images/Jeremy_Kittel.jpg' },
