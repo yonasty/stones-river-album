@@ -107,8 +107,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 56px;
   gap: clamp(0.15rem, 1.1vw, 1.1rem);
-  padding: clamp(0.12rem, 0.4vw, 0.3rem) clamp(1rem, 3vw, 2.5rem);
+  padding: clamp(0.35rem, 0.6vw, 0.55rem) clamp(1rem, 3vw, 2.5rem);
 
   background: var(--sr-glass-bg);
   -webkit-backdrop-filter: blur(var(--sr-glass-blur)) saturate(var(--sr-glass-saturate));
@@ -292,13 +293,20 @@
 @media (max-width: 720px) {
   .sr-nav {
     justify-content: flex-start;
-    padding: 0.7rem 1rem;
+    min-height: 56px;
+    padding: 0.6rem 1rem;
   }
   .sr-nav__toggle { display: block; }
 
-  /* Cart sits to the left of the hamburger on mobile */
+  /* Cart sits to the left of the hamburger on mobile — sized up to match it */
   .sr-nav__cart {
+    width: 42px;
+    height: 42px;
     right: calc(clamp(1rem, 4vw, 2rem) + 44px + 0.2rem);
+  }
+  .sr-nav__cart svg {
+    width: 20px;
+    height: 20px;
   }
 
   .sr-nav__links {
