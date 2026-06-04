@@ -14,6 +14,7 @@
   --site-bg: #23272F;
   --section-bg: #0D1A28;
   --artists-bg: #625652;
+  --honorary-bg: #988780;
   --preorder-card-bg: #1F1F1F;
   --footer-bg: #625652;
   --soft-shadow: rgba(26, 20, 16, 0.15);
@@ -100,6 +101,7 @@
   --color-site-bg: var(--site-bg);
   --color-section-bg: var(--section-bg);
   --color-artists-bg: var(--artists-bg);
+  --color-honorary-bg: var(--honorary-bg);
   --color-preorder-card-bg: var(--preorder-card-bg);
   --color-footer-bg: var(--footer-bg);
   --color-parchment: var(--parchment);
