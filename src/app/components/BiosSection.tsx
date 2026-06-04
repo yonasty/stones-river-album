@@ -57,8 +57,8 @@ function BioCard({
           {bioPreview}
         </p>
 
-        {/* Expand button + website icon */}
-        <div className="flex items-center justify-center gap-3">
+        {/* View more button */}
+        <div className="flex items-center justify-center">
           <button
             type="button"
             onClick={onClick}
@@ -68,18 +68,8 @@ function BioCard({
                        transition-all duration-200
                        focus:outline-none focus:ring-2 focus:ring-white/30"
           >
-            <span className="tracking-wide">Expand</span>
+            <span className="tracking-wide">View more</span>
           </button>
-          <a
-            href={bio.websiteUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2.5 rounded-md border border-white/10 text-white/50 hover:text-white hover:border-white/25 hover:bg-white/5 transition-all duration-200"
-            aria-label={`Visit ${bio.name}'s website`}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <Globe className="size-5" />
-          </a>
         </div>
       </div>
     </div>
