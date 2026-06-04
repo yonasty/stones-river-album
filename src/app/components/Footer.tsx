@@ -30,7 +30,7 @@ export function Footer() {
               src={opoLogo}
               alt="Orlando Philharmonic Orchestra logo"
               loading="lazy"
-              className="h-[72px] md:h-[88px] w-auto object-contain"
+              className="h-[96px] md:h-[120px] w-auto object-contain"
               onError={() => setLogoError(true)}
             />
           )}
