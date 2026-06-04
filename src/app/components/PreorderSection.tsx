@@ -264,12 +264,12 @@ export function PreorderSection() {
     <section
       ref={ref}
       id="preorder-stones-river"
-      className="relative w-full py-20 px-6 md:px-12 bg-section-bg"
+      className="relative w-full py-20 px-6 md:px-12 lg:px-20 bg-section-bg"
     >
 
       <motion.div
         style={{ y }}
-        className="relative z-10 max-w-7xl mx-auto"
+        className="relative z-10 max-w-[1400px] mx-auto"
       >
         {/* Header */}
         <div className="text-center mb-16">
