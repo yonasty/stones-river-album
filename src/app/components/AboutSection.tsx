@@ -19,16 +19,16 @@ export function AboutSection() {
       className="relative w-full overflow-hidden bg-section-bg"
     >
       {/* Desktop: side-by-side flex layout */}
-      <div className="hidden md:flex">
-        {/* Image takes left half */}
+      <div className="hidden md:flex items-stretch gap-8 lg:gap-12 px-6 md:px-12 lg:px-20 py-12 md:py-16">
+        {/* Image — smaller, with margin from the edge and a gap before the bio */}
         <img
           src={aboutImage}
           alt="Jeremy Kittel and Eric Jacobsen"
-          className="w-1/2 object-cover"
+          className="w-[40%] lg:w-[35%] shrink-0 object-cover rounded-lg"
         />
 
-        {/* Text on right half — scrolls independently if needed */}
-        <div className="w-1/2 flex flex-col justify-center px-[4%] lg:px-[5%] py-8">
+        {/* Text */}
+        <div className="flex-1 flex flex-col justify-center">
           <h2 className="text-[clamp(1.5rem,2.5vw,2.5rem)] text-parchment mb-6 text-left font-light">
             About Stones River
           </h2>
@@ -74,7 +74,7 @@ export function AboutSection() {
       </div>
 
       {/* Album cover + orchestra image — divides the About content from the Video section */}
-      <div className="px-6 md:px-12 lg:px-20 py-12 md:py-16 flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-10">
+      <div className="px-6 md:px-12 lg:px-20 py-12 md:py-16 flex flex-col md:flex-row items-center md:items-stretch gap-8 md:gap-10">
         {/* Album cover art + pre-order button */}
         <div className="flex flex-col gap-5 w-full max-w-xs md:w-[260px] lg:w-[300px] shrink-0">
           <img
@@ -95,12 +95,14 @@ export function AboutSection() {
           </button>
         </div>
 
-        {/* Orchestra image — same height as the album cover, fills remaining width */}
-        <img
-          src={orchestraImage}
-          alt="The Orlando Philharmonic Orchestra performing Stones River"
-          className="w-full md:flex-1 md:min-w-0 h-auto md:h-[260px] lg:h-[300px] object-cover block rounded-lg"
-        />
+        {/* Orchestra image — stretches to the full cover+button column height (bottom lines up with the button) */}
+        <div className="relative w-full md:flex-1 md:min-w-0 aspect-[16/9] md:aspect-auto rounded-lg overflow-hidden">
+          <img
+            src={orchestraImage}
+            alt="The Orlando Philharmonic Orchestra performing Stones River"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        </div>
       </div>
     </section>
   );
