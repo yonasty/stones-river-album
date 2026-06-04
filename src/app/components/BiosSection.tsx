@@ -129,7 +129,7 @@ export function BiosSection() {
         className="relative z-10 max-w-[1400px] mx-auto"
       >
         <h2 className="text-4xl md:text-5xl lg:text-6xl text-white font-light tracking-tight text-center mb-10 md:mb-14">
-          The Makers
+          Meet the Artists
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12">

@@ -9,7 +9,7 @@ const sections: SectionInfo[] = [
   { id: 'home', label: 'Home' },
   { id: 'about-stones-river', label: 'About' },
   { id: 'video', label: 'Video' },
-  { id: 'meet-the-makers', label: 'The Makers' },
+  { id: 'meet-the-makers', label: 'The Artists' },
   { id: 'view-the-gallery', label: 'Gallery' },
   { id: 'preorder-stones-river', label: 'Preorder' },
 ];
