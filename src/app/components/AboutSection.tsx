@@ -10,7 +10,7 @@ export function AboutSection() {
     <section
       ref={ref}
       id="about-stones-river"
-      className="relative w-full overflow-hidden"
+      className="relative w-full overflow-hidden bg-section-bg"
     >
       {/* Desktop: side-by-side flex layout */}
       <div className="hidden md:flex">

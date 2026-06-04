@@ -264,7 +264,7 @@ export function PreorderSection() {
     <section
       ref={ref}
       id="preorder-stones-river"
-      className="relative w-full py-20 px-6 md:px-12"
+      className="relative w-full py-20 px-6 md:px-12 bg-section-bg"
     >
 
       <motion.div
