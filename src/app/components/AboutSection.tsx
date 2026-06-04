@@ -74,9 +74,9 @@ export function AboutSection() {
       </div>
 
       {/* Album cover + orchestra image — divides the About content from the Video section */}
-      <div className="px-6 md:px-12 lg:px-20 py-12 md:py-16 flex flex-col md:flex-row items-center justify-center gap-10 md:gap-12">
+      <div className="px-6 md:px-12 lg:px-20 py-12 md:py-16 flex flex-col md:flex-row items-center gap-8 md:gap-10">
         {/* Album cover art + pre-order button */}
-        <div className="flex flex-col items-center gap-6 w-full max-w-xs md:w-[300px] lg:w-[340px] shrink-0">
+        <div className="flex flex-col items-center gap-6 w-full max-w-xs md:w-[260px] lg:w-[300px] shrink-0">
           <img
             src={albumCover}
             alt="Stones River album cover art"
@@ -85,20 +85,21 @@ export function AboutSection() {
           <button
             type="button"
             onClick={scrollToPreorder}
-            className="inline-flex items-center justify-center py-3 px-8 rounded-md
-                       bg-white text-zinc-900 font-medium tracking-wide
-                       hover:bg-white/90 transition-colors duration-200
-                       focus:outline-none focus:ring-2 focus:ring-white/40"
+            className="w-full inline-flex items-center justify-center py-3 px-6 rounded-md
+                       border border-parchment/50 text-parchment text-sm uppercase tracking-[0.18em]
+                       hover:bg-parchment hover:text-warm-black hover:border-parchment
+                       transition-colors duration-200
+                       focus:outline-none focus:ring-2 focus:ring-parchment/40"
           >
-            Pre-order now
+            Pre-Order the Album
           </button>
         </div>
 
-        {/* Orchestra image */}
+        {/* Orchestra image — fills the remaining width, no dead space */}
         <img
           src={orchestraImage}
           alt="The Orlando Philharmonic Orchestra performing Stones River"
-          className="w-full md:flex-1 md:max-w-3xl h-auto block rounded-lg object-cover"
+          className="w-full md:flex-1 md:min-w-0 h-auto block rounded-lg object-cover"
         />
       </div>
     </section>
