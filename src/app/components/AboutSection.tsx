@@ -74,7 +74,7 @@ export function AboutSection() {
       </div>
 
       {/* Album cover + orchestra image — divides the About content from the Video section */}
-      <div className="px-6 md:px-12 lg:px-20 py-12 md:py-16 flex flex-col md:flex-row items-center gap-8 md:gap-10">
+      <div className="px-6 md:px-12 lg:px-20 py-12 md:py-16 flex flex-col md:flex-row items-center md:items-stretch gap-8 md:gap-10">
         {/* Album cover art + pre-order button */}
         <div className="flex flex-col items-center gap-6 w-full max-w-xs md:w-[260px] lg:w-[300px] shrink-0">
           <img
@@ -95,12 +95,14 @@ export function AboutSection() {
           </button>
         </div>
 
-        {/* Orchestra image — fills the remaining width, no dead space */}
-        <img
-          src={orchestraImage}
-          alt="The Orlando Philharmonic Orchestra performing Stones River"
-          className="w-full md:flex-1 md:min-w-0 h-auto block rounded-lg object-cover"
-        />
+        {/* Orchestra image — matches the cover column height (flush top + bottom), fills remaining width */}
+        <div className="relative w-full md:flex-1 md:min-w-0 aspect-[16/9] md:aspect-auto rounded-lg overflow-hidden">
+          <img
+            src={orchestraImage}
+            alt="The Orlando Philharmonic Orchestra performing Stones River"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        </div>
       </div>
     </section>
   );
