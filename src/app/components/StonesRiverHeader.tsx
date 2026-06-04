@@ -76,20 +76,13 @@ export function StonesRiverHeader() {
 
       {/* Banner image — sits directly below the nav */}
       <div id="home" ref={bannerRef}>
-        <picture>
-          <source
-            type="image/webp"
-            srcSet="/assets/stones-river-banner-1920.webp 1920w, /assets/stones-river-banner.webp 3840w"
-            sizes="100vw"
-          />
-          <img
-            className="w-full h-auto block"
-            src="/assets/stones-river-banner.jpg"
-            width={3840}
-            height={1093}
-            alt="Stones River — a new album from Jeremy Kittel, Eric Jacobsen, and the Orlando Philharmonic Orchestra"
-          />
-        </picture>
+        <img
+          className="w-full h-auto block"
+          src="/assets/stones-river-banner-v2.jpg"
+          width={2880}
+          height={792}
+          alt="Stones River — a new album from Jeremy Kittel, Eric Jacobsen, and the Orlando Philharmonic Orchestra"
+        />
       </div>
     </>
   );
