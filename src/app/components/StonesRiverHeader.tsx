@@ -55,7 +55,6 @@ export function StonesRiverHeader() {
           <li><a className="sr-nav__link" href="#about-stones-river" onClick={(e) => handleNavClick(e, '#about-stones-river')}>About</a></li>
           <li><a className="sr-nav__link" href="#video" onClick={(e) => handleNavClick(e, '#video')}>Video</a></li>
           <li><a className="sr-nav__link" href="#meet-the-makers" onClick={(e) => handleNavClick(e, '#meet-the-makers')}>The Artists</a></li>
-          <li><a className="sr-nav__link" href="#view-the-gallery" onClick={(e) => handleNavClick(e, '#view-the-gallery')}>Gallery</a></li>
           <li><a className="sr-nav__link" href="#preorder-stones-river" onClick={(e) => handleNavClick(e, '#preorder-stones-river')}>Preorder</a></li>
         </ul>
 

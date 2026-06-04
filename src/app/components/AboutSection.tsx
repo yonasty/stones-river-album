@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { useIsMobile } from '../hooks/useIsMobile';
 import aboutImage from '../../../assets/JeremyEric.jpeg';
+import orchestraImage from '../../../assets/Final Carousel Images/1.jpg';
 
 export function AboutSection() {
   const ref = useRef(null);
@@ -76,6 +77,13 @@ export function AboutSection() {
           </div>
         </div>
       </div>
+
+      {/* Full-width orchestra image — divides the About content from the Video section */}
+      <img
+        src={orchestraImage}
+        alt="The Orlando Philharmonic Orchestra performing Stones River"
+        className="w-full h-auto block"
+      />
     </section>
   );
 }

@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { LandingPage } from './components/LandingPage';
 import { StonesRiverHeader } from './components/StonesRiverHeader';
 import { SectionDots } from './components/SectionDots';
-import { ImageCarouselSection } from './components/ImageCarouselSection';
 import { ListenNowSection } from './components/ListenNowSection';
 import { AboutSection } from './components/AboutSection';
 import { BiosSection } from './components/BiosSection';
@@ -41,7 +40,6 @@ export default function App() {
         <AboutSection />
         <VideoSection />
         <BiosSection />
-        <ImageCarouselSection />
         {siteConfig.SHOW_LISTEN_NOW && <ListenNowSection />}
         <PreorderSection />
         <Footer />

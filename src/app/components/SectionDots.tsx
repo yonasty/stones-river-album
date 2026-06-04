@@ -10,7 +10,6 @@ const sections: SectionInfo[] = [
   { id: 'about-stones-river', label: 'About' },
   { id: 'video', label: 'Video' },
   { id: 'meet-the-makers', label: 'The Artists' },
-  { id: 'view-the-gallery', label: 'Gallery' },
   { id: 'preorder-stones-river', label: 'Preorder' },
 ];
 
