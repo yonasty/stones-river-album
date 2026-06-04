@@ -38,7 +38,7 @@ export function Footer() {
 
         {/* Middle — Connect */}
         <div className="flex flex-col items-center gap-3 text-center">
-          <h3 className="text-parchment/90 text-sm font-medium tracking-[0.15em] uppercase">
+          <h3 className="text-parchment/90 text-base font-semibold tracking-[0.15em] uppercase">
             Connect
           </h3>
           <ul className="flex flex-col items-center gap-2">
@@ -48,7 +48,7 @@ export function Footer() {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-parchment/80 text-sm hover:text-parchment underline-offset-4 hover:underline transition-colors duration-200"
+                  className="text-parchment/80 text-base font-medium hover:text-parchment underline-offset-4 hover:underline transition-colors duration-200"
                 >
                   {link.name}
                 </a>
@@ -58,7 +58,7 @@ export function Footer() {
         </div>
 
         {/* Right — copyright */}
-        <p className="text-parchment/90 text-sm text-center md:text-right leading-relaxed">
+        <p className="text-parchment/90 text-base font-medium text-center md:text-right leading-relaxed">
           © 2026 Orlando Philharmonic Orchestra &amp; © 2025 Nethermead Records. All Rights Reserved.
         </p>
       </div>
