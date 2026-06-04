@@ -2,10 +2,15 @@ import { useRef } from 'react';
 import { useIsMobile } from '../hooks/useIsMobile';
 import aboutImage from '../../../assets/JeremyEric.jpeg';
 import orchestraImage from '../../../assets/Final Carousel Images/1.jpg';
+import albumCover from '../../../assets/album-cover.jpg';
 
 export function AboutSection() {
   const ref = useRef(null);
   const isMobile = useIsMobile();
+
+  const scrollToPreorder = () => {
+    document.getElementById('preorder-stones-river')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <section
@@ -68,12 +73,34 @@ export function AboutSection() {
         </div>
       </div>
 
-      {/* Full-width orchestra image — divides the About content from the Video section */}
-      <img
-        src={orchestraImage}
-        alt="The Orlando Philharmonic Orchestra performing Stones River"
-        className="w-full h-auto block"
-      />
+      {/* Album cover + orchestra image — divides the About content from the Video section */}
+      <div className="px-6 md:px-12 lg:px-20 py-12 md:py-16 flex flex-col md:flex-row items-center justify-center gap-10 md:gap-12">
+        {/* Album cover art + pre-order button */}
+        <div className="flex flex-col items-center gap-6 w-full max-w-xs md:w-[300px] lg:w-[340px] shrink-0">
+          <img
+            src={albumCover}
+            alt="Stones River album cover art"
+            className="w-full h-auto block rounded-lg shadow-[0_15px_50px_rgba(0,0,0,0.4)]"
+          />
+          <button
+            type="button"
+            onClick={scrollToPreorder}
+            className="inline-flex items-center justify-center py-3 px-8 rounded-md
+                       bg-white text-zinc-900 font-medium tracking-wide
+                       hover:bg-white/90 transition-colors duration-200
+                       focus:outline-none focus:ring-2 focus:ring-white/40"
+          >
+            Pre-order now
+          </button>
+        </div>
+
+        {/* Orchestra image */}
+        <img
+          src={orchestraImage}
+          alt="The Orlando Philharmonic Orchestra performing Stones River"
+          className="w-full md:flex-1 md:max-w-3xl h-auto block rounded-lg object-cover"
+        />
+      </div>
     </section>
   );
 }
