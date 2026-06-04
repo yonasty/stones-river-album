@@ -119,10 +119,8 @@ export function BiosSection() {
     <section
       ref={ref}
       id="meet-the-makers"
-      className="relative w-full pt-8 pb-16 md:pt-12 md:pb-24 lg:pt-16 lg:pb-32 px-6 md:px-12 lg:px-20"
+      className="relative w-full pt-8 pb-16 md:pt-12 md:pb-24 lg:pt-16 lg:pb-32 px-6 md:px-12 lg:px-20 bg-artists-bg"
     >
-      {/* Semi-transparent overlay for text readability */}
-      <div className="absolute inset-0 bg-black/30 pointer-events-none" />
 
       <motion.div
         style={{ y: contentY }}
