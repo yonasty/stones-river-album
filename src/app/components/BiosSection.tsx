@@ -99,7 +99,7 @@ export function BiosSection() {
       <ContentModal
         open={selectedBio !== null}
         onOpenChange={(open) => !open && setSelectedBio(null)}
-        className="max-w-3xl"
+        className="max-w-5xl"
       >
         {selectedBio && (
           <div className="flex flex-col md:flex-row gap-6 pt-2">
