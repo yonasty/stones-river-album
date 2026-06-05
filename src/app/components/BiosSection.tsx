@@ -5,15 +5,9 @@ import { ContentModal } from './ContentModal';
 
 const BIO_PREVIEW_LIMIT = 300;
 
-const visitButtonClasses =
-  'shrink-0 inline-flex items-center justify-center gap-2 py-3 px-7 rounded-md ' +
-  'border border-white/10 text-white/70 text-base ' +
-  'hover:border-white/25 hover:text-white/90 hover:bg-white/5 ' +
-  'transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white/30';
-
 /**
- * BioCard — image, name + role, a truncated bio whose cut-off "…" opens the full
- * bio in a modal, and a "Visit Site" button.
+ * BioCard — image, name + role, and a truncated bio preview that highlights on
+ * hover and opens the full bio in a modal when clicked.
  */
 function BioCard({ bio, onExpand }: { bio: BioData; onExpand: () => void }) {
   const [imgError, setImgError] = useState(false);
@@ -52,24 +46,21 @@ function BioCard({ bio, onExpand }: { bio: BioData; onExpand: () => void }) {
         )}
       </div>
 
-      {/* Truncated bio with a clickable "…" that opens the full bio */}
-      <p className="text-white/70 text-sm leading-relaxed mt-5 flex-1">
+      {/* Clickable bio preview — the whole block highlights on hover and opens the full bio */}
+      <button
+        type="button"
+        onClick={onExpand}
+        className="group/bio block w-full text-left flex-1 mt-5
+                   text-white/70 hover:text-white focus-visible:text-white
+                   text-sm leading-relaxed cursor-pointer transition-colors duration-200
+                   focus:outline-none"
+        aria-label={`Read the full bio for ${bio.name}`}
+      >
         {previewText}
         {isTruncated && (
-          <>
-            {' '}
-            <button
-              type="button"
-              onClick={onExpand}
-              className="text-white/40 hover:text-white focus:text-white font-medium tracking-widest
-                         transition-colors duration-200 cursor-pointer focus:outline-none align-baseline"
-              aria-label={`Read the full bio for ${bio.name}`}
-            >
-              …
-            </button>
-          </>
+          <span className="text-white/40 group-hover/bio:text-white tracking-widest"> …</span>
         )}
-      </p>
+      </button>
     </div>
   );
 }
@@ -130,7 +121,7 @@ export function BiosSection() {
               )}
             </div>
 
-            {/* Name, role, bio, website */}
+            {/* Name, role, bio */}
             <div className="flex-1 flex flex-col">
               <h3 className="text-2xl md:text-3xl font-light tracking-wide text-white">
                 {selectedBio.name}
@@ -142,17 +133,6 @@ export function BiosSection() {
                 {selectedBio.bioText.split('\n\n').map((paragraph, i) => (
                   <p key={i}>{paragraph}</p>
                 ))}
-              </div>
-              <div className="mt-5">
-                <a
-                  href={selectedBio.websiteUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={visitButtonClasses}
-                  aria-label={`Visit ${selectedBio.name}'s website`}
-                >
-                  <span className="tracking-wide">Visit Site</span>
-                </a>
               </div>
             </div>
           </div>

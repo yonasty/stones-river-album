@@ -1,10 +1,7 @@
 import albumCover from '../../../assets/album-cover.jpg';
 
-const bioParagraphs = [
-  'Stones River weaves together Early American melodies spanning the Revolutionary War through the Civil War eras, into a contemporary, almost dream-like whole, led throughout by a solo fiddle.',
-  'The music carries an ineffable sense of voices from the past reaching the present — and the questions those voices raise.',
-  'The album brings together conductor Eric Jacobsen, the Orlando Philharmonic, and composer and soloist Jeremy Kittel in a captivating program that spans centuries.',
-];
+const aboutBio =
+  'Stones River weaves together Early American melodies spanning the Revolutionary War through the Civil War eras, into a contemporary, almost dream-like whole, led throughout by a solo fiddle. The music carries an ineffable sense of voices from the past reaching the present — and the questions those voices raise. The album brings together conductor Eric Jacobsen, the Orlando Philharmonic, and composer and soloist Jeremy Kittel in a captivating program that spans centuries.';
 
 export function AboutSection() {
   const scrollToPreorder = () => {
@@ -45,10 +42,8 @@ export function AboutSection() {
           <p className="text-parchment/90 text-lg md:text-xl lg:text-2xl font-medium tracking-wide uppercase mb-8">
             Jeremy Kittel <span className="text-parchment/40">•</span> Eric Jacobsen <span className="text-parchment/40">•</span> Orlando Philharmonic Orchestra
           </p>
-          <div className="text-parchment/85 leading-[1.7] space-y-6">
-            {bioParagraphs.map((paragraph, i) => (
-              <p key={i} className="text-lg md:text-xl lg:text-2xl">{paragraph}</p>
-            ))}
+          <div className="text-parchment/85 leading-[1.7]">
+            <p className="text-lg md:text-xl lg:text-2xl">{aboutBio}</p>
           </div>
         </div>
       </div>
