@@ -13,34 +13,39 @@ export function QuoteSection() {
       />
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
-        <div className="flex flex-col md:flex-row md:items-start gap-10 md:gap-12">
-          {/* Left — opening quote + orchestra image */}
-          <div className="md:flex-[1.6] md:min-w-0">
-            <p className="text-white text-xl md:text-2xl lg:text-3xl italic font-light uppercase tracking-wide leading-snug mb-6 md:mb-8 drop-shadow-[0_2px_8px_rgba(30,45,70,0.5)]">
-              "When an orchestra moves intuitively as one, it's utter magic..."
-            </p>
+        {/* Opening quote */}
+        <p className="text-white text-2xl md:text-3xl lg:text-4xl italic font-normal uppercase tracking-wide leading-snug mb-8 md:mb-10 drop-shadow-[0_3px_12px_rgba(20,35,60,0.7)]">
+          "When an orchestra moves intuitively as one, it's utter magic..."
+        </p>
+
+        {/* Orchestra image (scaled to match the duo height) + duo image */}
+        <div className="flex flex-col md:flex-row md:items-stretch gap-6 md:gap-10">
+          {/* Orchestra — stretches to the duo's height, tops and bottoms aligned */}
+          <div className="relative w-full md:flex-[1.5] md:min-w-0 aspect-video md:aspect-auto rounded-lg overflow-hidden shadow-[0_15px_50px_rgba(0,0,0,0.35)]">
             <img
               src={orchestraImage}
               alt="The Orlando Philharmonic Orchestra performing Stones River"
-              className="w-full h-auto block rounded-lg shadow-[0_15px_50px_rgba(0,0,0,0.35)]"
+              className="absolute inset-0 w-full h-full object-cover"
             />
           </div>
 
-          {/* Right — duo image + closing quote */}
-          <div className="md:flex-1 md:min-w-0 md:pt-16 lg:pt-24">
+          {/* Duo — natural portrait, defines the height */}
+          <div className="w-full md:flex-1 md:min-w-0 shrink-0">
             <img
               src={duoImage}
               alt="Jeremy Kittel and Eric Jacobsen"
               className="w-full h-auto block rounded-lg shadow-[0_15px_50px_rgba(0,0,0,0.35)]"
             />
-            <p className="text-white text-xl md:text-2xl lg:text-3xl italic font-light uppercase tracking-wide leading-snug mt-6 drop-shadow-[0_2px_8px_rgba(30,45,70,0.5)]">
-              "...and Stones River captures that magic"
-            </p>
-            <p className="text-white/85 text-sm md:text-base italic tracking-wide mt-3 md:text-right">
-              — Jeremy Kittel
-            </p>
           </div>
         </div>
+
+        {/* Closing quote */}
+        <p className="text-white text-2xl md:text-3xl lg:text-4xl italic font-normal uppercase tracking-wide leading-snug mt-8 md:mt-10 md:text-right drop-shadow-[0_3px_12px_rgba(20,35,60,0.7)]">
+          "...and Stones River captures that magic"
+        </p>
+        <p className="text-white/90 text-base md:text-lg italic tracking-wide mt-3 md:text-right">
+          — Jeremy Kittel
+        </p>
       </div>
     </section>
   );

@@ -17,9 +17,9 @@ export function AboutSection() {
       id="about-stones-river"
       className="relative w-full bg-section-bg px-6 md:px-12 lg:px-20 py-14 md:py-20"
     >
-      <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center md:items-start gap-10 lg:gap-16">
+      <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center gap-10 lg:gap-16">
         {/* Left — album cover art + pre-order button */}
-        <div className="flex flex-col gap-5 w-full max-w-xs md:w-[300px] lg:w-[340px] shrink-0">
+        <div className="flex flex-col gap-6 w-full max-w-sm md:w-[360px] lg:w-[420px] shrink-0">
           <img
             src={albumCover}
             alt="Stones River album cover art"
