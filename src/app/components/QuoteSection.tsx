@@ -19,9 +19,9 @@ export function QuoteSection() {
         </p>
 
         {/* Orchestra image (scaled to match the duo height) + duo image */}
-        <div className="flex flex-col md:flex-row md:items-stretch gap-6 md:gap-10">
+        <div className="flex flex-col md:flex-row md:items-stretch gap-6 md:gap-16">
           {/* Orchestra — stretches to the duo's height, tops and bottoms aligned */}
-          <div className="relative w-full md:flex-[1.5] md:min-w-0 aspect-video md:aspect-auto rounded-lg overflow-hidden shadow-[0_15px_50px_rgba(0,0,0,0.35)]">
+          <div className="relative w-full md:flex-[1.9] md:min-w-0 aspect-video md:aspect-auto rounded-lg overflow-hidden shadow-[0_15px_50px_rgba(0,0,0,0.35)]">
             <img
               src={orchestraImage}
               alt="The Orlando Philharmonic Orchestra performing Stones River"
