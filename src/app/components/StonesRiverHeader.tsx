@@ -39,6 +39,15 @@ export function StonesRiverHeader() {
     <>
       {/* Sticky navigation — pinned to the very top, above the banner */}
       <nav className={`sr-nav ${isStuck ? 'sr-nav--stuck' : ''}`} aria-label="Primary" data-open={String(menuOpen)}>
+        <a
+          className="sr-nav__logo"
+          href="#home"
+          onClick={(e) => handleNavClick(e, '#home')}
+          aria-label="Stones River — home"
+        >
+          <img src="/assets/stones-river-logo.png" alt="Stones River" />
+        </a>
+
         <button
           className="sr-nav__toggle"
           type="button"
@@ -53,8 +62,8 @@ export function StonesRiverHeader() {
         <ul className="sr-nav__links" id="sr-menu">
           <li><a className="sr-nav__link" href="#home" onClick={(e) => handleNavClick(e, '#home')}>Home</a></li>
           <li><a className="sr-nav__link" href="#about-stones-river" onClick={(e) => handleNavClick(e, '#about-stones-river')}>About</a></li>
-          <li><a className="sr-nav__link" href="#video" onClick={(e) => handleNavClick(e, '#video')}>Video</a></li>
           <li><a className="sr-nav__link" href="#meet-the-makers" onClick={(e) => handleNavClick(e, '#meet-the-makers')}>The Artists</a></li>
+          <li><a className="sr-nav__link" href="#video" onClick={(e) => handleNavClick(e, '#video')}>Video</a></li>
           <li><a className="sr-nav__link" href="#preorder-stones-river" onClick={(e) => handleNavClick(e, '#preorder-stones-river')}>Preorder</a></li>
         </ul>
 

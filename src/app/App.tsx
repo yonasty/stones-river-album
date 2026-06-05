@@ -4,6 +4,7 @@ import { StonesRiverHeader } from './components/StonesRiverHeader';
 import { SectionDots } from './components/SectionDots';
 import { ListenNowSection } from './components/ListenNowSection';
 import { AboutSection } from './components/AboutSection';
+import { QuoteSection } from './components/QuoteSection';
 import { BiosSection } from './components/BiosSection';
 import { PreorderSection } from './components/PreorderSection';
 import { HonoraryProducers } from './components/HonoraryProducers';
@@ -39,8 +40,9 @@ export default function App() {
         <StonesRiverHeader />
 
         <AboutSection />
-        <VideoSection />
+        <QuoteSection />
         <BiosSection />
+        <VideoSection />
         {siteConfig.SHOW_LISTEN_NOW && <ListenNowSection />}
         <PreorderSection />
         <HonoraryProducers />

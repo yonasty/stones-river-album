@@ -1,82 +1,25 @@
-import { useRef } from 'react';
-import { useIsMobile } from '../hooks/useIsMobile';
-import aboutImage from '../../../assets/JeremyEric.jpeg';
-import orchestraImage from '../../../assets/Final Carousel Images/1.jpg';
 import albumCover from '../../../assets/album-cover.jpg';
 
-export function AboutSection() {
-  const ref = useRef(null);
-  const isMobile = useIsMobile();
+const bioParagraphs = [
+  'Stones River is a collaborative album between composer and fiddler Jeremy Kittel, Grammy-nominated conductor Eric Jacobsen (The Knights, Brooklyn Rider), and the Orlando Philharmonic Orchestra.',
+  'The project began when Eric and the OPO invited Jeremy to compose a new work drawing from early American music — spanning the Revolutionary War through the Civil War. The result was Stones River, a piece that weaves together melodies from across that era into a contemporary, almost dream-like whole, led throughout by a solo fiddle.',
+  'The album\'s title refers to the Battle of Stones River in 1862. On the night before the conflict, military bands from opposing sides were camped close enough to engage in a kind of musical duel — and remarkably, the two groups eventually united across battle lines to play the beloved song "Home Sweet Home" together.',
+  'Because Stones River draws so deeply on melodies from early America, the music carries an ineffable sense of voices from the past reaching toward the present — and the questions those voices tend to raise.',
+];
 
+export function AboutSection() {
   const scrollToPreorder = () => {
     document.getElementById('preorder-stones-river')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
     <section
-      ref={ref}
       id="about-stones-river"
-      className="relative w-full overflow-hidden bg-section-bg"
+      className="relative w-full bg-section-bg px-6 md:px-12 lg:px-20 py-14 md:py-20"
     >
-      {/* Desktop: side-by-side flex layout */}
-      <div className="hidden md:flex items-stretch gap-8 lg:gap-12 px-6 md:px-12 lg:px-20 py-12 md:py-16">
-        {/* Image — smaller, with margin from the edge and a gap before the bio */}
-        <img
-          src={aboutImage}
-          alt="Jeremy Kittel and Eric Jacobsen"
-          className="w-[40%] lg:w-[35%] shrink-0 object-cover rounded-lg"
-        />
-
-        {/* Text */}
-        <div className="flex-1 flex flex-col justify-center">
-          <h2 className="text-[clamp(1.5rem,2.5vw,2.5rem)] text-parchment mb-6 text-left font-light">
-            About Stones River
-          </h2>
-
-          <div className="text-parchment/85 leading-[1.6] text-[clamp(0.75rem,0.85vw,0.95rem)] space-y-4">
-            <p>
-              Stones River is a collaborative album between composer and fiddler Jeremy Kittel, Grammy-nominated conductor Eric Jacobsen (The Knights, Brooklyn Rider), and the Orlando Philharmonic Orchestra.
-            </p>
-
-            <p>
-              The project began when Eric and the OPO invited Jeremy to compose a new work drawing from early American music — spanning the Revolutionary War through the Civil War. The result was Stones River, a piece that weaves together melodies from across that era into a contemporary, almost dream-like whole, led throughout by a solo fiddle.
-            </p>
-
-            <p>
-              The album's title refers to the Battle of Stones River in 1862. On the night before the conflict, military bands from opposing sides were camped close enough to engage in a kind of musical duel — and remarkably, the two groups eventually united across battle lines to play the beloved song "Home Sweet Home" together.
-            </p>
-
-            <p>
-              Because Stones River draws so deeply on melodies from early America, the music carries an ineffable sense of voices from the past reaching toward the present — and the questions those voices tend to raise.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile: stacked layout */}
-      <div className="md:hidden">
-        <img
-          src={aboutImage}
-          alt="Jeremy Kittel and Eric Jacobsen"
-          className="w-full h-auto block"
-        />
-        <div className="px-6 py-6">
-          <h2 className="text-2xl text-parchment mb-4 text-center font-light">
-            About Stones River
-          </h2>
-          <div className="text-parchment/90 leading-[1.6] text-sm space-y-3">
-            <p>Stones River is a collaborative album between composer and fiddler Jeremy Kittel, Grammy-nominated conductor Eric Jacobsen (The Knights, Brooklyn Rider), and the Orlando Philharmonic Orchestra.</p>
-            <p>The project began when Eric and the OPO invited Jeremy to compose a new work drawing from early American music — spanning the Revolutionary War through the Civil War. The result was Stones River, a piece that weaves together melodies from across that era into a contemporary, almost dream-like whole, led throughout by a solo fiddle.</p>
-            <p>The album's title refers to the Battle of Stones River in 1862. On the night before the conflict, military bands from opposing sides were camped close enough to engage in a kind of musical duel — and remarkably, the two groups eventually united across battle lines to play the beloved song "Home Sweet Home" together.</p>
-            <p>Because Stones River draws so deeply on melodies from early America, the music carries an ineffable sense of voices from the past reaching toward the present — and the questions those voices tend to raise.</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Album cover + orchestra image — divides the About content from the Video section */}
-      <div className="px-6 md:px-12 lg:px-20 py-12 md:py-16 flex flex-col md:flex-row items-center md:items-stretch gap-8 md:gap-10">
-        {/* Album cover art + pre-order button */}
-        <div className="flex flex-col gap-5 w-full max-w-xs md:w-[260px] lg:w-[300px] shrink-0">
+      <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center md:items-start gap-10 lg:gap-16">
+        {/* Left — album cover art + pre-order button */}
+        <div className="flex flex-col gap-5 w-full max-w-xs md:w-[300px] lg:w-[340px] shrink-0">
           <img
             src={albumCover}
             alt="Stones River album cover art"
@@ -95,13 +38,19 @@ export function AboutSection() {
           </button>
         </div>
 
-        {/* Orchestra image — stretches to the full cover+button column height (bottom lines up with the button) */}
-        <div className="relative w-full md:flex-1 md:min-w-0 aspect-[16/9] md:aspect-auto rounded-lg overflow-hidden">
-          <img
-            src={orchestraImage}
-            alt="The Orlando Philharmonic Orchestra performing Stones River"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
+        {/* Right — heading, collaborators, bio */}
+        <div className="flex-1 w-full">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl text-parchment font-light mb-4">
+            About Stones River
+          </h2>
+          <p className="text-parchment/90 text-sm md:text-base font-medium tracking-wide uppercase mb-6">
+            Jeremy Kittel <span className="text-parchment/40">•</span> Eric Jacobsen <span className="text-parchment/40">•</span> Orlando Philharmonic Orchestra
+          </p>
+          <div className="text-parchment/85 leading-[1.7] text-sm md:text-base space-y-4">
+            {bioParagraphs.map((paragraph, i) => (
+              <p key={i}>{paragraph}</p>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -134,6 +134,22 @@
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
 }
 
+/* ---- Brand logo (left side, always visible) ---- */
+.sr-nav__logo {
+  position: absolute;
+  top: 50%;
+  left: clamp(1rem, 4vw, 2rem);
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+}
+.sr-nav__logo img {
+  height: clamp(26px, 2.4vw, 34px);
+  width: auto;
+  filter: drop-shadow(var(--sr-text-shadow));
+}
+
 /* The bright hairline along the top = the "raised lip" of the glass */
 .sr-nav::before {
   content: "";
