@@ -59,6 +59,9 @@
   --sr-glass-border: rgba(255, 255, 255, 0.18);
   --sr-glass-lift-shadow: 0 8px 22px rgba(30, 45, 70, 0.22);
 
+  /* Solid background shown only when the nav is at the very top (scroll = 0) */
+  --sr-nav-top-bg: #5FACFF;
+
   /* Hover pill behind a link */
   --sr-link-hover-bg: rgba(255, 255, 255, 0.16);
 
@@ -118,6 +121,11 @@
   box-shadow: var(--sr-glass-lift-shadow);
 
   transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---- At-top state: solid azure bg before any scroll ---- */
+.sr-nav--top {
+  background: var(--sr-nav-top-bg);
 }
 
 /* ---- Stuck state: solid dark bg, slides down from above ---- */
