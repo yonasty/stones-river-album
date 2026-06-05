@@ -16,7 +16,7 @@ export function QuoteSection() {
         <div className="flex flex-col md:flex-row md:items-start gap-8 md:gap-12">
           {/* Left — opening quote, then the orchestra image (sits lower) */}
           <div className="md:flex-[1.7] md:min-w-0">
-            <p className="text-white text-2xl md:text-3xl lg:text-4xl italic font-normal uppercase tracking-wide leading-snug mb-8 md:mb-10 drop-shadow-[0_3px_12px_rgba(20,35,60,0.7)]">
+            <p className="font-heading text-white text-2xl md:text-3xl lg:text-4xl font-normal uppercase tracking-wide leading-snug mb-8 md:mb-10 drop-shadow-[0_3px_12px_rgba(20,35,60,0.7)]">
               "When an orchestra moves intuitively as one, it's utter magic..."
             </p>
             <img
@@ -33,10 +33,10 @@ export function QuoteSection() {
               alt="Jeremy Kittel and Eric Jacobsen"
               className="w-full h-auto block rounded-lg shadow-[0_15px_50px_rgba(0,0,0,0.35)]"
             />
-            <p className="text-white text-2xl md:text-3xl lg:text-4xl italic font-normal uppercase tracking-wide leading-snug mt-8 md:mt-10 md:text-right drop-shadow-[0_3px_12px_rgba(20,35,60,0.7)]">
+            <p className="font-heading text-white text-2xl md:text-3xl lg:text-4xl font-normal uppercase tracking-wide leading-snug mt-8 md:mt-10 md:text-right drop-shadow-[0_3px_12px_rgba(20,35,60,0.7)]">
               "...and Stones River captures that magic"
             </p>
-            <p className="text-white/90 text-base md:text-lg italic tracking-wide mt-3 md:text-right">
+            <p className="font-heading text-white/90 text-base md:text-lg tracking-wide mt-3 md:text-right">
               — Jeremy Kittel
             </p>
           </div>

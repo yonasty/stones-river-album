@@ -84,7 +84,7 @@ export function BiosSection() {
       className="relative w-full pt-8 pb-16 md:pt-12 md:pb-24 lg:pt-16 lg:pb-32 px-6 md:px-12 lg:px-20 bg-artists-bg"
     >
       <div className="relative z-10 max-w-[1400px] mx-auto">
-        <h2 className="text-4xl md:text-5xl lg:text-6xl text-white font-light tracking-tight mb-10 md:mb-14">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl text-white font-light tracking-tight uppercase mb-10 md:mb-14">
           Meet the Artists
         </h2>
 

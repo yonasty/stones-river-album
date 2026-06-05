@@ -76,6 +76,11 @@ body {
   background: rgba(184, 134, 11, 0.5);
 }
 
+/* Apply the heading (Xanh Mono) typeface to non-heading elements */
+.font-heading {
+  font-family: var(--font-heading);
+}
+
 /* Sparkle/shimmer on clickable bio previews (Meet the Artists) */
 .bio-shimmer:hover,
 .bio-shimmer:focus-visible {
