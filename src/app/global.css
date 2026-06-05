@@ -75,3 +75,40 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(184, 134, 11, 0.5);
 }
+
+/* Sparkle/shimmer on clickable bio previews (Meet the Artists) */
+.bio-shimmer:hover,
+.bio-shimmer:focus-visible {
+  background-image: linear-gradient(
+    110deg,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(255, 255, 255, 0.6) 38%,
+    #ffffff 47%,
+    #ffffff 53%,
+    rgba(255, 255, 255, 0.6) 62%,
+    rgba(255, 255, 255, 0.6) 100%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.25);
+  animation: bio-shimmer 1.6s linear infinite;
+}
+
+@keyframes bio-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -100% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bio-shimmer:hover,
+  .bio-shimmer:focus-visible {
+    animation: none;
+    background-image: none;
+    color: #fff;
+    -webkit-text-fill-color: #fff;
+    text-shadow: none;
+  }
+}

@@ -50,15 +50,14 @@ function BioCard({ bio, onExpand }: { bio: BioData; onExpand: () => void }) {
       <button
         type="button"
         onClick={onExpand}
-        className="group/bio block w-full text-left flex-1 mt-5
-                   text-white/70 hover:text-white focus-visible:text-white
-                   text-sm leading-relaxed cursor-pointer transition-colors duration-200
+        className="bio-shimmer block w-full text-left flex-1 mt-5
+                   text-white/70 text-sm leading-relaxed cursor-pointer
                    focus:outline-none"
         aria-label={`Read the full bio for ${bio.name}`}
       >
         {previewText}
         {isTruncated && (
-          <span className="text-white/40 group-hover/bio:text-white tracking-widest"> …</span>
+          <span className="text-white/40 tracking-widest"> …</span>
         )}
       </button>
     </div>
