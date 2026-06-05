@@ -1,0 +1,9 @@
+# Keep the Docker build context lean — these are never needed in the image
+.git
+node_modules
+dist
+*.log
+.DS_Store
+Thumbs.db
+.vscode
+npm-debug.log*
