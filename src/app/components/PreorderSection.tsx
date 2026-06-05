@@ -488,7 +488,7 @@ function ProductCard({ product, shopifyAvailable, shopifyImage, onClick }: Produ
       </div>
 
       {/* Individual item detail modal */}
-      <ContentModal open={selectedItem !== null} onOpenChange={(open) => { if (!open) setSelectedItem(null); }} className="max-w-lg">
+      <ContentModal open={selectedItem !== null} onOpenChange={(open) => { if (!open) setSelectedItem(null); }} className="max-w-2xl">
         {selectedItem && (() => {
           const itemGallery = selectedItem.modalImages && selectedItem.modalImages.length > 0
             ? selectedItem.modalImages
@@ -499,7 +499,7 @@ function ProductCard({ product, shopifyAvailable, shopifyImage, onClick }: Produ
               <img
                 src={currentItemImage}
                 alt={selectedItem.name}
-                className="w-full max-h-[400px] object-contain rounded-lg"
+                className="w-full max-h-[520px] object-contain rounded-lg"
               />
               {itemGallery.length > 1 && (
                 <div className="grid grid-cols-5 gap-1.5 w-full">
