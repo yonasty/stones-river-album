@@ -274,7 +274,7 @@ export function PreorderSection() {
         {/* Header */}
         <div className="text-center mb-16">
           <motion.h2
-            className="text-4xl md:text-5xl lg:text-6xl text-parchment mb-4"
+            className="text-4xl md:text-5xl lg:text-6xl text-parchment font-light uppercase mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
