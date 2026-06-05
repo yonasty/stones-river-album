@@ -1,6 +1,5 @@
 import { motion } from 'motion/react';
 import { useRef } from 'react';
-import { Youtube } from 'lucide-react';
 import teaserThumb from '../../../assets/Teaser Thumbnail.png';
 
 export function VideoSection() {
@@ -28,32 +27,19 @@ export function VideoSection() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <VideoPlaceholder />
+          <video
+            controls
+            playsInline
+            preload="metadata"
+            poster={teaserThumb}
+            className="w-full aspect-video bg-black rounded-lg border-2 border-white/20
+                       shadow-[0_15px_50px_rgba(0,0,0,0.4)]"
+          >
+            <source src="/assets/stones-river-sizzle.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </motion.div>
       </div>
     </section>
-  );
-}
-
-function VideoPlaceholder() {
-  return (
-    <div className="relative aspect-video w-full bg-black/30 border-2 border-white/20
-                    shadow-[0_15px_50px_rgba(0,0,0,0.4)] overflow-hidden group cursor-pointer rounded-lg
-                    hover:border-white/40 hover:shadow-[0_15px_50px_rgba(0,0,0,0.6)]
-                    transition-all duration-300 backdrop-blur-sm">
-      {/* Thumbnail image */}
-      <img
-        src={teaserThumb}
-        alt="Stones River Teaser"
-        className="absolute inset-0 w-full h-full object-cover"
-      />
-
-      {/* Play button overlay */}
-      <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/10 transition-colors duration-300">
-        <div className="transition-transform duration-300 group-hover:scale-110">
-          <Youtube className="w-14 h-14 text-white/90 drop-shadow-lg" strokeWidth={1.5} />
-        </div>
-      </div>
-    </div>
   );
 }
