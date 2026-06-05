@@ -39,13 +39,13 @@ export function AboutSection() {
 
         {/* Right — heading, collaborators, bio */}
         <div className="flex-1 w-full">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl text-parchment font-light mb-4">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl text-parchment font-light mb-5">
             About Stones River
           </h2>
-          <p className="text-parchment/90 text-sm md:text-base font-medium tracking-wide uppercase mb-6">
+          <p className="text-parchment/90 text-base md:text-lg lg:text-xl font-medium tracking-wide uppercase mb-7">
             Jeremy Kittel <span className="text-parchment/40">•</span> Eric Jacobsen <span className="text-parchment/40">•</span> Orlando Philharmonic Orchestra
           </p>
-          <div className="text-parchment/85 leading-[1.7] text-sm md:text-base space-y-4">
+          <div className="text-parchment/85 leading-[1.7] text-base md:text-lg lg:text-xl space-y-5">
             {bioParagraphs.map((paragraph, i) => (
               <p key={i}>{paragraph}</p>
             ))}
