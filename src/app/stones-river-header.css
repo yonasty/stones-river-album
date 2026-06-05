@@ -59,8 +59,8 @@
   --sr-glass-border: rgba(255, 255, 255, 0.18);
   --sr-glass-lift-shadow: 0 8px 22px rgba(30, 45, 70, 0.22);
 
-  /* Solid background shown only when the nav is at the very top (scroll = 0) */
-  --sr-nav-top-bg: #5FACFF;
+  /* Semi-transparent azure tint shown only when the nav is at the very top (scroll = 0) */
+  --sr-nav-top-bg: rgba(95, 172, 255, 0.4);
 
   /* Hover pill behind a link */
   --sr-link-hover-bg: rgba(255, 255, 255, 0.16);
