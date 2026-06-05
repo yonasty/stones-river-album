@@ -18,7 +18,7 @@ export function AboutSection() {
     >
       <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center gap-10 lg:gap-16">
         {/* Left — album cover art + pre-order button */}
-        <div className="flex flex-col gap-6 w-full max-w-sm md:w-[360px] lg:w-[420px] shrink-0">
+        <div className="flex flex-col gap-6 w-full max-w-sm md:w-[400px] lg:w-[480px] shrink-0">
           <img
             src={albumCover}
             alt="Stones River album cover art"
@@ -47,7 +47,7 @@ export function AboutSection() {
           </p>
           <div className="text-parchment/85 leading-[1.7] space-y-6">
             {bioParagraphs.map((paragraph, i) => (
-              <p key={i} className="text-xl md:text-2xl lg:text-3xl">{paragraph}</p>
+              <p key={i} className="text-lg md:text-xl lg:text-2xl">{paragraph}</p>
             ))}
           </div>
         </div>
