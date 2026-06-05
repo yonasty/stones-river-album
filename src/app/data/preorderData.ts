@@ -117,7 +117,7 @@ export const preorderProducts: ProductConfig[] = [
       { name: 'Early access to exclusive live performance video', quantity: 1, image: '/assets/Individual Item Images/Exclusive live performance.jpeg' },
       { name: 'Early access to interview footage with Jeremy Kittel, Eric Jacobsen, & Jody Elff', quantity: 1, image: '/assets/Individual Item Images/Interview Footage Early Access (cropped).png', modalImage: '/assets/Individual Item Images/Interview Footage Early Access (Eric).png' },
     ],
-    tierDescription: 'Ideal for fans valuing visual art and music equally. In addition to the signed CD and digital assets, this tier includes a museum-quality archival art print signed by Rush Baker IV and exclusive access to the composer.',
+    tierDescription: 'Ideal for fans valuing visual art and music equally. In addition to the signed CD and digital assets, this tier includes a museum-quality archival art print signed by Rush Baker IV and access to a special listening Q&A session with the composer.',
     fallbackTitle: 'Tier 4 — Gallery Patron',
     fallbackPrice: '$200.00',
     fallbackImage: '/assets/Vinyl_Front_And_Back.jpg',
