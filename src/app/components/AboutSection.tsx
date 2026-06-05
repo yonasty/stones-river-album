@@ -1,10 +1,9 @@
 import albumCover from '../../../assets/album-cover.jpg';
 
 const bioParagraphs = [
-  'Stones River is a collaborative album between composer and fiddler Jeremy Kittel, Grammy-nominated conductor Eric Jacobsen (The Knights, Brooklyn Rider), and the Orlando Philharmonic Orchestra.',
-  'The project began when Eric and the OPO invited Jeremy to compose a new work drawing from early American music — spanning the Revolutionary War through the Civil War. The result was Stones River, a piece that weaves together melodies from across that era into a contemporary, almost dream-like whole, led throughout by a solo fiddle.',
-  'The album\'s title refers to the Battle of Stones River in 1862. On the night before the conflict, military bands from opposing sides were camped close enough to engage in a kind of musical duel — and remarkably, the two groups eventually united across battle lines to play the beloved song "Home Sweet Home" together.',
-  'Because Stones River draws so deeply on melodies from early America, the music carries an ineffable sense of voices from the past reaching toward the present — and the questions those voices tend to raise.',
+  'Stones River weaves together Early American melodies spanning the Revolutionary War through the Civil War eras, into a contemporary, almost dream-like whole, led throughout by a solo fiddle.',
+  'The music carries an ineffable sense of voices from the past reaching the present — and the questions those voices raise.',
+  'The album brings together conductor Eric Jacobsen, the Orlando Philharmonic, and composer and soloist Jeremy Kittel in a captivating program that spans centuries.',
 ];
 
 export function AboutSection() {
