@@ -42,25 +42,14 @@ function BioCard({ bio, onExpand }: { bio: BioData; onExpand: () => void }) {
         />
       )}
 
-      {/* Name + role (left) and Visit Site button (right) */}
-      <div className="flex items-center justify-between gap-4 mt-5">
-        <div>
-          <h3 className="text-xl md:text-2xl font-light tracking-wide text-white">
-            {bio.name}
-          </h3>
-          {bio.role && (
-            <p className="text-white/60 text-sm md:text-base mt-1">{bio.role}</p>
-          )}
-        </div>
-        <a
-          href={bio.websiteUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={visitButtonClasses}
-          aria-label={`Visit ${bio.name}'s website`}
-        >
-          <span className="tracking-wide">Visit Site</span>
-        </a>
+      {/* Name + role */}
+      <div className="mt-5">
+        <h3 className="text-xl md:text-2xl font-light tracking-wide text-white">
+          {bio.name}
+        </h3>
+        {bio.role && (
+          <p className="text-white/60 text-sm md:text-base mt-1">{bio.role}</p>
+        )}
       </div>
 
       {/* Truncated bio with a clickable "…" that opens the full bio */}
