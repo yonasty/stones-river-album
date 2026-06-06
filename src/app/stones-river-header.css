@@ -62,8 +62,8 @@
   /* Nav bar height — also pulls the banner up so the transparent nav overlays it */
   --sr-nav-h: 64px;
 
-  /* Lower-opacity light blue shown once scrolled past the banner */
-  --sr-nav-stuck-bg: rgba(95, 172, 255, 0.4);
+  /* Light teal shown once scrolled past the banner — opaque enough to pop */
+  --sr-nav-stuck-bg: rgba(106, 184, 204, 0.92);
 
   /* Hover pill behind a link */
   --sr-link-hover-bg: rgba(255, 255, 255, 0.16);
