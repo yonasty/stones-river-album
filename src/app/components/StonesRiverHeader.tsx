@@ -26,13 +26,15 @@ export function StonesRiverHeader() {
     const banner = bannerRef.current;
     if (!banner) return;
 
-    const handleScroll = () => {
-      const bannerBottom = banner.getBoundingClientRect().bottom;
-      setIsStuck(bannerBottom <= 0);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    // IntersectionObserver works regardless of which element actually scrolls
+    // (the page scrolls inside <body>, so a window scroll listener wouldn't fire).
+    // The nav becomes "stuck" once the banner is fully scrolled out the top.
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsStuck(!entry.isIntersecting),
+      { threshold: 0 },
+    );
+    observer.observe(banner);
+    return () => observer.disconnect();
   }, []);
 
   return (
