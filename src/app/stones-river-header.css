@@ -59,8 +59,8 @@
   --sr-glass-border: rgba(255, 255, 255, 0.18);
   --sr-glass-lift-shadow: 0 8px 22px rgba(30, 45, 70, 0.22);
 
-  /* Azure-teal sampled from the banner sky, shown only at the very top (scroll = 0) */
-  --sr-nav-top-bg: rgba(84, 170, 192, 0.8);
+  /* Nav bar height — also pulls the banner up so the transparent nav overlays it */
+  --sr-nav-h: 64px;
 
   /* Hover pill behind a link */
   --sr-link-hover-bg: rgba(255, 255, 255, 0.16);
@@ -102,7 +102,7 @@
   -webkit-user-drag: none;
 }
 
-/* ---- The frosted-glass navigation bar ---- */
+/* ---- Navigation bar: transparent, overlaying the top of the banner ---- */
 .sr-nav {
   position: sticky;
   top: 0;
@@ -110,30 +110,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 64px;
+  min-height: var(--sr-nav-h);
+  margin-bottom: calc(-1 * var(--sr-nav-h)); /* pull the banner up under the nav */
   gap: clamp(0.15rem, 1.1vw, 1.1rem);
   padding: clamp(0.5rem, 0.8vw, 0.7rem) clamp(1rem, 3vw, 2.5rem);
 
-  background: var(--sr-glass-bg);
-  -webkit-backdrop-filter: blur(var(--sr-glass-blur)) saturate(var(--sr-glass-saturate));
-  backdrop-filter: blur(var(--sr-glass-blur)) saturate(var(--sr-glass-saturate));
-  border-bottom: 1px solid var(--sr-glass-border);
-  box-shadow: var(--sr-glass-lift-shadow);
+  background: transparent;
+  border-bottom: 1px solid transparent;
 
-  transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background 0.4s ease, box-shadow 0.4s ease, backdrop-filter 0.4s ease;
 }
 
-/* ---- At-top state: solid azure bg before any scroll ---- */
-.sr-nav--top {
-  background: var(--sr-nav-top-bg);
-}
-
-/* ---- Stuck state: solid dark bg, slides down from above ---- */
-@keyframes sr-slide-down {
-  from { transform: translateY(-100%); }
-  to   { transform: translateY(0); }
-}
-
+/* ---- Stuck state: solid dark bg once scrolled past the banner ---- */
 .sr-nav--stuck {
   background: rgba(13, 27, 42, 0.92);
   -webkit-backdrop-filter: blur(16px) saturate(140%);
@@ -156,15 +144,6 @@
   height: clamp(26px, 2.4vw, 34px);
   width: auto;
   filter: drop-shadow(var(--sr-text-shadow));
-}
-
-/* The bright hairline along the top = the "raised lip" of the glass */
-.sr-nav::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 1px;
-  background: var(--sr-glass-top-highlight);
 }
 
 .sr-nav__links {
@@ -315,8 +294,8 @@
 /* ---- Responsive: collapse to a frosted dropdown panel ---- */
 @media (max-width: 720px) {
   .sr-nav {
+    --sr-nav-h: 72px;
     justify-content: flex-start;
-    min-height: 72px;
     padding: 0.7rem 1rem;
   }
   .sr-nav__toggle { display: block; }

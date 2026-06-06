@@ -5,7 +5,6 @@ import { useCart } from '../context/CartContext';
 export function StonesRiverHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isStuck, setIsStuck] = useState(false);
-  const [isAtTop, setIsAtTop] = useState(true);
   const bannerRef = useRef<HTMLDivElement>(null);
   const { itemCount, openDrawer } = useCart();
 
@@ -30,7 +29,6 @@ export function StonesRiverHeader() {
     const handleScroll = () => {
       const bannerBottom = banner.getBoundingClientRect().bottom;
       setIsStuck(bannerBottom <= 0);
-      setIsAtTop(window.scrollY <= 4);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -40,7 +38,7 @@ export function StonesRiverHeader() {
   return (
     <>
       {/* Sticky navigation — pinned to the very top, above the banner */}
-      <nav className={`sr-nav ${isStuck ? 'sr-nav--stuck' : isAtTop ? 'sr-nav--top' : ''}`} aria-label="Primary" data-open={String(menuOpen)}>
+      <nav className={`sr-nav ${isStuck ? 'sr-nav--stuck' : ''}`} aria-label="Primary" data-open={String(menuOpen)}>
         <a
           className="sr-nav__logo"
           href="#home"
