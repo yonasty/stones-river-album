@@ -62,6 +62,9 @@
   /* Nav bar height — also pulls the banner up so the transparent nav overlays it */
   --sr-nav-h: 64px;
 
+  /* Lower-opacity light blue shown once scrolled past the banner */
+  --sr-nav-stuck-bg: rgba(95, 172, 255, 0.4);
+
   /* Hover pill behind a link */
   --sr-link-hover-bg: rgba(255, 255, 255, 0.16);
 
@@ -123,11 +126,11 @@
 
 /* ---- Stuck state: solid dark bg once scrolled past the banner ---- */
 .sr-nav--stuck {
-  background: rgba(13, 27, 42, 0.92);
-  -webkit-backdrop-filter: blur(16px) saturate(140%);
-  backdrop-filter: blur(16px) saturate(140%);
-  border-bottom-color: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+  background: var(--sr-nav-stuck-bg);
+  -webkit-backdrop-filter: blur(12px) saturate(135%);
+  backdrop-filter: blur(12px) saturate(135%);
+  border-bottom-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
 }
 
 /* ---- Brand logo (left side, always visible) ---- */
