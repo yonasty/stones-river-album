@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from 'motion/react';
 import { useRef, useState, useEffect, useCallback } from 'react';
-import { Package, ShoppingCart, AlertCircle, ImageIcon, Check } from 'lucide-react';
+import { createPortal } from 'react-dom';
+import { Package, ShoppingCart, AlertCircle, ImageIcon, Check, ZoomIn, X } from 'lucide-react';
 import { preorderProducts, shopifyConfig, type ProductConfig } from '../data/preorderData';
 import { ContentModal } from './ContentModal';
 import { useIsMobile } from '../hooks/useIsMobile';
@@ -354,11 +355,27 @@ function ProductCard({ product, shopifyAvailable, shopifyImage, onClick }: Produ
   const [addedFeedback, setAddedFeedback] = useState(false);
   const [selectedItem, setSelectedItem] = useState<{ name: string; image: string; modalImage?: string; modalImages?: string[] } | null>(null);
   const [itemImageIndex, setItemImageIndex] = useState(0);
+  const [zoomedImage, setZoomedImage] = useState<string | null>(null);
   const { addItem } = useCart();
 
   useEffect(() => {
     setItemImageIndex(0);
+    setZoomedImage(null);
   }, [selectedItem]);
+
+  // Close the zoom lightbox on Escape (before the underlying modal handles it)
+  useEffect(() => {
+    if (!zoomedImage) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.stopPropagation();
+        e.preventDefault();
+        setZoomedImage(null);
+      }
+    };
+    window.addEventListener('keydown', onKey, true);
+    return () => window.removeEventListener('keydown', onKey, true);
+  }, [zoomedImage]);
 
   const displayTitle = product.fallbackTitle;
   const displayPrice = product.fallbackPrice;
@@ -496,11 +513,21 @@ function ProductCard({ product, shopifyAvailable, shopifyImage, onClick }: Produ
           const currentItemImage = itemGallery[itemImageIndex] || itemGallery[0];
           return (
             <div className="flex flex-col items-center gap-4 pt-4">
-              <img
-                src={currentItemImage}
-                alt={selectedItem.name}
-                className="w-full max-h-[520px] object-contain rounded-lg"
-              />
+              <button
+                type="button"
+                onClick={() => setZoomedImage(currentItemImage)}
+                className="group/zoom relative block w-full cursor-zoom-in focus:outline-none"
+                aria-label="View this image larger"
+              >
+                <img
+                  src={currentItemImage}
+                  alt={selectedItem.name}
+                  className="w-full max-h-[520px] object-contain rounded-lg"
+                />
+                <span className="absolute bottom-3 right-3 inline-flex items-center justify-center w-9 h-9 rounded-full bg-black/55 text-white/90 backdrop-blur-sm transition-all duration-200 group-hover/zoom:bg-black/75 group-hover/zoom:scale-105">
+                  <ZoomIn className="w-5 h-5" />
+                </span>
+              </button>
               {itemGallery.length > 1 && (
                 <div className="grid grid-cols-5 gap-1.5 w-full">
                   {itemGallery.map((img, idx) => (
@@ -527,6 +554,32 @@ function ProductCard({ product, shopifyAvailable, shopifyImage, onClick }: Produ
           );
         })()}
       </ContentModal>
+
+      {/* Full-image zoom lightbox — rendered to <body> so it sits above the modal */}
+      {zoomedImage && createPortal(
+        <div
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 p-4 cursor-zoom-out animate-in fade-in-0 duration-150"
+          onClick={() => setZoomedImage(null)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <button
+            type="button"
+            onClick={(e) => { e.stopPropagation(); setZoomedImage(null); }}
+            className="absolute top-4 right-4 z-10 rounded-sm p-1 text-white/70 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/50"
+            aria-label="Close"
+          >
+            <X className="size-6" />
+          </button>
+          <img
+            src={zoomedImage}
+            alt=""
+            className="max-w-[95vw] max-h-[92vh] object-contain rounded-lg shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>,
+        document.body,
+      )}
     </div>
   );
 }
