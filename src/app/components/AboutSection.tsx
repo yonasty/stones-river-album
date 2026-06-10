@@ -37,7 +37,7 @@ export function AboutSection() {
         {/* Right — heading, collaborators, bio */}
         <div className="flex-1 w-full">
           <h2 className="text-5xl md:text-6xl lg:text-7xl text-parchment font-light uppercase mb-6">
-            About Stones River
+            Stones River
           </h2>
           <p className="font-heading text-parchment/90 text-lg md:text-xl lg:text-2xl font-medium tracking-wide uppercase mb-8">
             Jeremy Kittel <span className="text-parchment/40">•</span> Eric Jacobsen <span className="text-parchment/40">•</span> Orlando Philharmonic Orchestra
