@@ -18,7 +18,7 @@ function BioCard({ bio, onExpand }: { bio: BioData; onExpand: () => void }) {
     : bio.bioText;
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full lg:grid lg:grid-rows-subgrid lg:row-span-3">
       {/* Image */}
       {imgError ? (
         <div className="aspect-square w-full flex flex-col items-center justify-center bg-zinc-800/60 border border-white/10 rounded-lg">
@@ -88,7 +88,7 @@ export function BiosSection() {
           The Artists
         </h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-3 lg:grid-rows-[auto_auto_1fr] gap-10 lg:gap-x-12 lg:gap-y-0 items-stretch">
           {collaborators.map((bio) => (
             <BioCard key={bio.id} bio={bio} onExpand={() => openBio(bio)} />
           ))}
