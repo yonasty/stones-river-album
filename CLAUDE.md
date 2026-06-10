@@ -28,7 +28,7 @@ You are the dedicated Claude Code session for the **Stones River album website**
 - `src/app/App.tsx` — entry composition, landing page + main sections
 - `src/app/components/StonesRiverHeader.tsx` — frosted-glass banner + nav (sticky)
 - `src/app/components/PreorderSection.tsx` — Kickstarter-style tier rows + product modal + per-item modal
-- `src/app/components/CartIcon.tsx` — **NOTE: unused as of v1.0.3** — cart now lives in the nav. Safe to delete in a cleanup commit.
+- `src/app/components/CartIcon.tsx` — **NOTE: unused** — cart now lives in the nav. Safe to delete in a cleanup commit.
 - `src/app/components/CartDrawer.tsx` — slide-out cart panel
 - `src/app/context/CartContext.tsx` — cart state + localStorage persistence
 - `src/app/data/preorderData.ts` — all tier data, Shopify product/variant IDs, included-item lists with thumbnail + modal images
@@ -49,16 +49,19 @@ You are the dedicated Claude Code session for the **Stones River album website**
 - **Local dev:** `npm run dev` would work but Ben prefers you don't run local servers. Verify changes via `npm run build` then commit and push — Cloud Build is the source of truth.
 
 ## Versioning
-- `VERSION` file in repo root, currently **`1.0.3`**.
+- `VERSION` file in repo root, currently **`2.10.5`**.
 - Bump after every meaningful deploy: patch (1.0.X) for fixes/tweaks, minor (1.X.0) for features, major (X.0.0) for overhauls.
 - Tell Ben the new version number after deploy.
 - **No UI version display.** This is a public-facing marketing site, so it's exempt from the global "show version in a footer/corner" rule (Ben, 2026-06-03). Keep the `VERSION` file and keep bumping it after deploys, but do not surface it in the UI.
 
-## Current State (as of 2026-06-03, v1.0.3)
+## Current State (as of 2026-06-10, v2.10.5)
 - **Cart icon lives inside the frosted-glass nav** (top-right of the nav bar, always visible at all breakpoints). Fixed-position floater removed.
-- **Museum-quality archival art print modal** now shows a 3-image gallery (finished print + Rush Baker signing photos) via the new `modalImages?: string[]` field on `IncludedItem`. Applied to tiers 4, 5, 6, 7.
-- All other per-item modals still show a single image (unchanged behavior).
-- Cart drawer auto-saves to localStorage. Shopify Storefront API drives product images + descriptions; preorderData.ts has fallback titles/prices/images.
+- **Nav scroll behavior:** transparent bar overlays the banner top (banner pulled up via negative `--sr-nav-h` margin). Once the banner scrolls fully out of view the nav becomes "stuck" → a bolder light-teal frosted navbar (`.sr-nav--stuck`, 0.92 opacity). Stuck detection uses an **IntersectionObserver on the banner** (the page scrolls inside `<body>`, so a `window` scroll listener never fired — don't reintroduce one).
+- **Per-item modals support multi-image galleries** via the `modalImages?: string[]` field on `IncludedItem` (`preorderData.ts`). Signed CD, black vinyl, blue vinyl, and the museum print all carry multi-image galleries across the relevant tiers; back-cover/tracklist images are appended to the vinyl galleries. Items without `modalImages` still show their single `image`.
+- **Museum-quality archival art print** uses the real signed/numbered Rush Baker IV print as thumbnail + first modal image.
+- **Item-modal images open a full-screen zoom lightbox** on click (magnifying-glass affordance).
+- **Video:** sizzle reel re-encoded to ~29MB to stay under Cloud Run's ~32MiB response cap. If you swap the video, keep it under that ceiling or it 500s.
+- Cart drawer auto-saves to localStorage. Shopify Storefront API drives product images + descriptions; `preorderData.ts` has fallback titles/prices/images.
 
 ## Standards (from Ben's global CLAUDE.md)
 - **No hardcoded colors** — use CSS custom properties (`var(--name)`) for the header; Tailwind tokens for the rest.
