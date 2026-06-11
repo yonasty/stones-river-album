@@ -18,9 +18,12 @@ export function QuoteSection() {
       />
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
-        {/* One continuous quote across the top */}
-        <p className="font-heading text-white text-2xl md:text-3xl lg:text-4xl font-normal uppercase tracking-wide leading-snug mb-8 md:mb-10 drop-shadow-[0_3px_12px_rgba(20,35,60,0.7)]">
+        {/* One continuous quote across the top, attribution beneath it */}
+        <p className="font-heading text-white text-2xl md:text-3xl lg:text-4xl font-normal uppercase tracking-wide leading-snug mb-3 drop-shadow-[0_3px_12px_rgba(20,35,60,0.7)]">
           "When an orchestra moves intuitively as one, it's utter magic, and Stones River captures that magic"
+        </p>
+        <p className="font-heading text-white/90 text-base md:text-lg tracking-wide mb-8 md:mb-10">
+          — Jeremy Kittel
         </p>
 
         {/* Two photos side by side, tops aligned */}
@@ -34,16 +37,13 @@ export function QuoteSection() {
             />
           </div>
 
-          {/* Duo + attribution */}
+          {/* Duo */}
           <div className="md:flex-1 md:min-w-0">
             <img
               src={duoImage}
               alt="Jeremy Kittel and Eric Jacobsen"
               className="w-full h-auto block rounded-lg shadow-[0_15px_50px_rgba(0,0,0,0.35)]"
             />
-            <p className="font-heading text-white/90 text-base md:text-lg tracking-wide mt-3 md:text-right">
-              — Jeremy Kittel
-            </p>
           </div>
         </div>
       </div>
