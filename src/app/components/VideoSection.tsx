@@ -19,9 +19,9 @@ export function VideoSection() {
         className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
       />
 
-      <div className="relative z-10 px-6 md:px-12 lg:px-20 flex justify-center">
+      <div className="relative z-10 px-6 md:px-10 lg:px-12 flex justify-center">
         <motion.div
-          className="w-full max-w-4xl"
+          className="w-full max-w-6xl"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
