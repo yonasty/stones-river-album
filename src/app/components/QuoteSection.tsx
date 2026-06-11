@@ -1,5 +1,4 @@
 import orchestraImage from '../../../assets/quote-orchestra.jpg';
-import duoImage from '../../../assets/quote-duo.jpg';
 
 export function QuoteSection() {
   return (
@@ -17,7 +16,7 @@ export function QuoteSection() {
         className="absolute inset-0 bg-black/30 pointer-events-none"
       />
 
-      <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
+      <div className="relative z-10 max-w-4xl mx-auto px-6 md:px-12 lg:px-20 text-center">
         {/* One continuous quote across the top, attribution beneath it */}
         <p className="font-heading text-white text-2xl md:text-3xl lg:text-4xl font-normal uppercase tracking-wide leading-snug mb-3 drop-shadow-[0_3px_12px_rgba(20,35,60,0.7)]">
           "When an orchestra moves intuitively as one, it's utter magic, and Stones River captures that magic"
@@ -26,26 +25,12 @@ export function QuoteSection() {
           — Jeremy Kittel
         </p>
 
-        {/* Two photos side by side, tops aligned */}
-        <div className="flex flex-col md:flex-row md:items-start gap-8 md:gap-12">
-          {/* Orchestra */}
-          <div className="md:flex-[2.2] md:min-w-0">
-            <img
-              src={orchestraImage}
-              alt="The Orlando Philharmonic Orchestra performing Stones River"
-              className="w-full h-auto block rounded-lg shadow-[0_15px_50px_rgba(0,0,0,0.35)]"
-            />
-          </div>
-
-          {/* Duo */}
-          <div className="md:flex-1 md:min-w-0">
-            <img
-              src={duoImage}
-              alt="Jeremy Kittel and Eric Jacobsen"
-              className="w-full h-auto block rounded-lg shadow-[0_15px_50px_rgba(0,0,0,0.35)]"
-            />
-          </div>
-        </div>
+        {/* Orchestra — front and center */}
+        <img
+          src={orchestraImage}
+          alt="The Orlando Philharmonic Orchestra performing Stones River"
+          className="w-full h-auto block rounded-lg shadow-[0_15px_50px_rgba(0,0,0,0.35)]"
+        />
       </div>
     </section>
   );
