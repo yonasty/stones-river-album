@@ -42,6 +42,18 @@
   font-display: swap;
 }
 
+/* ITC Garamond Std Condensed Light — used for the About bio body + artist names */
+@font-face {
+  font-family: 'ITC Garamond Std Condensed Light';
+  src: url('/fonts/ITCGaramondStd-LtCond.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+.font-garamond {
+  font-family: 'ITC Garamond Std Condensed Light', serif;
+}
+
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;

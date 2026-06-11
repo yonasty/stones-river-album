@@ -38,7 +38,7 @@ function BioCard({ bio, onExpand }: { bio: BioData; onExpand: () => void }) {
 
       {/* Name + role */}
       <div className="mt-5">
-        <h3 className="text-xl md:text-2xl font-light tracking-wide text-white">
+        <h3 className="font-garamond text-xl md:text-2xl font-light tracking-wide text-white">
           {bio.name}
         </h3>
         {bio.role && (
@@ -122,7 +122,7 @@ export function BiosSection() {
 
             {/* Name, role, bio */}
             <div className="flex-1 flex flex-col">
-              <h3 className="text-2xl md:text-3xl font-light tracking-wide text-white">
+              <h3 className="font-garamond text-2xl md:text-3xl font-light tracking-wide text-white">
                 {selectedBio.name}
               </h3>
               {selectedBio.role && (

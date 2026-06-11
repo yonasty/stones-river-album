@@ -43,7 +43,7 @@ export function AboutSection() {
             Jeremy Kittel <span className="text-parchment/40">•</span> Eric Jacobsen <span className="text-parchment/40">•</span> Orlando Philharmonic Orchestra
           </p>
           <div className="text-parchment/85 leading-[1.7]">
-            <p className="text-lg md:text-xl lg:text-2xl">{aboutBio}</p>
+            <p className="font-garamond text-lg md:text-xl lg:text-2xl">{aboutBio}</p>
           </div>
         </div>
       </div>
