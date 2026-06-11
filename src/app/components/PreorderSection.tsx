@@ -496,7 +496,6 @@ function ProductCard({ product, shopifyAvailable, shopifyImage, onClick }: Produ
                   <p className="text-white/80 text-sm leading-snug line-clamp-2">
                     {item.name}
                   </p>
-                  <p className="text-white/40 text-xs mt-0.5">Qty: {item.quantity}</p>
                 </div>
               </button>
             ))}
