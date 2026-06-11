@@ -49,18 +49,22 @@ You are the dedicated Claude Code session for the **Stones River album website**
 - **Local dev:** `npm run dev` would work but Ben prefers you don't run local servers. Verify changes via `npm run build` then commit and push — Cloud Build is the source of truth.
 
 ## Versioning
-- `VERSION` file in repo root, currently **`2.10.5`**.
+- `VERSION` file in repo root, currently **`2.11.5`**.
 - Bump after every meaningful deploy: patch (1.0.X) for fixes/tweaks, minor (1.X.0) for features, major (X.0.0) for overhauls.
 - Tell Ben the new version number after deploy.
 - **No UI version display.** This is a public-facing marketing site, so it's exempt from the global "show version in a footer/corner" rule (Ben, 2026-06-03). Keep the `VERSION` file and keep bumping it after deploys, but do not surface it in the UI.
 
-## Current State (as of 2026-06-10, v2.10.5)
+## Current State (as of 2026-06-11, v2.11.5)
 - **Cart icon lives inside the frosted-glass nav** (top-right of the nav bar, always visible at all breakpoints). Fixed-position floater removed.
 - **Nav scroll behavior:** transparent bar overlays the banner top (banner pulled up via negative `--sr-nav-h` margin). Once the banner scrolls fully out of view the nav becomes "stuck" → a bolder light-teal frosted navbar (`.sr-nav--stuck`, 0.92 opacity). Stuck detection uses an **IntersectionObserver on the banner** (the page scrolls inside `<body>`, so a `window` scroll listener never fired — don't reintroduce one).
 - **Per-item modals support multi-image galleries** via the `modalImages?: string[]` field on `IncludedItem` (`preorderData.ts`). Signed CD, black vinyl, blue vinyl, and the museum print all carry multi-image galleries across the relevant tiers; back-cover/tracklist images are appended to the vinyl galleries. Items without `modalImages` still show their single `image`.
+- **Preorder included items show thumbnail + name only** — the per-item "Qty: 1" line was removed (always 1, added noise). The `quantity` field stays in `preorderData.ts` because it drives the actual Shopify cart line items.
+- **Item copy:** the two-tracks bullet reads "Instant access to two tracks from the album" (was "...to 2 unreleased tracks..."). The included-item image filename on disk still says `Access to 2 unreleased tracks.png` — filename only, not displayed.
 - **Museum-quality archival art print** uses the real signed/numbered Rush Baker IV print as thumbnail + first modal image.
 - **Item-modal images open a full-screen zoom lightbox** on click (magnifying-glass affordance).
-- **Video:** sizzle reel re-encoded to ~29MB to stay under Cloud Run's ~32MiB response cap. If you swap the video, keep it under that ceiling or it 500s.
+- **Video:** sizzle reel re-encoded to ~29MB to stay under Cloud Run's ~32MiB response cap. If you swap the video, keep it under that ceiling or it 500s. The preview is sized `max-w-6xl` with trimmed gutters (`VideoSection.tsx`) so it fills more of the blue texture band while leaving top/bottom margin.
+- **Quote section (`QuoteSection.tsx`):** one continuous centered quote (no ellipses) — "When an orchestra moves intuitively as one, it's utter magic, and Stones River captures that magic" — with "— Jeremy Kittel" directly beneath it, over a single centered, enlarged orchestra image (`max-w-6xl`). The Jeremy/Eric **duo photo was cut**; `quote-duo.jpg` remains in the repo but is unused.
+- **Typography:** ITC Garamond Std Condensed Light (`public/fonts/ITCGaramondStd-LtCond.otf`, registered as `@font-face` + `.font-garamond` utility in `global.css`). Applied to **only** the About-section bio body paragraph (not the "Stones River" heading or the names line) and the artist names in The Artists section (`BiosSection.tsx` card + modal `<h3>`). Body default remains Fira Sans.
 - Cart drawer auto-saves to localStorage. Shopify Storefront API drives product images + descriptions; `preorderData.ts` has fallback titles/prices/images.
 
 ## Standards (from Ben's global CLAUDE.md)
