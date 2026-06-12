@@ -21,7 +21,7 @@ export function QuoteSection() {
         <p className="font-garamond text-parchment text-3xl md:text-4xl lg:text-5xl leading-snug mb-3 drop-shadow-[0_3px_12px_rgba(20,35,60,0.7)]">
           "When an orchestra moves intuitively as one, it's utter magic, and Stones River captures that magic"
         </p>
-        <p className="font-garamond text-parchment/80 text-xl md:text-2xl mb-8 md:mb-10">
+        <p className="font-garamond text-parchment/80 text-2xl md:text-3xl mb-8 md:mb-10">
           — Jeremy Kittel
         </p>
 
