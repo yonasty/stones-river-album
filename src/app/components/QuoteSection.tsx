@@ -18,10 +18,10 @@ export function QuoteSection() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10 lg:px-12 text-center">
         {/* One continuous quote across the top, attribution beneath it */}
-        <p className="font-heading text-white text-3xl md:text-4xl lg:text-5xl font-normal uppercase tracking-wide leading-snug mb-3 drop-shadow-[0_3px_12px_rgba(20,35,60,0.7)]">
+        <p className="font-garamond text-white text-4xl md:text-5xl lg:text-6xl font-light leading-snug mb-3 drop-shadow-[0_3px_12px_rgba(20,35,60,0.7)]">
           "When an orchestra moves intuitively as one, it's utter magic, and Stones River captures that magic"
         </p>
-        <p className="font-heading text-white/90 text-base md:text-lg tracking-wide mb-8 md:mb-10">
+        <p className="font-garamond text-white/90 text-lg md:text-xl tracking-wide mb-8 md:mb-10">
           — Jeremy Kittel
         </p>
 
