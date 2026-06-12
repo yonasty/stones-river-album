@@ -19,6 +19,7 @@
   --section-bg: #0D1A28;
   --artists-bg: #625652;
   --honorary-bg: #988780;
+  --full-bio-bg: #7D6E69; /* midpoint between honorary-bg and footer-bg */
   --preorder-card-bg: rgba(95, 140, 190, 0.14);
   --footer-bg: #625652;
   --soft-shadow: rgba(26, 20, 16, 0.15);
@@ -106,6 +107,7 @@
   --color-section-bg: var(--section-bg);
   --color-artists-bg: var(--artists-bg);
   --color-honorary-bg: var(--honorary-bg);
+  --color-full-bio-bg: var(--full-bio-bg);
   --color-preorder-card-bg: var(--preorder-card-bg);
   --color-footer-bg: var(--footer-bg);
   --color-parchment: var(--parchment);

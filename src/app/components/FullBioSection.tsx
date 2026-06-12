@@ -11,13 +11,13 @@ export function FullBioSection() {
   return (
     <section
       id="full-bio"
-      className="w-full py-16 md:py-20 px-6 md:px-12 lg:px-16 bg-site-bg"
+      className="w-full py-16 md:py-20 px-6 md:px-12 lg:px-16 bg-full-bio-bg"
     >
       <div className="max-w-4xl mx-auto">
-        <p className="text-parchment/50 text-xs md:text-sm tracking-[0.22em] uppercase mb-6">
+        <p className="text-parchment/70 text-xs md:text-sm tracking-[0.22em] uppercase mb-6">
           About the Album
         </p>
-        <div className="font-garamond text-parchment/75 text-base md:text-lg leading-[1.75] space-y-4">
+        <div className="font-garamond text-parchment/90 text-base md:text-lg leading-[1.75] space-y-4">
           {bioParagraphs.map((paragraph) => (
             <p key={paragraph.slice(0, 40)}>{paragraph}</p>
           ))}
