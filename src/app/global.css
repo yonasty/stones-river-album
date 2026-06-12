@@ -42,11 +42,12 @@
   font-display: swap;
 }
 
-/* ITC Garamond Std Condensed Light — used for the About bio body + artist names */
+/* ITC Garamond Std Condensed Light — site heading face (via --font-heading) + bio body & artist names.
+   Weight range 100-900 so bolder weights render this face as-is instead of a synthesized faux bold. */
 @font-face {
   font-family: 'ITC Garamond Std Condensed Light';
   src: url('/fonts/ITCGaramondStd-LtCond.otf') format('opentype');
-  font-weight: 300;
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
@@ -88,7 +89,7 @@ body {
   background: rgba(184, 134, 11, 0.5);
 }
 
-/* Apply the heading (Xanh Mono) typeface to non-heading elements */
+/* Apply the heading typeface (--font-heading) to non-heading elements */
 .font-heading {
   font-family: var(--font-heading);
 }
