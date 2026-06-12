@@ -8,6 +8,7 @@ import { QuoteSection } from './components/QuoteSection';
 import { BiosSection } from './components/BiosSection';
 import { PreorderSection } from './components/PreorderSection';
 import { HonoraryProducers } from './components/HonoraryProducers';
+import { FullBioSection } from './components/FullBioSection';
 import { VideoSection } from './components/VideoSection';
 import { Footer } from './components/Footer';
 import { CartDrawer } from './components/CartDrawer';
@@ -46,6 +47,7 @@ export default function App() {
         {siteConfig.SHOW_LISTEN_NOW && <ListenNowSection />}
         <PreorderSection />
         <HonoraryProducers />
+        <FullBioSection />
         <Footer />
       </div>
     </CartProvider>
