@@ -7,7 +7,7 @@ interface LandingPageProps {
 }
 
 // Pre-launch soft gate. Password is checked case-insensitively.
-const GATE_PASSWORD = 'nethermead';
+const GATE_PASSWORD = 'ejo';
 
 export function LandingPage({ onEnter }: LandingPageProps) {
   const [videoReady, setVideoReady] = useState(false);
