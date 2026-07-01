@@ -25,7 +25,8 @@ You are the dedicated Claude Code session for the **Stones River album website**
 | GCP project | yonas-media-agent (always pass `--project=yonas-media-agent`) |
 
 ## Key Files
-- `src/app/App.tsx` — entry composition, landing page + main sections
+- `src/app/App.tsx` — entry composition, landing page + main sections. `hasEntered` state gates the site behind `LandingPage`.
+- `src/app/components/LandingPage.tsx` — full-screen video splash + **pre-launch password gate** (Enter button lifts away to reveal a password prompt; correct password fades into the site)
 - `src/app/components/StonesRiverHeader.tsx` — frosted-glass banner + nav (sticky)
 - `src/app/components/PreorderSection.tsx` — Kickstarter-style tier rows + product modal + per-item modal
 - `src/app/components/CartIcon.tsx` — **NOTE: unused** — cart now lives in the nav. Safe to delete in a cleanup commit.
@@ -49,22 +50,25 @@ You are the dedicated Claude Code session for the **Stones River album website**
 - **Local dev:** `npm run dev` would work but Ben prefers you don't run local servers. Verify changes via `npm run build` then commit and push — Cloud Build is the source of truth.
 
 ## Versioning
-- `VERSION` file in repo root, currently **`2.11.5`**.
+- `VERSION` file in repo root, currently **`2.15.0`**.
 - Bump after every meaningful deploy: patch (1.0.X) for fixes/tweaks, minor (1.X.0) for features, major (X.0.0) for overhauls.
 - Tell Ben the new version number after deploy.
 - **No UI version display.** This is a public-facing marketing site, so it's exempt from the global "show version in a footer/corner" rule (Ben, 2026-06-03). Keep the `VERSION` file and keep bumping it after deploys, but do not surface it in the UI.
 
-## Current State (as of 2026-06-11, v2.11.5)
+## Current State (as of 2026-06-30, v2.15.0)
+- **Pre-launch password gate (`LandingPage.tsx`, v2.15.0):** on the landing splash, clicking **Enter** lifts the button up and fades it out while a password prompt rises into the same spot (shared relative anchor; button animates `y: -90`, form animates in with a 0.18s delay). Correct password runs the existing fade-out → `onEnter()` into the site; wrong password shakes the input row (`useAnimationControls`) and shows a "Incorrect password" line. **Password is `Nethermead`, checked case-insensitively** (`GATE_PASSWORD = 'nethermead'`, compared against `.trim().toLowerCase()`). This is a **soft gate** — the password lives in the frontend bundle, so it keeps casual visitors out pre-launch but is not real security. **When the album goes public, remove the gate** (drop the password state/prompt in `LandingPage.tsx` so Enter goes straight into the site). No persistence — it prompts on every visit (Ben's call, 2026-06-30). Gate text uses the site heading face (`.font-garamond` / ITC Garamond Std Condensed Light).
 - **Cart icon lives inside the frosted-glass nav** (top-right of the nav bar, always visible at all breakpoints). Fixed-position floater removed.
 - **Nav scroll behavior:** transparent bar overlays the banner top (banner pulled up via negative `--sr-nav-h` margin). Once the banner scrolls fully out of view the nav becomes "stuck" → a bolder light-teal frosted navbar (`.sr-nav--stuck`, 0.92 opacity). Stuck detection uses an **IntersectionObserver on the banner** (the page scrolls inside `<body>`, so a `window` scroll listener never fired — don't reintroduce one).
 - **Per-item modals support multi-image galleries** via the `modalImages?: string[]` field on `IncludedItem` (`preorderData.ts`). Signed CD, black vinyl, blue vinyl, and the museum print all carry multi-image galleries across the relevant tiers; back-cover/tracklist images are appended to the vinyl galleries. Items without `modalImages` still show their single `image`.
+- **Preorder tiers: 6 tiers (v2.12.0)** — restructured from 7: dropped the old $200 Gallery Patron; "Harmony & Ink" renamed to "Composer's Circle" (art print swapped for a digital score); the old Composer's Circle became the new $500 Gallery Patron; Experience is tier 6. All tier/variant data in `preorderData.ts`.
 - **Preorder included items show thumbnail + name only** — the per-item "Qty: 1" line was removed (always 1, added noise). The `quantity` field stays in `preorderData.ts` because it drives the actual Shopify cart line items.
 - **Item copy:** the two-tracks bullet reads "Instant access to two tracks from the album" (was "...to 2 unreleased tracks..."). The included-item image filename on disk still says `Access to 2 unreleased tracks.png` — filename only, not displayed.
 - **Museum-quality archival art print** uses the real signed/numbered Rush Baker IV print as thumbnail + first modal image.
 - **Item-modal images open a full-screen zoom lightbox** on click (magnifying-glass affordance).
 - **Video:** sizzle reel re-encoded to ~29MB to stay under Cloud Run's ~32MiB response cap. If you swap the video, keep it under that ceiling or it 500s. The preview is sized `max-w-6xl` with trimmed gutters (`VideoSection.tsx`) so it fills more of the blue texture band while leaving top/bottom margin.
 - **Quote section (`QuoteSection.tsx`):** one continuous centered quote (no ellipses) — "When an orchestra moves intuitively as one, it's utter magic, and Stones River captures that magic" — with "— Jeremy Kittel" directly beneath it, over a single centered, enlarged orchestra image (`max-w-6xl`). The Jeremy/Eric **duo photo was cut**; `quote-duo.jpg` remains in the repo but is unused.
-- **Typography:** ITC Garamond Std Condensed Light (`public/fonts/ITCGaramondStd-LtCond.otf`, registered as `@font-face` + `.font-garamond` utility in `global.css`). Applied to **only** the About-section bio body paragraph (not the "Stones River" heading or the names line) and the artist names in The Artists section (`BiosSection.tsx` card + modal `<h3>`). Body default remains Fira Sans.
+- **Full-bio section (`FullBioSection.tsx`, v2.14.0):** an "About the Album" section between Honorary Producers and the footer — Garamond body, `max-w-4xl`, on a warm-brown background (`--full-bio-bg` #7D6E69, the midpoint of the honorary/footer browns) with raised text opacity for legibility (v2.14.1).
+- **Typography:** ITC Garamond Std Condensed Light (`public/fonts/ITCGaramondStd-LtCond.otf`, registered as `@font-face` + `.font-garamond` utility in `global.css`; `@font-face` weight range widened to 100–900 to avoid faux bold). **As of v2.13.0 it is the site heading face** via `--font-heading` (Xanh Mono removed), and also drives the About-section bio body, the artist names in The Artists section (`BiosSection.tsx` card + modal `<h3>`), and the pre-launch gate text. Body default remains Fira Sans.
 - Cart drawer auto-saves to localStorage. Shopify Storefront API drives product images + descriptions; `preorderData.ts` has fallback titles/prices/images.
 
 ## Standards (from Ben's global CLAUDE.md)
