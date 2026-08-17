@@ -23,7 +23,7 @@ export const collaborators: BioData[] = [
   {
     id: 'eric-jacobsen',
     name: 'Eric Jacobsen',
-    role: 'Conductor',
+    role: 'Music Director, Orlando Philharmonic Orchestra',
     image: ericImage,
     imageAlt: 'Eric Jacobsen portrait',
     bioText: 'Already well-established as one of classical music\'s most exciting and innovative young conductors, Eric Jacobsen has built a reputation for engaging audiences with innovative and collaborative programming. Eric is Music Director at both the Virginia Symphony orchestra and Orlando Philharmonic Orchestra, as well as the Principal Guest Conductor of the Classical Tahoe Musical Festival. Eric brings joy, storytelling, and a touch of humor to what he describes as "musical conversations" that delight audiences around the world, including those who do not traditionally attend classical music concerts.',

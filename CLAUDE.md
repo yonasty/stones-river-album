@@ -50,12 +50,12 @@ You are the dedicated Claude Code session for the **Stones River album website**
 - **Local dev:** `npm run dev` would work but Ben prefers you don't run local servers. Verify changes via `npm run build` then commit and push — Cloud Build is the source of truth.
 
 ## Versioning
-- `VERSION` file in repo root, currently **`2.16.1`**.
+- `VERSION` file in repo root, currently **`2.16.2`**.
 - Bump after every meaningful deploy: patch (1.0.X) for fixes/tweaks, minor (1.X.0) for features, major (X.0.0) for overhauls.
 - Tell Ben the new version number after deploy.
 - **No UI version display.** This is a public-facing marketing site, so it's exempt from the global "show version in a footer/corner" rule (Ben, 2026-06-03). Keep the `VERSION` file and keep bumping it after deploys, but do not surface it in the UI.
 
-## Current State (as of 2026-08-17, v2.16.1)
+## Current State (as of 2026-08-17, v2.16.2)
 - **Naming rule — "Orlando Philharmonic Orchestra" takes NO definite article** (Ben, 2026-08-17). Not "The Orlando Philharmonic Orchestra", and not "…and the Orlando Philharmonic Orchestra" mid-sentence either. Applied site-wide in v2.16.0: bio name + alt text, quote-image alt, banner alt, About copy, About-the-Album copy, and the OPO bio's opening sentence. Short informal references that aren't the full name ("the Philharmonic") were left alone. Keep new copy consistent with this.
 - **Bio photo credits (v2.16.0):** `BioData` has an optional `photoCredit?: string` (`biosData.ts`) rendered as small dimmed text (`text-white/40 text-xs`) directly under the image in the bio modal — modal only, not on the card. Eric Jacobsen: "Photo: Ben Van Hook". Orlando Philharmonic Orchestra: "Photo courtesy of Orlando Philharmonic". Jeremy Kittel has none.
 - **No mentions of The Knights or Brooklyn Rider anywhere on the site** (Ben, 2026-08-17). Two separate removals: the sentence about The Knights / NYC-based chamber orchestra in Eric's bio (`biosData.ts`, v2.16.0), and the "(The Knights, Brooklyn Rider)" parenthetical after Eric's name in the About-the-Album copy (`FullBioSection.tsx`, v2.16.1). Don't reintroduce either.
