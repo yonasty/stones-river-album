@@ -13,6 +13,8 @@ export interface BioData {
   imageAlt: string;
   /** Full bio text — replace placeholder with final copy from client */
   bioText: string;
+  /** Photo credit line shown under the image in the modal (omit when no credit is required) */
+  photoCredit?: string;
   /** External website URL, opens in new tab */
   websiteUrl: string;
 }
@@ -24,7 +26,8 @@ export const collaborators: BioData[] = [
     role: 'Conductor',
     image: ericImage,
     imageAlt: 'Eric Jacobsen portrait',
-    bioText: 'Already well-established as one of classical music\'s most exciting and innovative young conductors, Eric Jacobsen has built a reputation for engaging audiences with innovative and collaborative programming. Eric is Music Director at both the Virginia Symphony orchestra and the Orlando Philharmonic Orchestra, as well as the Principal Guest Conductor of the Classical Tahoe Musical Festival.  Eric is also artistic director and co-founder of The Knights, the uniquely adventurous NYC-based chamber orchestra. Eric brings joy, storytelling, and a touch of humor to what he describes as "musical conversations" that delight audiences around the world, including those who do not traditionally attend classical music concerts.',
+    bioText: 'Already well-established as one of classical music\'s most exciting and innovative young conductors, Eric Jacobsen has built a reputation for engaging audiences with innovative and collaborative programming. Eric is Music Director at both the Virginia Symphony orchestra and Orlando Philharmonic Orchestra, as well as the Principal Guest Conductor of the Classical Tahoe Musical Festival. Eric brings joy, storytelling, and a touch of humor to what he describes as "musical conversations" that delight audiences around the world, including those who do not traditionally attend classical music concerts.',
+    photoCredit: 'Photo: Ben Van Hook',
     websiteUrl: 'https://www.jacobseneric.com/',
   },
   {
@@ -38,10 +41,11 @@ export const collaborators: BioData[] = [
   },
   {
     id: 'orlando-philharmonic',
-    name: 'The Orlando Philharmonic Orchestra',
+    name: 'Orlando Philharmonic Orchestra',
     image: opoImage,
-    imageAlt: 'The Orlando Philharmonic Orchestra',
-    bioText: 'Established in 1993, the Orlando Philharmonic Orchestra is led by Music Director Eric Jacobsen and is comprised of creative musicians and artists from around the world. The Philharmonic annually presents its Classics and Pops Series in Steinmetz Hall, along with its Focus Series and Symphony Storytime Series at the historic Plaza Live. More than 170 live concerts are presented each year, reaching over 70,000 children, youth, and families through its Young People\'s Concerts, Notes in Your Neighborhood program, and free outdoor community concerts. A resident company of the Dr. Phillips Center for the Performing Arts, the Philharmonic performs in the new Steinmetz Hall — one of the finest venues for acoustic music in the country — and is a Partner Organization of the National Alliance for Audition Support, an initiative to increase diversity in American orchestras.',
+    imageAlt: 'Orlando Philharmonic Orchestra',
+    bioText: 'Established in 1993, Orlando Philharmonic Orchestra is led by Music Director Eric Jacobsen and is comprised of creative musicians and artists from around the world. The Philharmonic annually presents its Classics and Pops Series in Steinmetz Hall, along with its Focus Series and Symphony Storytime Series at the historic Plaza Live. More than 170 live concerts are presented each year, reaching over 70,000 children, youth, and families through its Young People\'s Concerts, Notes in Your Neighborhood program, and free outdoor community concerts. A resident company of the Dr. Phillips Center for the Performing Arts, the Philharmonic performs in the new Steinmetz Hall — one of the finest venues for acoustic music in the country — and is a Partner Organization of the National Alliance for Audition Support, an initiative to increase diversity in American orchestras.',
+    photoCredit: 'Photo courtesy of Orlando Philharmonic',
     websiteUrl: 'https://orlandophil.org/',
   },
 ];

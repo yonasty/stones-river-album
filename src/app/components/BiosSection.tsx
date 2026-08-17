@@ -118,6 +118,9 @@ export function BiosSection() {
                   onError={() => setModalImgError(true)}
                 />
               )}
+              {selectedBio.photoCredit && (
+                <p className="text-white/40 text-xs mt-2">{selectedBio.photoCredit}</p>
+              )}
             </div>
 
             {/* Name, role, bio */}

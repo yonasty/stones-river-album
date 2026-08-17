@@ -28,7 +28,7 @@ export function QuoteSection() {
         {/* Orchestra — front and center */}
         <img
           src={orchestraImage}
-          alt="The Orlando Philharmonic Orchestra performing Stones River"
+          alt="Orlando Philharmonic Orchestra performing Stones River"
           className="w-full h-auto block rounded-lg shadow-[0_15px_50px_rgba(0,0,0,0.35)]"
         />
       </div>

@@ -91,7 +91,7 @@ export function StonesRiverHeader() {
           src="/assets/stones-river-banner-v2.jpg"
           width={2880}
           height={792}
-          alt="Stones River — a new album from Jeremy Kittel, Eric Jacobsen, and the Orlando Philharmonic Orchestra"
+          alt="Stones River — a new album from Jeremy Kittel, Eric Jacobsen, and Orlando Philharmonic Orchestra"
         />
       </div>
     </>

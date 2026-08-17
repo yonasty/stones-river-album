@@ -1,7 +1,7 @@
 import albumCover from '../../../assets/album-cover.jpg';
 
 const aboutBio =
-  'Stones River weaves together Early American melodies spanning the Revolutionary War through the Civil War eras, into a contemporary, almost dream-like whole, led throughout by a solo fiddle. The music carries an ineffable sense of voices from the past reaching the present — and the questions those voices raise. The album brings together conductor Eric Jacobsen, the Orlando Philharmonic, and composer and soloist Jeremy Kittel in a captivating program that spans centuries.';
+  'Stones River weaves together Early American melodies spanning the Revolutionary War through the Civil War eras, into a contemporary, almost dream-like whole, led throughout by a solo fiddle. The music carries an ineffable sense of voices from the past reaching the present — and the questions those voices raise. The album brings together conductor Eric Jacobsen, Orlando Philharmonic, and composer and soloist Jeremy Kittel in a captivating program that spans centuries.';
 
 export function AboutSection() {
   const scrollToPreorder = () => {
