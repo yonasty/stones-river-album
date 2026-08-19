@@ -21,6 +21,15 @@ export interface BioData {
 
 export const collaborators: BioData[] = [
   {
+    id: 'jeremy-kittel',
+    name: 'Jeremy Kittel',
+    role: 'Composer, Fiddler, Violinist',
+    image: jeremyImage,
+    imageAlt: 'Jeremy Kittel portrait',
+    bioText: 'Jeremy Kittel is an American composer, violinist, and fiddler. He received a Grammy nomination for "Best Instrumental Composition" in 2019 alongside John Williams and Terence Blanchard. Fluent in multiple musical genres, he composes original music that draws from a wide variety of influences including folk, jazz, Celtic, Classical, electronic, and more.\n\nKittel performs with his group Kittel & Co., as a soloist with orchestras, and in collaborative and supporting roles with many of today\'s leading artists. In demand as a composer and arranger, he has worked with Abigail Washburn and Bela Fleck, Zedd, My Morning Jacket, Aoife O\'Donovan, Shawn Mendes, Theo Katzman, Jars of Clay, Yo-Yo Ma, Jon Batiste, Renee Fleming, and the Grammy-winning Turtle Island Quartet (of which he was a member for five years). He has also recorded with artists such as Edgar Meyer, Chris Thile, Fleet Foxes, and Esperanza Spalding.',
+    websiteUrl: 'https://jeremykittel.com/',
+  },
+  {
     id: 'eric-jacobsen',
     name: 'Eric Jacobsen',
     role: 'Music Director, Orlando Philharmonic Orchestra',
@@ -29,15 +38,6 @@ export const collaborators: BioData[] = [
     bioText: 'Already well-established as one of classical music\'s most exciting and innovative young conductors, Eric Jacobsen has built a reputation for engaging audiences with innovative and collaborative programming. Eric is Music Director at both the Virginia Symphony orchestra and Orlando Philharmonic Orchestra, as well as the Principal Guest Conductor of the Classical Tahoe Musical Festival. Eric brings joy, storytelling, and a touch of humor to what he describes as "musical conversations" that delight audiences around the world, including those who do not traditionally attend classical music concerts.',
     photoCredit: 'Photo: Ben Van Hook',
     websiteUrl: 'https://www.jacobseneric.com/',
-  },
-  {
-    id: 'jeremy-kittel',
-    name: 'Jeremy Kittel',
-    role: 'Composer, Fiddler, Violinist',
-    image: jeremyImage,
-    imageAlt: 'Jeremy Kittel portrait',
-    bioText: 'Jeremy Kittel is an American composer, violinist, and fiddler. He received a Grammy nomination for "Best Instrumental Composition" in 2019 alongside John Williams and Terence Blanchard. Fluent in multiple musical genres, he composes original music that draws from a wide variety of influences including folk, jazz, Celtic, Classical, electronic, and more.\n\nKittel performs with his group Kittel & Co., as a soloist with orchestras, and in collaborative and supporting roles with many of today\'s leading artists. In demand as a composer and arranger, he has worked with Abigail Washburn and Bela Fleck, Zedd, My Morning Jacket, Aoife O\'Donovan, Shawn Mendes, Theo Katzman, Jars of Clay, Yo-Yo Ma, Jon Batiste, Renee Fleming, and the Grammy-winning Turtle Island Quartet (of which he was a member for five years). He has also recorded with artists such as Edgar Meyer, Chris Thile, Fleet Foxes, and Esperanza Spalding.',
-    websiteUrl: 'https://jeremykittel.com/',
   },
   {
     id: 'orlando-philharmonic',
