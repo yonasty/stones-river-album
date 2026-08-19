@@ -173,7 +173,7 @@ export const preorderProducts: ProductConfig[] = [
       'Early access to interview footage with Jeremy Kittel, Eric Jacobsen, & Jody Elff',
     ],
     includedItems: [
-      { name: 'Acknowledgement as an Associate Producer on the album website', quantity: 1, image: '/assets/Individual Item Images/Jeremy_Kittel.jpg' },
+      { name: 'Acknowledgement as an Associate Producer on the album website', quantity: 1, image: '/assets/Individual Item Images/Associate Producer Acknowledgement.png' },
       { name: 'Handwritten personal letter from Jeremy on the creative journey behind Stones River', quantity: 1, image: '/assets/Individual Item Images/Jeremy_Kittel.jpg' },
       { name: 'Exclusive signed test pressing of Stones River (only 10 made!)', quantity: 1, image: '/assets/Individual Item Images/Test Pressing.png', modalImages: ['/assets/Individual Item Images/Test Pressing.png', '/assets/Individual Item Images/Test Pressing - Vinyl.png'] },
       { name: 'Digital orchestral score of Stones River', quantity: 1, image: '/assets/Individual Item Images/Jeremy_Kittel.jpg' },
