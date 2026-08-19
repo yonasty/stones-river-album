@@ -38,6 +38,15 @@ declare global {
   }
 }
 
+/**
+ * Shopify descriptions are authored in a rich-text editor, so an "&" typed as
+ * "&amp;" gets escaped a second time on save and reaches us as "&amp;amp;" —
+ * which then renders as the literal text "&amp;". Collapse one layer of that.
+ */
+function fixDoubleEscapedEntities(html: string): string {
+  return html.replace(/&amp;(amp|lt|gt|quot|apos|#39);/g, '&$1;');
+}
+
 export function PreorderSection() {
   const ref = useRef(null);
   const isMobile = useIsMobile();
@@ -210,7 +219,7 @@ export function PreorderSection() {
                 images[product.id] = productImages;
               }
               if (node.descriptionHtml || node.description) {
-                descriptions[product.id] = node.descriptionHtml || node.description;
+                descriptions[product.id] = fixDoubleEscapedEntities(node.descriptionHtml || node.description);
               }
               console.log(`[Shopify] Product ${product.id} fetched:`, { imageCount: productImages.length, hasDescription: !!(node.descriptionHtml || node.description) });
             }

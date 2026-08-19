@@ -50,12 +50,12 @@ You are the dedicated Claude Code session for the **Stones River album website**
 - **Local dev:** `npm run dev` would work but Ben prefers you don't run local servers. Verify changes via `npm run build` then commit and push — Cloud Build is the source of truth.
 
 ## Versioning
-- `VERSION` file in repo root, currently **`2.17.0`**.
+- `VERSION` file in repo root, currently **`2.17.1`**.
 - Bump after every meaningful deploy: patch (1.0.X) for fixes/tweaks, minor (1.X.0) for features, major (X.0.0) for overhauls.
 - Tell Ben the new version number after deploy.
 - **No UI version display.** This is a public-facing marketing site, so it's exempt from the global "show version in a footer/corner" rule (Ben, 2026-06-03). Keep the `VERSION` file and keep bumping it after deploys, but do not surface it in the UI.
 
-## Current State (as of 2026-08-17, v2.17.0)
+## Current State (as of 2026-08-18, v2.17.1)
 - **Naming rule — "Orlando Philharmonic Orchestra" takes NO definite article** (Ben, 2026-08-17). Not "The Orlando Philharmonic Orchestra", and not "…and the Orlando Philharmonic Orchestra" mid-sentence either. Applied site-wide in v2.16.0: bio name + alt text, quote-image alt, banner alt, About copy, About-the-Album copy, and the OPO bio's opening sentence. Short informal references that aren't the full name ("the Philharmonic") were left alone. Keep new copy consistent with this.
 - **Bio photo credits (v2.16.0):** `BioData` has an optional `photoCredit?: string` (`biosData.ts`) rendered as small dimmed text (`text-white/40 text-xs`) directly under the image in the bio modal — modal only, not on the card. Eric Jacobsen: "Photo: Ben Van Hook". Orlando Philharmonic Orchestra: "Photo courtesy of Orlando Philharmonic". Jeremy Kittel has none.
 - **No mentions of The Knights or Brooklyn Rider anywhere on the site** (Ben, 2026-08-17). Two separate removals: the sentence about The Knights / NYC-based chamber orchestra in Eric's bio (`biosData.ts`, v2.16.0), and the "(The Knights, Brooklyn Rider)" parenthetical after Eric's name in the About-the-Album copy (`FullBioSection.tsx`, v2.16.1). Don't reintroduce either.
@@ -63,7 +63,7 @@ You are the dedicated Claude Code session for the **Stones River album website**
   - **`AssociateProducers` has an EMPTY name array** — Ben's call (2026-08-17): better a bare heading than 18 duplicated names on the live site. **Ben still owes the Associate roster.** Drop the names into `associateProducers` in `AssociateProducers.tsx` when they arrive.
   - Brief history so nobody "fixes" this: on 2026-08-17 Ben first asked to rename Honorary → Associate (v2.16.0), then reverted it and asked for both sections (v2.17.0). Honorary is correct as-is.
   - **Background browns run light→dark down the page:** honorary #988780 → associate #8A7A74 → full-bio #7D6E69 → footer #625652. Keep that descent if you add another band.
-- **Open item:** Ben flagged an "and → &" typo in Preorder Tier 5 copy but tabled it ("ignore for now"). No literal "and &" exists in `preorderData.ts` or in Shopify's Tier 5 description; the likeliest target is the bullet "Exclusive group listening session **and** Q&A with Jeremy…" (which also appears in Tiers 3, 4, and 6). Confirm with Ben before changing.
+- **Tier 5 "&amp;" typo — fixed in the site, still wrong in Shopify (v2.17.1).** Shopify's Tier 5 `descriptionHtml` stores `&amp;amp;` (someone typed `&amp;` into the rich-text editor and it was escaped a second time on save), which rendered on screen as the literal text `&amp;`. `PreorderSection.tsx` now runs `fixDoubleEscapedEntities()` over the description at the fetch boundary, collapsing one layer of escaping. **The underlying Shopify data is still wrong** — fixing it there needs an Admin API token for `jeremykittel.myshopify.com`, which this repo does not have (the token in `shopify-dev` is for the Max Gomez store). The code fix becomes a harmless no-op if the data is ever corrected. Audited 2026-08-18: Tier 5 was the only product affected.
 - **"Jacobsen" is spelled correctly everywhere** — audited the full repo and all six Shopify product descriptions on 2026-08-17. Zero instances of "Jacobson". No action needed if it comes up again.
 
 ## Earlier State (v2.15.0)
