@@ -160,6 +160,7 @@ export const preorderProducts: ProductConfig[] = [
     shopifyVariantId: 'gid://shopify/ProductVariant/48035010773230',
     cardDescription: 'The ultimate experience (limited to 10): handwritten letter, exclusive test pressing, orchestral score, art print, blue vinyl, CD, and all access.',
     tierIncludes: [
+      'Acknowledgement as an Associate Producer on the album website',
       'Handwritten personal letter from Jeremy on the creative journey behind Stones River',
       'Exclusive signed test pressing of Stones River (only 10 made!)',
       'Digital orchestral score of Stones River',
@@ -172,6 +173,7 @@ export const preorderProducts: ProductConfig[] = [
       'Early access to interview footage with Jeremy Kittel, Eric Jacobsen, & Jody Elff',
     ],
     includedItems: [
+      { name: 'Acknowledgement as an Associate Producer on the album website', quantity: 1, image: '/assets/Individual Item Images/Jeremy_Kittel.jpg' },
       { name: 'Handwritten personal letter from Jeremy on the creative journey behind Stones River', quantity: 1, image: '/assets/Individual Item Images/Jeremy_Kittel.jpg' },
       { name: 'Exclusive signed test pressing of Stones River (only 10 made!)', quantity: 1, image: '/assets/Individual Item Images/Test Pressing.png', modalImages: ['/assets/Individual Item Images/Test Pressing.png', '/assets/Individual Item Images/Test Pressing - Vinyl.png'] },
       { name: 'Digital orchestral score of Stones River', quantity: 1, image: '/assets/Individual Item Images/Jeremy_Kittel.jpg' },
