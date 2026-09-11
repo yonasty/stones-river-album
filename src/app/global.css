@@ -54,6 +54,11 @@
 .font-garamond {
   font-family: 'ITC Garamond Std Condensed Light', serif;
 }
+/* No italic file for this face, so <em> is a browser-slanted roman whose last letter
+   leans into the next space ("River weaves") — pad it back out. */
+.font-garamond em {
+  padding-right: 0.1em;
+}
 
 html {
   scroll-behavior: smooth;
