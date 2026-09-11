@@ -1,3 +1,5 @@
+import { italicizeAlbumTitle } from '../utils/albumTitle';
+
 const bioParagraphs = [
   'Stones River is a collaborative album between composer and fiddler Jeremy Kittel, Grammy-nominated conductor Eric Jacobsen, and Orlando Philharmonic Orchestra.',
   'The project began when Eric and the OPO invited Jeremy to compose a new work drawing from early American music — spanning the Revolutionary War through the Civil War. The result was Stones River, a piece that weaves together melodies from across that era into a contemporary, almost dream-like whole, led throughout by a solo fiddle.',
@@ -19,7 +21,7 @@ export function FullBioSection() {
         </p>
         <div className="font-garamond text-parchment/90 text-base md:text-lg leading-[1.75] space-y-4">
           {bioParagraphs.map((paragraph) => (
-            <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+            <p key={paragraph.slice(0, 40)}>{italicizeAlbumTitle(paragraph)}</p>
           ))}
         </div>
       </div>

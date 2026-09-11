@@ -1,4 +1,5 @@
 import albumCover from '../../../assets/album-cover.jpg';
+import { italicizeAlbumTitle } from '../utils/albumTitle';
 
 const aboutBio =
   'Stones River weaves together Early American melodies spanning the Revolutionary War through the Civil War eras, into a contemporary, almost dream-like whole, led throughout by a solo fiddle. The music carries an ineffable sense of voices from the past reaching the present — and the questions those voices raise. The album brings together conductor Eric Jacobsen, Orlando Philharmonic, and composer and soloist Jeremy Kittel in a captivating program that spans centuries.';
@@ -37,13 +38,13 @@ export function AboutSection() {
         {/* Right — heading, collaborators, bio */}
         <div className="flex-1 w-full">
           <h2 className="text-5xl md:text-6xl lg:text-7xl text-parchment font-light uppercase mb-6">
-            Stones River
+            <em>Stones River</em>
           </h2>
           <p className="font-heading text-parchment/90 text-lg md:text-xl lg:text-2xl font-medium tracking-wide uppercase mb-8">
             Jeremy Kittel <span className="text-parchment/40">•</span> Eric Jacobsen <span className="text-parchment/40">•</span> Orlando Philharmonic Orchestra
           </p>
           <div className="text-parchment/85 leading-[1.7]">
-            <p className="font-garamond text-lg md:text-xl lg:text-2xl">{aboutBio}</p>
+            <p className="font-garamond text-lg md:text-xl lg:text-2xl">{italicizeAlbumTitle(aboutBio)}</p>
           </div>
         </div>
       </div>

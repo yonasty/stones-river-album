@@ -6,6 +6,7 @@ import { preorderProducts, shopifyConfig, type ProductConfig } from '../data/pre
 import { ContentModal } from './ContentModal';
 import { useIsMobile } from '../hooks/useIsMobile';
 import { useCart } from '../context/CartContext';
+import { italicizeAlbumTitle, italicizeAlbumTitleHtml } from '../utils/albumTitle';
 
 // Shopify Buy Button JS SDK type declarations
 interface ShopifyClient {
@@ -219,7 +220,7 @@ export function PreorderSection() {
                 images[product.id] = productImages;
               }
               if (node.descriptionHtml || node.description) {
-                descriptions[product.id] = fixDoubleEscapedEntities(node.descriptionHtml || node.description);
+                descriptions[product.id] = italicizeAlbumTitleHtml(fixDoubleEscapedEntities(node.descriptionHtml || node.description));
               }
               console.log(`[Shopify] Product ${product.id} fetched:`, { imageCount: productImages.length, hasDescription: !!(node.descriptionHtml || node.description) });
             }
@@ -290,7 +291,7 @@ export function PreorderSection() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            Preorder Stones River
+            Preorder <em>Stones River</em>
           </motion.h2>
         </div>
 
@@ -431,7 +432,7 @@ function ProductCard({ product, shopifyAvailable, shopifyImage, onClick }: Produ
           )}
           <p className="text-white/40 text-xs uppercase tracking-wider mb-1">{product.id.replace('-', ' ')}</p>
           <h3 className="text-lg font-medium text-white/90 text-center mb-2">
-            {displayTitle.replace(/^Tier \d+ — /, '')}
+            {italicizeAlbumTitle(displayTitle.replace(/^Tier \d+ — /, ''))}
           </h3>
           <span className="text-2xl font-semibold text-white">{displayPrice}</span>
         </div>
@@ -439,7 +440,7 @@ function ProductCard({ product, shopifyAvailable, shopifyImage, onClick }: Produ
         {/* Middle column — Description, View Details, Add to Cart */}
         <div className="w-full md:w-[25%] p-5 md:p-6 flex flex-col justify-center gap-4 border-t md:border-t-0 md:border-l border-white/5">
           <p className="text-white/60 text-sm leading-relaxed">
-            {product.tierDescription}
+            {italicizeAlbumTitle(product.tierDescription)}
           </p>
           <div className="space-y-2">
             <button
@@ -503,7 +504,7 @@ function ProductCard({ product, shopifyAvailable, shopifyImage, onClick }: Produ
                 />
                 <div className="min-w-0">
                   <p className="text-white/80 text-sm leading-snug line-clamp-2">
-                    {item.name}
+                    {italicizeAlbumTitle(item.name)}
                   </p>
                 </div>
               </button>
@@ -556,7 +557,7 @@ function ProductCard({ product, shopifyAvailable, shopifyImage, onClick }: Produ
                 </div>
               )}
               <p className="text-white text-center text-base leading-relaxed">
-                {selectedItem.name}
+                {italicizeAlbumTitle(selectedItem.name)}
               </p>
             </div>
           );
@@ -663,7 +664,7 @@ function ProductModalContent({
       {/* Right — Title, price, description, button */}
       <div className="w-full md:w-3/5 flex flex-col gap-4">
         <div>
-          <h3 className="text-xl font-medium text-white mb-1">{product.fallbackTitle}</h3>
+          <h3 className="text-xl font-medium text-white mb-1">{italicizeAlbumTitle(product.fallbackTitle)}</h3>
           <p className="text-white/60 text-lg">{product.fallbackPrice}</p>
         </div>
 
@@ -675,7 +676,7 @@ function ProductModalContent({
               dangerouslySetInnerHTML={{ __html: shopifyDescription }}
             />
           ) : (
-            <p className="text-white/60">{product.tierDescription}</p>
+            <p className="text-white/60">{italicizeAlbumTitle(product.tierDescription)}</p>
           )}
         </div>
 

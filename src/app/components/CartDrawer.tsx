@@ -1,6 +1,7 @@
 import { X, Minus, Plus, Trash2, ShoppingBag } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { shopifyConfig } from '../data/preorderData';
+import { italicizeAlbumTitle } from '../utils/albumTitle';
 
 /** Extract numeric ID from Shopify GID format */
 function getNumericId(gid: string): string {
@@ -104,7 +105,7 @@ export function CartDrawer() {
                     {/* Item details */}
                     <div className="flex-1 min-w-0">
                       <h3 className="text-sm font-medium text-white/90 truncate">
-                        {item.title}
+                        {italicizeAlbumTitle(item.title)}
                       </h3>
                       <p className="text-xs text-white/50 mt-0.5">{item.price} each</p>
 
